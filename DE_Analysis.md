@@ -3,28 +3,42 @@ RNA-seq Analysis
 Zoe Dellaert
 2026-06-02
 
-- [RNA-seq Analysis](#rna-seq-analysis)
-- [Preproccessing of bulk RNA-seq data](#preproccessing-of-bulk-rna-seq-data)
-  - [0. Setup species-specific parameters](#0-setup-species-specific-parameters)
+- [Preproccessing of bulk RNA-seq
+  data](#preproccessing-of-bulk-rna-seq-data)
+  - [0. Setup species-specific
+    parameters](#0-setup-species-specific-parameters)
   - [1. Read in raw count data](#1-read-in-raw-count-data)
-  - [2. Extract metadata from sample names](#2-extract-metadata-from-sample-names)
-  - [3. Remove outliers, if identified](#3-remove-outliers-if-identified)
-  - [4. pOverA filtering to reduce dataset](#4-povera-filtering-to-reduce-dataset)
-    - [Note to self: maybe replace this with treatment-specific filtering. To get genes expressed only at one timepoint in one treatment](#note-to-self-maybe-replace-this-with-treatment-specific-filtering-to-get-genes-expressed-only-at-one-timepoint-in-one-treatment)
-  - [5. Create DESeq object and run DESeq2](#5-create-deseq-object-and-run-deseq2)
-  - [6. VST-Transforming count data for visualization](#6-vst-transforming-count-data-for-visualization)
-  - [7. Visualize sample-sample relationships](#7-visualize-sample-sample-relationships)
+  - [2. Extract metadata from sample
+    names](#2-extract-metadata-from-sample-names)
+  - [3. Remove outliers, if
+    identified](#3-remove-outliers-if-identified)
+  - [4. pOverA filtering to reduce
+    dataset](#4-povera-filtering-to-reduce-dataset)
+    - [Note to self: maybe replace this with treatment-specific
+      filtering. To get genes expressed only at one timepoint in one
+      treatment](#note-to-self-maybe-replace-this-with-treatment-specific-filtering-to-get-genes-expressed-only-at-one-timepoint-in-one-treatment)
+  - [5. Create DESeq object and run
+    DESeq2](#5-create-deseq-object-and-run-deseq2)
+  - [6. VST-Transforming count data for
+    visualization](#6-vst-transforming-count-data-for-visualization)
+  - [7. Visualize sample-sample
+    relationships](#7-visualize-sample-sample-relationships)
     - [PCA](#pca)
     - [Hierarchical Clustering](#hierarchical-clustering)
     - [Heatmap of variable genes](#heatmap-of-variable-genes)
   - [Preprocessing Summary](#preprocessing-summary)
 - [DE Analysis](#de-analysis)
-  - [1. Extract results for bulk vs. OralGastro contrast](#1-extract-results-for-bulk-vsoralgastro-contrast)
-    - [MA Plots with Log2 Fold Change Transform Comparisons](#ma-plots-with-log2-fold-change-transform-comparisons)
-  - [2. Extract results for adjusted p-value \< 0.05 with LFC transform of choice (or none)](#2-extract-results-for-adjusted-p-value--005-with-lfc-transform-of-choice-or-none)
+  - [1. Extract results for bulk vs. OralGastro
+    contrast](#1-extract-results-for-bulk-vs-oralgastro-contrast)
+    - [MA Plots with Log2 Fold Change Transform
+      Comparisons](#ma-plots-with-log2-fold-change-transform-comparisons)
+  - [2. Extract results for adjusted p-value \< 0.05 with LFC transform
+    of choice (or
+    none)](#2-extract-results-for-adjusted-p-value--005-with-lfc-transform-of-choice-or-none)
     - [Join with annotation data](#join-with-annotation-data)
     - [Save csvs](#save-csvs)
-  - [3. Heatmap of differentially expressed genes, with Swissprot annotation](#3-heatmap-of-differentially-expressed-genes-with-swissprot-annotation)
+  - [3. Heatmap of differentially expressed genes, with Swissprot
+    annotation](#3-heatmap-of-differentially-expressed-genes-with-swissprot-annotation)
   - [Appendix](#appendix)
 
 # Preproccessing of bulk RNA-seq data
@@ -345,8 +359,8 @@ plotMA(resAsh, xlim=xlim, ylim=ylim, main="ashr")
 #res <- resLFC #resAsh
 
 resOrdered <- res[order(res$pvalue),] # save differentially expressed genes
-
-DE_05 <- as.data.frame(resOrdered) %>% filter(padj < 0.05 & abs(log2FoldChange) > 1)
+ 
+DE_05 <- as.data.frame(resOrdered) %>% filter(padj < 0.05)#& abs(log2FoldChange) > 1)
 DE_05_Up <- DE_05 %>% filter(log2FoldChange > 0) #Higher in Oral Gastro
 DE_05_Down <- DE_05 %>% filter(log2FoldChange < 0) #Lower in Oral Gastro
 
@@ -460,6 +474,9 @@ heat1 <- pheatmap(vst_mat[topDEGenes, ],
 ![](./output_RNA/reports/DE_Analysis_files/figure-gfm/heatmap-swissprot-lfc-1.png)<!-- -->
 
 ``` r
+#view most significantly differentially expressed genes in order by LFC with labels
+topDEGenes <- order(res$log2FoldChange, decreasing =  TRUE)[1:50]
+
 heat2 <- pheatmap(vst_mat[topDEGenes, ],
          cluster_rows=FALSE, show_rownames=TRUE,
          cluster_cols=TRUE, cutree_cols = 2,
@@ -489,5 +506,6 @@ dev.off()
 
 ## Appendix
 
-To knit: rmarkdown::render(“DE_Analysis.Rmd”, output_dir =
-“../output_RNA/reports/”)
+To knit:
+
+rmarkdown::render(“scripts/DE_Analysis.Rmd”, output_dir = “./”)

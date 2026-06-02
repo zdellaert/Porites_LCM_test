@@ -268,8 +268,8 @@ plotMA(resAsh, xlim=xlim, ylim=ylim, main="ashr")
 #res <- resLFC #resAsh
 
 resOrdered <- res[order(res$pvalue),] # save differentially expressed genes
-
-DE_05 <- as.data.frame(resOrdered) %>% filter(padj < 0.05 & abs(log2FoldChange) > 1)
+ 
+DE_05 <- as.data.frame(resOrdered) %>% filter(padj < 0.05)#& abs(log2FoldChange) > 1)
 DE_05_Up <- DE_05 %>% filter(log2FoldChange > 0) #Higher in Oral Gastro
 DE_05_Down <- DE_05 %>% filter(log2FoldChange < 0) #Lower in Oral Gastro
 
@@ -351,6 +351,9 @@ heat1 <- pheatmap(vst_mat[topDEGenes, ],
          annotation_col=(meta%>% select(tissue)),
          labels_row = gene_labels[match(rownames(res)[topDEGenes],(gene_labels$query)),2], fontsize_row = 6)
 
+#view most significantly differentially expressed genes in order by LFC with labels
+topDEGenes <- order(res$log2FoldChange, decreasing =  TRUE)[1:50]
+
 heat2 <- pheatmap(vst_mat[topDEGenes, ],
          cluster_rows=FALSE, show_rownames=TRUE,
          cluster_cols=TRUE, cutree_cols = 2,
@@ -370,5 +373,7 @@ dev.off()
 
 ## Appendix
 
-To knit: rmarkdown::render("DE_Analysis.Rmd", output_dir = "../output_RNA/reports/")
+To knit:
+
+rmarkdown::render("scripts/DE_Analysis.Rmd", output_dir = "./")
 
