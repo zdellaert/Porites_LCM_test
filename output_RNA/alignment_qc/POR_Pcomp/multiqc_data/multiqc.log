@@ -1,0 +1,241 @@
+[2026-06-02 14:05:22,379] multiqc                                            [DEBUG  ]  This is MultiQC v1.12
+[2026-06-02 14:05:22,381] multiqc                                            [DEBUG  ]  No MultiQC config found: /modules/uri_apps/software/MultiQC/1.12-foss-2021b/lib/python3.9/site-packages/multiqc_config.yaml
+[2026-06-02 14:05:22,382] multiqc                                            [DEBUG  ]  No MultiQC config found: /home/zdellaert_uri_edu/.multiqc_config.yaml
+[2026-06-02 14:05:22,383] multiqc                                            [DEBUG  ]  No MultiQC config found: multiqc_config.yaml
+[2026-06-02 14:05:22,383] multiqc                                            [DEBUG  ]  Command used: /modules/uri_apps/software/MultiQC/1.12-foss-2021b/bin/multiqc . /scratch4/workspace/zdellaert_uri_edu-shared_TimeSeries/Porites_LCM_test/aligned/POR_Pcomp
+[2026-06-02 14:05:22,952] multiqc                                            [WARNING]  MultiQC Version v1.35 now available!
+[2026-06-02 14:05:22,953] multiqc                                            [DEBUG  ]  Command     : /modules/uri_apps/software/MultiQC/1.12-foss-2021b/bin/multiqc . /scratch4/workspace/zdellaert_uri_edu-shared_TimeSeries/Porites_LCM_test/aligned/POR_Pcomp
+[2026-06-02 14:05:22,953] multiqc                                            [DEBUG  ]  Working dir : /project/pi_hputnam_uri_edu/zdellaert/Porites_LCM_test/output_RNA/alignment_qc/POR_Pcomp
+[2026-06-02 14:05:22,953] multiqc                                            [DEBUG  ]  Template    : default
+[2026-06-02 14:05:22,953] multiqc                                            [DEBUG  ]  Running Python 3.9.6 (default, Nov 15 2024, 16:57:16)  [GCC 11.2.0]
+[2026-06-02 14:05:22,954] multiqc                                            [DEBUG  ]  Analysing modules: custom_content, ccs, ngsderive, purple, conpair, lima, peddy, somalier, methylQA, mosdepth, phantompeakqualtools, qualimap, preseq, quast, qorts, rna_seqc, rockhopper, rsem, rseqc, busco, bustools, goleft_indexcov, gffcompare, disambiguate, supernova, deeptools, sargasso, verifybamid, mirtrace, happy, mirtop, sambamba, homer, hops, macs2, theta2, snpeff, gatk, htseq, bcftools, featureCounts, fgbio, dragen, dedup, pbmarkdup, damageprofiler, biobambam2, jcvi, mtnucratio, picard, vep, sentieon, prokka, qc3C, nanostat, samblaster, samtools, sexdeterrmine, eigenstratdatabasetools, bamtools, jellyfish, vcftools, longranger, stacks, varscan2, snippy, bbmap, bismark, biscuit, hicexplorer, hicup, hicpro, salmon, kallisto, slamdunk, star, hisat2, tophat, bowtie2, bowtie1, snpsplit, odgi, pangolin, kat, leehom, adapterRemoval, clipandmerge, cutadapt, flexbar, kaiju, kraken, malt, trimmomatic, sickle, skewer, sortmerna, biobloomtools, fastq_screen, afterqc, fastp, fastqc, pychopper, pycoqc, minionqc, multivcfanalyzer, clusterflow, checkqc, bcl2fastq, bclconvert, interop, ivar, flash, seqyclean, optitype, whatshap
+[2026-06-02 14:05:22,954] multiqc                                            [DEBUG  ]  Using temporary directory for creating report: /tmp/tmpzx8dvvkh
+[2026-06-02 14:05:23,382] multiqc                                            [INFO   ]  Search path : /project/pi_hputnam_uri_edu/zdellaert/Porites_LCM_test/output_RNA/alignment_qc/POR_Pcomp
+[2026-06-02 14:05:23,382] multiqc                                            [INFO   ]  Search path : /scratch4/workspace/zdellaert_uri_edu-shared_TimeSeries/Porites_LCM_test/aligned/POR_Pcomp
+[2026-06-02 14:05:23,475] multiqc                                            [DEBUG  ]  File ignored by ccs/v4 because it exceeded search pattern filesize limit: qualimapReport.html
+[2026-06-02 14:05:23,478] multiqc                                            [DEBUG  ]  File ignored by hicexplorer because it exceeded search pattern filesize limit: qualimapReport.html
+[2026-06-02 14:05:23,479] multiqc                                            [DEBUG  ]  File ignored by lima/summary because it exceeded search pattern filesize limit: qualimapReport.html
+[2026-06-02 14:05:23,490] multiqc                                            [DEBUG  ]  File ignored by longranger/invocation because it exceeded search pattern filesize limit: qualimapReport.html
+[2026-06-02 14:05:23,518] multiqc                                            [DEBUG  ]  File ignored by nanostat because it exceeded search pattern filesize limit: qualimapReport.html
+[2026-06-02 14:05:23,545] multiqc                                            [DEBUG  ]  File ignored by ccs/v4 because it exceeded search pattern filesize limit: agogo.css
+[2026-06-02 14:05:23,546] multiqc                                            [DEBUG  ]  File ignored by hicexplorer because it exceeded search pattern filesize limit: agogo.css
+[2026-06-02 14:05:23,547] multiqc                                            [DEBUG  ]  File ignored by lima/summary because it exceeded search pattern filesize limit: agogo.css
+[2026-06-02 14:05:23,549] multiqc                                            [DEBUG  ]  File ignored by longranger/invocation because it exceeded search pattern filesize limit: agogo.css
+[2026-06-02 14:05:23,567] multiqc                                            [DEBUG  ]  File ignored by nanostat because it exceeded search pattern filesize limit: agogo.css
+[2026-06-02 14:05:23,580] multiqc                                            [DEBUG  ]  File ignored by ccs/v4 because it exceeded search pattern filesize limit: basic.css
+[2026-06-02 14:05:23,582] multiqc                                            [DEBUG  ]  File ignored by hicexplorer because it exceeded search pattern filesize limit: basic.css
+[2026-06-02 14:05:23,582] multiqc                                            [DEBUG  ]  File ignored by lima/summary because it exceeded search pattern filesize limit: basic.css
+[2026-06-02 14:05:23,585] multiqc                                            [DEBUG  ]  File ignored by longranger/invocation because it exceeded search pattern filesize limit: basic.css
+[2026-06-02 14:05:23,604] multiqc                                            [DEBUG  ]  File ignored by nanostat because it exceeded search pattern filesize limit: basic.css
+[2026-06-02 14:05:23,623] multiqc                                            [DEBUG  ]  File ignored by ccs/v4 because it exceeded search pattern filesize limit: doctools.js
+[2026-06-02 14:05:23,624] multiqc                                            [DEBUG  ]  File ignored by hicexplorer because it exceeded search pattern filesize limit: doctools.js
+[2026-06-02 14:05:23,624] multiqc                                            [DEBUG  ]  File ignored by lima/summary because it exceeded search pattern filesize limit: doctools.js
+[2026-06-02 14:05:23,627] multiqc                                            [DEBUG  ]  File ignored by longranger/invocation because it exceeded search pattern filesize limit: doctools.js
+[2026-06-02 14:05:23,641] multiqc                                            [DEBUG  ]  File ignored by nanostat because it exceeded search pattern filesize limit: doctools.js
+[2026-06-02 14:05:23,662] multiqc                                            [DEBUG  ]  File ignored by ccs/v4 because it exceeded search pattern filesize limit: jquery.js
+[2026-06-02 14:05:23,664] multiqc                                            [DEBUG  ]  File ignored by hicexplorer because it exceeded search pattern filesize limit: jquery.js
+[2026-06-02 14:05:23,664] multiqc                                            [DEBUG  ]  File ignored by lima/summary because it exceeded search pattern filesize limit: jquery.js
+[2026-06-02 14:05:23,667] multiqc                                            [DEBUG  ]  File ignored by longranger/invocation because it exceeded search pattern filesize limit: jquery.js
+[2026-06-02 14:05:23,688] multiqc                                            [DEBUG  ]  File ignored by nanostat because it exceeded search pattern filesize limit: jquery.js
+[2026-06-02 14:05:23,697] multiqc                                            [DEBUG  ]  File ignored by ccs/v4 because it exceeded search pattern filesize limit: pygments.css
+[2026-06-02 14:05:23,698] multiqc                                            [DEBUG  ]  File ignored by lima/summary because it exceeded search pattern filesize limit: pygments.css
+[2026-06-02 14:05:23,700] multiqc                                            [DEBUG  ]  File ignored by longranger/invocation because it exceeded search pattern filesize limit: pygments.css
+[2026-06-02 14:05:23,732] multiqc                                            [DEBUG  ]  File ignored by ccs/v4 because it exceeded search pattern filesize limit: searchtools.js
+[2026-06-02 14:05:23,733] multiqc                                            [DEBUG  ]  File ignored by hicexplorer because it exceeded search pattern filesize limit: searchtools.js
+[2026-06-02 14:05:23,734] multiqc                                            [DEBUG  ]  File ignored by lima/summary because it exceeded search pattern filesize limit: searchtools.js
+[2026-06-02 14:05:23,737] multiqc                                            [DEBUG  ]  File ignored by longranger/invocation because it exceeded search pattern filesize limit: searchtools.js
+[2026-06-02 14:05:23,763] multiqc                                            [DEBUG  ]  File ignored by nanostat because it exceeded search pattern filesize limit: searchtools.js
+[2026-06-02 14:05:23,773] multiqc                                            [DEBUG  ]  File ignored by ccs/v4 because it exceeded search pattern filesize limit: underscore.js
+[2026-06-02 14:05:23,774] multiqc                                            [DEBUG  ]  File ignored by hicexplorer because it exceeded search pattern filesize limit: underscore.js
+[2026-06-02 14:05:23,774] multiqc                                            [DEBUG  ]  File ignored by lima/summary because it exceeded search pattern filesize limit: underscore.js
+[2026-06-02 14:05:23,777] multiqc                                            [DEBUG  ]  File ignored by longranger/invocation because it exceeded search pattern filesize limit: underscore.js
+[2026-06-02 14:05:23,783] multiqc                                            [DEBUG  ]  File ignored by nanostat because it exceeded search pattern filesize limit: underscore.js
+[2026-06-02 14:05:23,792] multiqc                                            [DEBUG  ]  File ignored by ccs/v4 because it exceeded search pattern filesize limit: websupport.js
+[2026-06-02 14:05:23,793] multiqc                                            [DEBUG  ]  File ignored by hicexplorer because it exceeded search pattern filesize limit: websupport.js
+[2026-06-02 14:05:23,793] multiqc                                            [DEBUG  ]  File ignored by lima/summary because it exceeded search pattern filesize limit: websupport.js
+[2026-06-02 14:05:23,795] multiqc                                            [DEBUG  ]  File ignored by longranger/invocation because it exceeded search pattern filesize limit: websupport.js
+[2026-06-02 14:05:23,828] multiqc                                            [DEBUG  ]  File ignored by nanostat because it exceeded search pattern filesize limit: websupport.js
+[2026-06-02 14:05:23,835] multiqc                                            [DEBUG  ]  File ignored by ccs/v4 because it exceeded search pattern filesize limit: coverage_profile_along_genes_(low).txt
+[2026-06-02 14:05:23,836] multiqc                                            [DEBUG  ]  File ignored by lima/summary because it exceeded search pattern filesize limit: coverage_profile_along_genes_(low).txt
+[2026-06-02 14:05:23,838] multiqc                                            [DEBUG  ]  File ignored by longranger/invocation because it exceeded search pattern filesize limit: coverage_profile_along_genes_(low).txt
+[2026-06-02 14:05:23,851] multiqc                                            [DEBUG  ]  File ignored by ccs/v4 because it exceeded search pattern filesize limit: coverage_profile_along_genes_(high).txt
+[2026-06-02 14:05:23,852] multiqc                                            [DEBUG  ]  File ignored by lima/summary because it exceeded search pattern filesize limit: coverage_profile_along_genes_(high).txt
+[2026-06-02 14:05:23,860] multiqc                                            [DEBUG  ]  File ignored by longranger/invocation because it exceeded search pattern filesize limit: coverage_profile_along_genes_(high).txt
+[2026-06-02 14:05:23,870] multiqc                                            [DEBUG  ]  File ignored by ccs/v4 because it exceeded search pattern filesize limit: qualimapReport.html
+[2026-06-02 14:05:23,871] multiqc                                            [DEBUG  ]  File ignored by hicexplorer because it exceeded search pattern filesize limit: qualimapReport.html
+[2026-06-02 14:05:23,871] multiqc                                            [DEBUG  ]  File ignored by lima/summary because it exceeded search pattern filesize limit: qualimapReport.html
+[2026-06-02 14:05:23,873] multiqc                                            [DEBUG  ]  File ignored by longranger/invocation because it exceeded search pattern filesize limit: qualimapReport.html
+[2026-06-02 14:05:23,887] multiqc                                            [DEBUG  ]  File ignored by nanostat because it exceeded search pattern filesize limit: qualimapReport.html
+[2026-06-02 14:05:23,904] multiqc                                            [DEBUG  ]  File ignored by ccs/v4 because it exceeded search pattern filesize limit: agogo.css
+[2026-06-02 14:05:23,905] multiqc                                            [DEBUG  ]  File ignored by hicexplorer because it exceeded search pattern filesize limit: agogo.css
+[2026-06-02 14:05:23,905] multiqc                                            [DEBUG  ]  File ignored by lima/summary because it exceeded search pattern filesize limit: agogo.css
+[2026-06-02 14:05:23,907] multiqc                                            [DEBUG  ]  File ignored by longranger/invocation because it exceeded search pattern filesize limit: agogo.css
+[2026-06-02 14:05:23,923] multiqc                                            [DEBUG  ]  File ignored by nanostat because it exceeded search pattern filesize limit: agogo.css
+[2026-06-02 14:05:23,930] multiqc                                            [DEBUG  ]  File ignored by ccs/v4 because it exceeded search pattern filesize limit: basic.css
+[2026-06-02 14:05:23,930] multiqc                                            [DEBUG  ]  File ignored by hicexplorer because it exceeded search pattern filesize limit: basic.css
+[2026-06-02 14:05:23,931] multiqc                                            [DEBUG  ]  File ignored by lima/summary because it exceeded search pattern filesize limit: basic.css
+[2026-06-02 14:05:23,932] multiqc                                            [DEBUG  ]  File ignored by longranger/invocation because it exceeded search pattern filesize limit: basic.css
+[2026-06-02 14:05:23,950] multiqc                                            [DEBUG  ]  File ignored by nanostat because it exceeded search pattern filesize limit: basic.css
+[2026-06-02 14:05:23,968] multiqc                                            [DEBUG  ]  File ignored by ccs/v4 because it exceeded search pattern filesize limit: doctools.js
+[2026-06-02 14:05:23,969] multiqc                                            [DEBUG  ]  File ignored by hicexplorer because it exceeded search pattern filesize limit: doctools.js
+[2026-06-02 14:05:23,969] multiqc                                            [DEBUG  ]  File ignored by lima/summary because it exceeded search pattern filesize limit: doctools.js
+[2026-06-02 14:05:23,971] multiqc                                            [DEBUG  ]  File ignored by longranger/invocation because it exceeded search pattern filesize limit: doctools.js
+[2026-06-02 14:05:23,981] multiqc                                            [DEBUG  ]  File ignored by nanostat because it exceeded search pattern filesize limit: doctools.js
+[2026-06-02 14:05:23,995] multiqc                                            [DEBUG  ]  File ignored by ccs/v4 because it exceeded search pattern filesize limit: jquery.js
+[2026-06-02 14:05:23,996] multiqc                                            [DEBUG  ]  File ignored by hicexplorer because it exceeded search pattern filesize limit: jquery.js
+[2026-06-02 14:05:23,996] multiqc                                            [DEBUG  ]  File ignored by lima/summary because it exceeded search pattern filesize limit: jquery.js
+[2026-06-02 14:05:23,999] multiqc                                            [DEBUG  ]  File ignored by longranger/invocation because it exceeded search pattern filesize limit: jquery.js
+[2026-06-02 14:05:24,019] multiqc                                            [DEBUG  ]  File ignored by nanostat because it exceeded search pattern filesize limit: jquery.js
+[2026-06-02 14:05:24,029] multiqc                                            [DEBUG  ]  File ignored by ccs/v4 because it exceeded search pattern filesize limit: pygments.css
+[2026-06-02 14:05:24,030] multiqc                                            [DEBUG  ]  File ignored by lima/summary because it exceeded search pattern filesize limit: pygments.css
+[2026-06-02 14:05:24,032] multiqc                                            [DEBUG  ]  File ignored by longranger/invocation because it exceeded search pattern filesize limit: pygments.css
+[2026-06-02 14:05:24,051] multiqc                                            [DEBUG  ]  File ignored by ccs/v4 because it exceeded search pattern filesize limit: searchtools.js
+[2026-06-02 14:05:24,052] multiqc                                            [DEBUG  ]  File ignored by hicexplorer because it exceeded search pattern filesize limit: searchtools.js
+[2026-06-02 14:05:24,052] multiqc                                            [DEBUG  ]  File ignored by lima/summary because it exceeded search pattern filesize limit: searchtools.js
+[2026-06-02 14:05:24,054] multiqc                                            [DEBUG  ]  File ignored by longranger/invocation because it exceeded search pattern filesize limit: searchtools.js
+[2026-06-02 14:05:24,080] multiqc                                            [DEBUG  ]  File ignored by nanostat because it exceeded search pattern filesize limit: searchtools.js
+[2026-06-02 14:05:24,088] multiqc                                            [DEBUG  ]  File ignored by ccs/v4 because it exceeded search pattern filesize limit: underscore.js
+[2026-06-02 14:05:24,089] multiqc                                            [DEBUG  ]  File ignored by hicexplorer because it exceeded search pattern filesize limit: underscore.js
+[2026-06-02 14:05:24,089] multiqc                                            [DEBUG  ]  File ignored by lima/summary because it exceeded search pattern filesize limit: underscore.js
+[2026-06-02 14:05:24,091] multiqc                                            [DEBUG  ]  File ignored by longranger/invocation because it exceeded search pattern filesize limit: underscore.js
+[2026-06-02 14:05:24,095] multiqc                                            [DEBUG  ]  File ignored by nanostat because it exceeded search pattern filesize limit: underscore.js
+[2026-06-02 14:05:24,101] multiqc                                            [DEBUG  ]  File ignored by ccs/v4 because it exceeded search pattern filesize limit: websupport.js
+[2026-06-02 14:05:24,102] multiqc                                            [DEBUG  ]  File ignored by hicexplorer because it exceeded search pattern filesize limit: websupport.js
+[2026-06-02 14:05:24,102] multiqc                                            [DEBUG  ]  File ignored by lima/summary because it exceeded search pattern filesize limit: websupport.js
+[2026-06-02 14:05:24,104] multiqc                                            [DEBUG  ]  File ignored by longranger/invocation because it exceeded search pattern filesize limit: websupport.js
+[2026-06-02 14:05:24,132] multiqc                                            [DEBUG  ]  File ignored by nanostat because it exceeded search pattern filesize limit: websupport.js
+[2026-06-02 14:05:24,144] multiqc                                            [DEBUG  ]  File ignored by ccs/v4 because it exceeded search pattern filesize limit: coverage_profile_along_genes_(low).txt
+[2026-06-02 14:05:24,146] multiqc                                            [DEBUG  ]  File ignored by lima/summary because it exceeded search pattern filesize limit: coverage_profile_along_genes_(low).txt
+[2026-06-02 14:05:24,148] multiqc                                            [DEBUG  ]  File ignored by longranger/invocation because it exceeded search pattern filesize limit: coverage_profile_along_genes_(low).txt
+[2026-06-02 14:05:24,155] multiqc                                            [DEBUG  ]  File ignored by ccs/v4 because it exceeded search pattern filesize limit: coverage_profile_along_genes_(high).txt
+[2026-06-02 14:05:24,156] multiqc                                            [DEBUG  ]  File ignored by lima/summary because it exceeded search pattern filesize limit: coverage_profile_along_genes_(high).txt
+[2026-06-02 14:05:24,158] multiqc                                            [DEBUG  ]  File ignored by longranger/invocation because it exceeded search pattern filesize limit: coverage_profile_along_genes_(high).txt
+[2026-06-02 14:05:24,167] multiqc                                            [DEBUG  ]  File ignored by ccs/v4 because it exceeded search pattern filesize limit: qualimapReport.html
+[2026-06-02 14:05:24,167] multiqc                                            [DEBUG  ]  File ignored by hicexplorer because it exceeded search pattern filesize limit: qualimapReport.html
+[2026-06-02 14:05:24,168] multiqc                                            [DEBUG  ]  File ignored by lima/summary because it exceeded search pattern filesize limit: qualimapReport.html
+[2026-06-02 14:05:24,169] multiqc                                            [DEBUG  ]  File ignored by longranger/invocation because it exceeded search pattern filesize limit: qualimapReport.html
+[2026-06-02 14:05:24,189] multiqc                                            [DEBUG  ]  File ignored by nanostat because it exceeded search pattern filesize limit: qualimapReport.html
+[2026-06-02 14:05:24,206] multiqc                                            [DEBUG  ]  File ignored by ccs/v4 because it exceeded search pattern filesize limit: agogo.css
+[2026-06-02 14:05:24,207] multiqc                                            [DEBUG  ]  File ignored by hicexplorer because it exceeded search pattern filesize limit: agogo.css
+[2026-06-02 14:05:24,207] multiqc                                            [DEBUG  ]  File ignored by lima/summary because it exceeded search pattern filesize limit: agogo.css
+[2026-06-02 14:05:24,209] multiqc                                            [DEBUG  ]  File ignored by longranger/invocation because it exceeded search pattern filesize limit: agogo.css
+[2026-06-02 14:05:24,225] multiqc                                            [DEBUG  ]  File ignored by nanostat because it exceeded search pattern filesize limit: agogo.css
+[2026-06-02 14:05:24,236] multiqc                                            [DEBUG  ]  File ignored by ccs/v4 because it exceeded search pattern filesize limit: basic.css
+[2026-06-02 14:05:24,238] multiqc                                            [DEBUG  ]  File ignored by hicexplorer because it exceeded search pattern filesize limit: basic.css
+[2026-06-02 14:05:24,238] multiqc                                            [DEBUG  ]  File ignored by lima/summary because it exceeded search pattern filesize limit: basic.css
+[2026-06-02 14:05:24,243] multiqc                                            [DEBUG  ]  File ignored by longranger/invocation because it exceeded search pattern filesize limit: basic.css
+[2026-06-02 14:05:24,263] multiqc                                            [DEBUG  ]  File ignored by nanostat because it exceeded search pattern filesize limit: basic.css
+[2026-06-02 14:05:24,277] multiqc                                            [DEBUG  ]  File ignored by ccs/v4 because it exceeded search pattern filesize limit: doctools.js
+[2026-06-02 14:05:24,283] multiqc                                            [DEBUG  ]  File ignored by hicexplorer because it exceeded search pattern filesize limit: doctools.js
+[2026-06-02 14:05:24,284] multiqc                                            [DEBUG  ]  File ignored by lima/summary because it exceeded search pattern filesize limit: doctools.js
+[2026-06-02 14:05:24,293] multiqc                                            [DEBUG  ]  File ignored by longranger/invocation because it exceeded search pattern filesize limit: doctools.js
+[2026-06-02 14:05:24,303] multiqc                                            [DEBUG  ]  File ignored by nanostat because it exceeded search pattern filesize limit: doctools.js
+[2026-06-02 14:05:24,313] multiqc                                            [DEBUG  ]  File ignored by ccs/v4 because it exceeded search pattern filesize limit: jquery.js
+[2026-06-02 14:05:24,314] multiqc                                            [DEBUG  ]  File ignored by hicexplorer because it exceeded search pattern filesize limit: jquery.js
+[2026-06-02 14:05:24,314] multiqc                                            [DEBUG  ]  File ignored by lima/summary because it exceeded search pattern filesize limit: jquery.js
+[2026-06-02 14:05:24,317] multiqc                                            [DEBUG  ]  File ignored by longranger/invocation because it exceeded search pattern filesize limit: jquery.js
+[2026-06-02 14:05:24,333] multiqc                                            [DEBUG  ]  File ignored by nanostat because it exceeded search pattern filesize limit: jquery.js
+[2026-06-02 14:05:24,341] multiqc                                            [DEBUG  ]  File ignored by ccs/v4 because it exceeded search pattern filesize limit: pygments.css
+[2026-06-02 14:05:24,342] multiqc                                            [DEBUG  ]  File ignored by lima/summary because it exceeded search pattern filesize limit: pygments.css
+[2026-06-02 14:05:24,344] multiqc                                            [DEBUG  ]  File ignored by longranger/invocation because it exceeded search pattern filesize limit: pygments.css
+[2026-06-02 14:05:24,366] multiqc                                            [DEBUG  ]  File ignored by ccs/v4 because it exceeded search pattern filesize limit: searchtools.js
+[2026-06-02 14:05:24,367] multiqc                                            [DEBUG  ]  File ignored by hicexplorer because it exceeded search pattern filesize limit: searchtools.js
+[2026-06-02 14:05:24,367] multiqc                                            [DEBUG  ]  File ignored by lima/summary because it exceeded search pattern filesize limit: searchtools.js
+[2026-06-02 14:05:24,370] multiqc                                            [DEBUG  ]  File ignored by longranger/invocation because it exceeded search pattern filesize limit: searchtools.js
+[2026-06-02 14:05:24,399] multiqc                                            [DEBUG  ]  File ignored by nanostat because it exceeded search pattern filesize limit: searchtools.js
+[2026-06-02 14:05:24,405] multiqc                                            [DEBUG  ]  File ignored by ccs/v4 because it exceeded search pattern filesize limit: underscore.js
+[2026-06-02 14:05:24,406] multiqc                                            [DEBUG  ]  File ignored by hicexplorer because it exceeded search pattern filesize limit: underscore.js
+[2026-06-02 14:05:24,406] multiqc                                            [DEBUG  ]  File ignored by lima/summary because it exceeded search pattern filesize limit: underscore.js
+[2026-06-02 14:05:24,408] multiqc                                            [DEBUG  ]  File ignored by longranger/invocation because it exceeded search pattern filesize limit: underscore.js
+[2026-06-02 14:05:24,412] multiqc                                            [DEBUG  ]  File ignored by nanostat because it exceeded search pattern filesize limit: underscore.js
+[2026-06-02 14:05:24,419] multiqc                                            [DEBUG  ]  File ignored by ccs/v4 because it exceeded search pattern filesize limit: websupport.js
+[2026-06-02 14:05:24,420] multiqc                                            [DEBUG  ]  File ignored by hicexplorer because it exceeded search pattern filesize limit: websupport.js
+[2026-06-02 14:05:24,420] multiqc                                            [DEBUG  ]  File ignored by lima/summary because it exceeded search pattern filesize limit: websupport.js
+[2026-06-02 14:05:24,422] multiqc                                            [DEBUG  ]  File ignored by longranger/invocation because it exceeded search pattern filesize limit: websupport.js
+[2026-06-02 14:05:24,448] multiqc                                            [DEBUG  ]  File ignored by nanostat because it exceeded search pattern filesize limit: websupport.js
+[2026-06-02 14:05:24,459] multiqc                                            [DEBUG  ]  File ignored by ccs/v4 because it exceeded search pattern filesize limit: coverage_profile_along_genes_(low).txt
+[2026-06-02 14:05:24,460] multiqc                                            [DEBUG  ]  File ignored by lima/summary because it exceeded search pattern filesize limit: coverage_profile_along_genes_(low).txt
+[2026-06-02 14:05:24,462] multiqc                                            [DEBUG  ]  File ignored by longranger/invocation because it exceeded search pattern filesize limit: coverage_profile_along_genes_(low).txt
+[2026-06-02 14:05:24,469] multiqc                                            [DEBUG  ]  File ignored by ccs/v4 because it exceeded search pattern filesize limit: coverage_profile_along_genes_(high).txt
+[2026-06-02 14:05:24,470] multiqc                                            [DEBUG  ]  File ignored by lima/summary because it exceeded search pattern filesize limit: coverage_profile_along_genes_(high).txt
+[2026-06-02 14:05:24,471] multiqc                                            [DEBUG  ]  File ignored by longranger/invocation because it exceeded search pattern filesize limit: coverage_profile_along_genes_(high).txt
+[2026-06-02 14:05:24,485] multiqc                                            [DEBUG  ]  File ignored by ccs/v4 because it exceeded search pattern filesize limit: POR_13_S81_SJ.out.tab
+[2026-06-02 14:05:24,486] multiqc                                            [DEBUG  ]  File ignored by hicexplorer because it exceeded search pattern filesize limit: POR_13_S81_SJ.out.tab
+[2026-06-02 14:05:24,486] multiqc                                            [DEBUG  ]  File ignored by lima/summary because it exceeded search pattern filesize limit: POR_13_S81_SJ.out.tab
+[2026-06-02 14:05:24,494] multiqc                                            [DEBUG  ]  File ignored by vep/vep_html because it exceeded search pattern filesize limit: POR_13_S81_SJ.out.tab
+[2026-06-02 14:05:24,494] multiqc                                            [DEBUG  ]  File ignored by vep/vep_txt because it exceeded search pattern filesize limit: POR_13_S81_SJ.out.tab
+[2026-06-02 14:05:24,494] multiqc                                            [DEBUG  ]  File ignored by longranger/invocation because it exceeded search pattern filesize limit: POR_13_S81_SJ.out.tab
+[2026-06-02 14:05:24,494] multiqc                                            [DEBUG  ]  File ignored by rockhopper because it exceeded search pattern filesize limit: POR_13_S81_SJ.out.tab
+[2026-06-02 14:05:24,494] multiqc                                            [DEBUG  ]  File ignored by rseqc/bam_stat because it exceeded search pattern filesize limit: POR_13_S81_SJ.out.tab
+[2026-06-02 14:05:24,494] multiqc                                            [DEBUG  ]  File ignored by rseqc/junction_annotation because it exceeded search pattern filesize limit: POR_13_S81_SJ.out.tab
+[2026-06-02 14:05:24,494] multiqc                                            [DEBUG  ]  File ignored by rseqc/read_distribution because it exceeded search pattern filesize limit: POR_13_S81_SJ.out.tab
+[2026-06-02 14:05:24,494] multiqc                                            [DEBUG  ]  File ignored by rseqc/infer_experiment because it exceeded search pattern filesize limit: POR_13_S81_SJ.out.tab
+[2026-06-02 14:05:24,516] multiqc                                            [DEBUG  ]  File ignored by stacks/sumstats because it exceeded search pattern filesize limit: POR_13_S81_SJ.out.tab
+[2026-06-02 14:05:25,060] multiqc                                            [DEBUG  ]  File ignored by nanostat because it exceeded search pattern filesize limit: POR_13_S81_SJ.out.tab
+[2026-06-02 14:05:25,095] multiqc                                            [DEBUG  ]  File ignored by ccs/v4 because it exceeded search pattern filesize limit: POR_61_S83_Log.out
+[2026-06-02 14:05:25,096] multiqc                                            [DEBUG  ]  File ignored by hicexplorer because it exceeded search pattern filesize limit: POR_61_S83_Log.out
+[2026-06-02 14:05:25,096] multiqc                                            [DEBUG  ]  File ignored by lima/summary because it exceeded search pattern filesize limit: POR_61_S83_Log.out
+[2026-06-02 14:05:25,097] multiqc                                            [DEBUG  ]  File ignored by longranger/invocation because it exceeded search pattern filesize limit: POR_61_S83_Log.out
+[2026-06-02 14:05:25,108] multiqc                                            [DEBUG  ]  File ignored by nanostat because it exceeded search pattern filesize limit: POR_61_S83_Log.out
+[2026-06-02 14:05:25,110] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: POR_34_S82_Aligned.sortedByCoord.out.bam
+[2026-06-02 14:05:25,114] multiqc                                            [DEBUG  ]  File ignored by ccs/v4 because it exceeded search pattern filesize limit: POR_13_S81_Log.progress.out
+[2026-06-02 14:05:25,115] multiqc                                            [DEBUG  ]  File ignored by lima/summary because it exceeded search pattern filesize limit: POR_13_S81_Log.progress.out
+[2026-06-02 14:05:25,116] multiqc                                            [DEBUG  ]  File ignored by longranger/invocation because it exceeded search pattern filesize limit: POR_13_S81_Log.progress.out
+[2026-06-02 14:05:25,124] multiqc                                            [DEBUG  ]  File ignored by ccs/v4 because it exceeded search pattern filesize limit: POR_13_S81_Log.out
+[2026-06-02 14:05:25,124] multiqc                                            [DEBUG  ]  File ignored by hicexplorer because it exceeded search pattern filesize limit: POR_13_S81_Log.out
+[2026-06-02 14:05:25,124] multiqc                                            [DEBUG  ]  File ignored by lima/summary because it exceeded search pattern filesize limit: POR_13_S81_Log.out
+[2026-06-02 14:05:25,125] multiqc                                            [DEBUG  ]  File ignored by longranger/invocation because it exceeded search pattern filesize limit: POR_13_S81_Log.out
+[2026-06-02 14:05:25,137] multiqc                                            [DEBUG  ]  File ignored by nanostat because it exceeded search pattern filesize limit: POR_13_S81_Log.out
+[2026-06-02 14:05:25,151] multiqc                                            [DEBUG  ]  File ignored by ccs/v4 because it exceeded search pattern filesize limit: POR_34_S82_Log.out
+[2026-06-02 14:05:25,151] multiqc                                            [DEBUG  ]  File ignored by hicexplorer because it exceeded search pattern filesize limit: POR_34_S82_Log.out
+[2026-06-02 14:05:25,152] multiqc                                            [DEBUG  ]  File ignored by lima/summary because it exceeded search pattern filesize limit: POR_34_S82_Log.out
+[2026-06-02 14:05:25,153] multiqc                                            [DEBUG  ]  File ignored by longranger/invocation because it exceeded search pattern filesize limit: POR_34_S82_Log.out
+[2026-06-02 14:05:25,169] multiqc                                            [DEBUG  ]  File ignored by nanostat because it exceeded search pattern filesize limit: POR_34_S82_Log.out
+[2026-06-02 14:05:25,175] multiqc                                            [DEBUG  ]  File ignored by ccs/v4 because it exceeded search pattern filesize limit: POR_61_S83_Log.progress.out
+[2026-06-02 14:05:25,176] multiqc                                            [DEBUG  ]  File ignored by lima/summary because it exceeded search pattern filesize limit: POR_61_S83_Log.progress.out
+[2026-06-02 14:05:25,177] multiqc                                            [DEBUG  ]  File ignored by longranger/invocation because it exceeded search pattern filesize limit: POR_61_S83_Log.progress.out
+[2026-06-02 14:05:25,183] multiqc                                            [DEBUG  ]  File ignored by ccs/v4 because it exceeded search pattern filesize limit: POR_34_S82_Log.progress.out
+[2026-06-02 14:05:25,184] multiqc                                            [DEBUG  ]  File ignored by lima/summary because it exceeded search pattern filesize limit: POR_34_S82_Log.progress.out
+[2026-06-02 14:05:25,185] multiqc                                            [DEBUG  ]  File ignored by longranger/invocation because it exceeded search pattern filesize limit: POR_34_S82_Log.progress.out
+[2026-06-02 14:05:25,192] multiqc                                            [DEBUG  ]  File ignored by ccs/v4 because it exceeded search pattern filesize limit: POR_61_S83_SJ.out.tab
+[2026-06-02 14:05:25,193] multiqc                                            [DEBUG  ]  File ignored by hicexplorer because it exceeded search pattern filesize limit: POR_61_S83_SJ.out.tab
+[2026-06-02 14:05:25,193] multiqc                                            [DEBUG  ]  File ignored by lima/summary because it exceeded search pattern filesize limit: POR_61_S83_SJ.out.tab
+[2026-06-02 14:05:25,194] multiqc                                            [DEBUG  ]  File ignored by vep/vep_html because it exceeded search pattern filesize limit: POR_61_S83_SJ.out.tab
+[2026-06-02 14:05:25,194] multiqc                                            [DEBUG  ]  File ignored by vep/vep_txt because it exceeded search pattern filesize limit: POR_61_S83_SJ.out.tab
+[2026-06-02 14:05:25,194] multiqc                                            [DEBUG  ]  File ignored by longranger/invocation because it exceeded search pattern filesize limit: POR_61_S83_SJ.out.tab
+[2026-06-02 14:05:25,194] multiqc                                            [DEBUG  ]  File ignored by rockhopper because it exceeded search pattern filesize limit: POR_61_S83_SJ.out.tab
+[2026-06-02 14:05:25,194] multiqc                                            [DEBUG  ]  File ignored by rseqc/bam_stat because it exceeded search pattern filesize limit: POR_61_S83_SJ.out.tab
+[2026-06-02 14:05:25,194] multiqc                                            [DEBUG  ]  File ignored by rseqc/junction_annotation because it exceeded search pattern filesize limit: POR_61_S83_SJ.out.tab
+[2026-06-02 14:05:25,194] multiqc                                            [DEBUG  ]  File ignored by rseqc/read_distribution because it exceeded search pattern filesize limit: POR_61_S83_SJ.out.tab
+[2026-06-02 14:05:25,194] multiqc                                            [DEBUG  ]  File ignored by rseqc/infer_experiment because it exceeded search pattern filesize limit: POR_61_S83_SJ.out.tab
+[2026-06-02 14:05:25,194] multiqc                                            [DEBUG  ]  File ignored by snpeff because it exceeded search pattern filesize limit: POR_61_S83_SJ.out.tab
+[2026-06-02 14:05:25,194] multiqc                                            [DEBUG  ]  File ignored by stacks/sumstats because it exceeded search pattern filesize limit: POR_61_S83_SJ.out.tab
+[2026-06-02 14:05:25,928] multiqc                                            [DEBUG  ]  File ignored by nanostat because it exceeded search pattern filesize limit: POR_61_S83_SJ.out.tab
+[2026-06-02 14:05:25,966] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: POR_13_S81_Aligned.sortedByCoord.out.bam
+[2026-06-02 14:05:25,973] multiqc                                            [DEBUG  ]  File ignored by ccs/v4 because it exceeded search pattern filesize limit: POR_34_S82_SJ.out.tab
+[2026-06-02 14:05:25,973] multiqc                                            [DEBUG  ]  File ignored by hicexplorer because it exceeded search pattern filesize limit: POR_34_S82_SJ.out.tab
+[2026-06-02 14:05:25,974] multiqc                                            [DEBUG  ]  File ignored by lima/summary because it exceeded search pattern filesize limit: POR_34_S82_SJ.out.tab
+[2026-06-02 14:05:25,975] multiqc                                            [DEBUG  ]  File ignored by vep/vep_html because it exceeded search pattern filesize limit: POR_34_S82_SJ.out.tab
+[2026-06-02 14:05:25,975] multiqc                                            [DEBUG  ]  File ignored by vep/vep_txt because it exceeded search pattern filesize limit: POR_34_S82_SJ.out.tab
+[2026-06-02 14:05:25,975] multiqc                                            [DEBUG  ]  File ignored by longranger/invocation because it exceeded search pattern filesize limit: POR_34_S82_SJ.out.tab
+[2026-06-02 14:05:25,975] multiqc                                            [DEBUG  ]  File ignored by rockhopper because it exceeded search pattern filesize limit: POR_34_S82_SJ.out.tab
+[2026-06-02 14:05:25,975] multiqc                                            [DEBUG  ]  File ignored by rseqc/bam_stat because it exceeded search pattern filesize limit: POR_34_S82_SJ.out.tab
+[2026-06-02 14:05:25,975] multiqc                                            [DEBUG  ]  File ignored by rseqc/junction_annotation because it exceeded search pattern filesize limit: POR_34_S82_SJ.out.tab
+[2026-06-02 14:05:25,975] multiqc                                            [DEBUG  ]  File ignored by rseqc/read_distribution because it exceeded search pattern filesize limit: POR_34_S82_SJ.out.tab
+[2026-06-02 14:05:25,975] multiqc                                            [DEBUG  ]  File ignored by rseqc/infer_experiment because it exceeded search pattern filesize limit: POR_34_S82_SJ.out.tab
+[2026-06-02 14:05:25,975] multiqc                                            [DEBUG  ]  File ignored by snpeff because it exceeded search pattern filesize limit: POR_34_S82_SJ.out.tab
+[2026-06-02 14:05:25,975] multiqc                                            [DEBUG  ]  File ignored by stacks/sumstats because it exceeded search pattern filesize limit: POR_34_S82_SJ.out.tab
+[2026-06-02 14:05:26,872] multiqc                                            [DEBUG  ]  File ignored by nanostat because it exceeded search pattern filesize limit: POR_34_S82_SJ.out.tab
+[2026-06-02 14:05:26,918] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: POR_61_S83_Aligned.sortedByCoord.out.bam
+[2026-06-02 14:05:30,099] multiqc.plots.linegraph                            [DEBUG  ]  Using matplotlib version 3.4.3
+[2026-06-02 14:05:30,116] multiqc.plots.bargraph                             [DEBUG  ]  Using matplotlib version 3.4.3
+[2026-06-02 14:05:30,160] multiqc.modules.qualimap.qualimap                  [INFO   ]  Found 3 RNASeq reports
+[2026-06-02 14:05:30,209] multiqc.modules.star.star                          [DEBUG  ]  Duplicate ReadsPerGene sample name found! Overwriting: POR_61_S83
+[2026-06-02 14:05:30,211] multiqc.modules.star.star                          [DEBUG  ]  Duplicate ReadsPerGene sample name found! Overwriting: POR_13_S81
+[2026-06-02 14:05:30,214] multiqc.modules.star.star                          [DEBUG  ]  Duplicate ReadsPerGene sample name found! Overwriting: POR_34_S82
+[2026-06-02 14:05:30,215] multiqc.modules.star.star                          [INFO   ]  Found 3 reports and 3 gene count files
+[2026-06-02 14:05:30,226] multiqc                                            [INFO   ]  Compressing plot data
+[2026-06-02 14:05:30,282] multiqc                                            [INFO   ]  Report      : multiqc_report.html
+[2026-06-02 14:05:30,282] multiqc                                            [INFO   ]  Data        : multiqc_data
+[2026-06-02 14:05:30,282] multiqc                                            [DEBUG  ]  Moving data file from '/tmp/tmpzx8dvvkh/multiqc_data' to '/project/pi_hputnam_uri_edu/zdellaert/Porites_LCM_test/output_RNA/alignment_qc/POR_Pcomp/multiqc_data'
+[2026-06-02 14:05:30,735] multiqc                                            [INFO   ]  MultiQC complete

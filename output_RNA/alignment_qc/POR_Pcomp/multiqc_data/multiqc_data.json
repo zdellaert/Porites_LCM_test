@@ -1,0 +1,3414 @@
+{
+    "report_data_sources": {
+        "QualiMap": {
+            "rna_genome_results": {
+                "POR_13_S81": "/project/pi_hputnam_uri_edu/zdellaert/Porites_LCM_test/output_RNA/alignment_qc/POR_Pcomp/POR_13_S81/rnaseq_qc_results.txt",
+                "POR_34_S82": "/project/pi_hputnam_uri_edu/zdellaert/Porites_LCM_test/output_RNA/alignment_qc/POR_Pcomp/POR_34_S82/rnaseq_qc_results.txt",
+                "POR_61_S83": "/project/pi_hputnam_uri_edu/zdellaert/Porites_LCM_test/output_RNA/alignment_qc/POR_Pcomp/POR_61_S83/rnaseq_qc_results.txt"
+            },
+            "rna_coverage_histogram": {
+                "POR_13_S81": "/project/pi_hputnam_uri_edu/zdellaert/Porites_LCM_test/output_RNA/alignment_qc/POR_Pcomp/POR_13_S81/raw_data_qualimapReport/coverage_profile_along_genes_(total).txt",
+                "POR_34_S82": "/project/pi_hputnam_uri_edu/zdellaert/Porites_LCM_test/output_RNA/alignment_qc/POR_Pcomp/POR_34_S82/raw_data_qualimapReport/coverage_profile_along_genes_(total).txt",
+                "POR_61_S83": "/project/pi_hputnam_uri_edu/zdellaert/Porites_LCM_test/output_RNA/alignment_qc/POR_Pcomp/POR_61_S83/raw_data_qualimapReport/coverage_profile_along_genes_(total).txt"
+            }
+        },
+        "STAR": {
+            "SummaryLog": {
+                "POR_13_S81": "/scratch4/workspace/zdellaert_uri_edu-shared_TimeSeries/Porites_LCM_test/aligned/POR_Pcomp/POR_13_S81_Log.final.out",
+                "POR_61_S83": "/scratch4/workspace/zdellaert_uri_edu-shared_TimeSeries/Porites_LCM_test/aligned/POR_Pcomp/POR_61_S83_Log.final.out",
+                "POR_34_S82": "/scratch4/workspace/zdellaert_uri_edu-shared_TimeSeries/Porites_LCM_test/aligned/POR_Pcomp/POR_34_S82_Log.final.out"
+            },
+            "ReadsPerGene": {
+                "POR_61_S83": "/scratch4/workspace/zdellaert_uri_edu-shared_TimeSeries/Porites_LCM_test/aligned/POR_Pcomp/POR_61_S83_ReadsPerGene.out.tab",
+                "POR_13_S81": "/scratch4/workspace/zdellaert_uri_edu-shared_TimeSeries/Porites_LCM_test/aligned/POR_Pcomp/POR_13_S81_ReadsPerGene.out.tab",
+                "POR_34_S82": "/scratch4/workspace/zdellaert_uri_edu-shared_TimeSeries/Porites_LCM_test/aligned/POR_Pcomp/POR_34_S82_ReadsPerGene.out.tab"
+            }
+        }
+    },
+    "report_general_stats_data": [
+        {
+            "POR_13_S81": {
+                "5_3_bias": 0.97,
+                "reads_aligned": 20430268.0
+            },
+            "POR_34_S82": {
+                "5_3_bias": 0.94,
+                "reads_aligned": 26611628.0
+            },
+            "POR_61_S83": {
+                "5_3_bias": 0.88,
+                "reads_aligned": 25498244.0
+            }
+        },
+        {
+            "POR_13_S81": {
+                "total_reads": 34557295.0,
+                "avg_input_read_length": 238.0,
+                "uniquely_mapped": 19182208.0,
+                "uniquely_mapped_percent": 55.51,
+                "avg_mapped_read_length": 239.15,
+                "num_splices": 16165588.0,
+                "num_annotated_splices": 13623306.0,
+                "num_GTAG_splices": 15863789.0,
+                "num_GCAG_splices": 56854.0,
+                "num_ATAC_splices": 12157.0,
+                "num_noncanonical_splices": 232788.0,
+                "mismatch_rate": 0.92,
+                "deletion_rate": 0.08,
+                "deletion_length": 2.14,
+                "insertion_rate": 0.04,
+                "insertion_length": 1.91,
+                "multimapped": 1350849.0,
+                "multimapped_percent": 3.91,
+                "multimapped_toomany": 2247492.0,
+                "multimapped_toomany_percent": 6.5,
+                "unmapped_mismatches_percent": 0.0,
+                "unmapped_tooshort_percent": 33.35,
+                "unmapped_other_percent": 0.73,
+                "unmapped_mismatches": 0,
+                "unmapped_tooshort": 11524486,
+                "unmapped_other": 252260
+            },
+            "POR_61_S83": {
+                "total_reads": 39206056.0,
+                "avg_input_read_length": 243.0,
+                "uniquely_mapped": 24249227.0,
+                "uniquely_mapped_percent": 61.85,
+                "avg_mapped_read_length": 243.47,
+                "num_splices": 19091547.0,
+                "num_annotated_splices": 16871284.0,
+                "num_GTAG_splices": 18687510.0,
+                "num_GCAG_splices": 77124.0,
+                "num_ATAC_splices": 15874.0,
+                "num_noncanonical_splices": 311039.0,
+                "mismatch_rate": 0.95,
+                "deletion_rate": 0.1,
+                "deletion_length": 2.06,
+                "insertion_rate": 0.05,
+                "insertion_length": 1.96,
+                "multimapped": 1416436.0,
+                "multimapped_percent": 3.61,
+                "multimapped_toomany": 1838975.0,
+                "multimapped_toomany_percent": 4.69,
+                "unmapped_mismatches_percent": 0.0,
+                "unmapped_tooshort_percent": 29.55,
+                "unmapped_other_percent": 0.3,
+                "unmapped_mismatches": 0,
+                "unmapped_tooshort": 11583816,
+                "unmapped_other": 117602
+            },
+            "POR_34_S82": {
+                "total_reads": 37240025.0,
+                "avg_input_read_length": 238.0,
+                "uniquely_mapped": 25080902.0,
+                "uniquely_mapped_percent": 67.35,
+                "avg_mapped_read_length": 237.42,
+                "num_splices": 20903976.0,
+                "num_annotated_splices": 18292836.0,
+                "num_GTAG_splices": 20528273.0,
+                "num_GCAG_splices": 78874.0,
+                "num_ATAC_splices": 16477.0,
+                "num_noncanonical_splices": 280352.0,
+                "mismatch_rate": 0.91,
+                "deletion_rate": 0.08,
+                "deletion_length": 2.17,
+                "insertion_rate": 0.04,
+                "insertion_length": 1.94,
+                "multimapped": 1636648.0,
+                "multimapped_percent": 4.39,
+                "multimapped_toomany": 572318.0,
+                "multimapped_toomany_percent": 1.54,
+                "unmapped_mismatches_percent": 0.0,
+                "unmapped_tooshort_percent": 26.11,
+                "unmapped_other_percent": 0.6,
+                "unmapped_mismatches": 0,
+                "unmapped_tooshort": 9726642,
+                "unmapped_other": 223515
+            }
+        }
+    ],
+    "report_general_stats_headers": [
+        {
+            "5_3_bias": {
+                "title": "5'-3' bias",
+                "format": "{:,.2f}",
+                "namespace": "QualiMap",
+                "description": "5'-3' bias",
+                "rid": "mqc-generalstats-qualimap-5_3_bias",
+                "scale": "GnBu",
+                "colour": "55,126,184",
+                "hidden": null,
+                "max": null,
+                "min": null,
+                "ceiling": null,
+                "floor": null,
+                "minRange": null,
+                "shared_key": null,
+                "modify": null,
+                "placement": 1000.0,
+                "dmax": 0.97,
+                "dmin": 0
+            },
+            "reads_aligned": {
+                "title": "M Aligned",
+                "description": "Reads Aligned (millions)",
+                "min": 0,
+                "scale": "RdBu",
+                "shared_key": "read_count",
+                "modify": 1e-06,
+                "namespace": "QualiMap",
+                "rid": "mqc-generalstats-qualimap-reads_aligned",
+                "format": "{:,.1f}",
+                "colour": "55,126,184",
+                "hidden": null,
+                "max": null,
+                "ceiling": null,
+                "floor": null,
+                "minRange": null,
+                "placement": 1000.0,
+                "dmax": 26.611628,
+                "dmin": 0.0
+            }
+        },
+        {
+            "uniquely_mapped_percent": {
+                "title": "% Aligned",
+                "description": "% Uniquely mapped reads",
+                "max": 100,
+                "min": 0,
+                "suffix": "%",
+                "scale": "YlGn",
+                "namespace": "STAR",
+                "rid": "mqc-generalstats-star-uniquely_mapped_percent",
+                "format": "{:,.1f}",
+                "colour": "77,175,74",
+                "hidden": null,
+                "ceiling": null,
+                "floor": null,
+                "minRange": null,
+                "shared_key": null,
+                "modify": null,
+                "placement": 1000.0,
+                "dmax": 100.0,
+                "dmin": 0.0
+            },
+            "uniquely_mapped": {
+                "title": "M Aligned",
+                "description": "Uniquely mapped reads (millions)",
+                "min": 0,
+                "scale": "PuRd",
+                "modify": 1e-06,
+                "shared_key": "read_count",
+                "namespace": "STAR",
+                "rid": "mqc-generalstats-star-uniquely_mapped",
+                "format": "{:,.1f}",
+                "colour": "77,175,74",
+                "hidden": null,
+                "max": null,
+                "ceiling": null,
+                "floor": null,
+                "minRange": null,
+                "placement": 1000.0,
+                "dmax": 26.611628,
+                "dmin": 0.0
+            }
+        }
+    ],
+    "report_multiqc_command": "/modules/uri_apps/software/MultiQC/1.12-foss-2021b/bin/multiqc . /scratch4/workspace/zdellaert_uri_edu-shared_TimeSeries/Porites_LCM_test/aligned/POR_Pcomp",
+    "report_plot_data": {
+        "qualimap_genomic_origin": {
+            "plot_type": "bar_graph",
+            "samples": [
+                [
+                    "POR_13_S81",
+                    "POR_34_S82",
+                    "POR_61_S83"
+                ]
+            ],
+            "datasets": [
+                [
+                    {
+                        "name": "Exonic",
+                        "data": [
+                            12232821.0,
+                            18028523.0,
+                            15561880.0
+                        ]
+                    },
+                    {
+                        "name": "Intronic",
+                        "data": [
+                            8152476.0,
+                            10053625.0,
+                            10156742.0
+                        ]
+                    },
+                    {
+                        "name": "Intergenic",
+                        "data": [
+                            17880688.0,
+                            21974119.0,
+                            22614867.0
+                        ]
+                    }
+                ]
+            ],
+            "config": {
+                "id": "qualimap_genomic_origin",
+                "title": "Qualimap RNAseq: Genomic Origin",
+                "ylab": "Number of reads",
+                "cpswitch_c_active": false,
+                "stacking": "percent"
+            }
+        },
+        "qualimap_gene_coverage_profile": {
+            "plot_type": "xy_line",
+            "datasets": [
+                [
+                    {
+                        "name": "POR_13_S81",
+                        "data": [
+                            [
+                                0,
+                                10225.944918650262
+                            ],
+                            [
+                                1,
+                                13539.119843990464
+                            ],
+                            [
+                                2,
+                                15103.705646780352
+                            ],
+                            [
+                                3,
+                                16848.906597353824
+                            ],
+                            [
+                                4,
+                                18606.985843711624
+                            ],
+                            [
+                                5,
+                                20063.48748700905
+                            ],
+                            [
+                                6,
+                                22656.943714947687
+                            ],
+                            [
+                                7,
+                                23726.04860161652
+                            ],
+                            [
+                                8,
+                                24598.705369010197
+                            ],
+                            [
+                                9,
+                                25406.82993025676
+                            ],
+                            [
+                                10,
+                                26248.114259670394
+                            ],
+                            [
+                                11,
+                                27180.94673058452
+                            ],
+                            [
+                                12,
+                                27586.65715705674
+                            ],
+                            [
+                                13,
+                                27960.629093679367
+                            ],
+                            [
+                                14,
+                                29327.96376434563
+                            ],
+                            [
+                                15,
+                                29566.910292958273
+                            ],
+                            [
+                                16,
+                                29977.237775568152
+                            ],
+                            [
+                                17,
+                                30350.17363932388
+                            ],
+                            [
+                                18,
+                                30440.431748525833
+                            ],
+                            [
+                                19,
+                                30510.808417049535
+                            ],
+                            [
+                                20,
+                                30405.05413479132
+                            ],
+                            [
+                                21,
+                                30880.32558227354
+                            ],
+                            [
+                                22,
+                                30894.109195032757
+                            ],
+                            [
+                                23,
+                                30937.502881808534
+                            ],
+                            [
+                                24,
+                                30865.823986061438
+                            ],
+                            [
+                                25,
+                                31316.027508817053
+                            ],
+                            [
+                                26,
+                                31838.722812639193
+                            ],
+                            [
+                                27,
+                                32008.7141231234
+                            ],
+                            [
+                                28,
+                                32573.026465342868
+                            ],
+                            [
+                                29,
+                                31992.676784376956
+                            ],
+                            [
+                                30,
+                                32363.60620388705
+                            ],
+                            [
+                                31,
+                                33543.16137441246
+                            ],
+                            [
+                                32,
+                                33873.116985837536
+                            ],
+                            [
+                                33,
+                                34101.378972280385
+                            ],
+                            [
+                                34,
+                                33837.84596789989
+                            ],
+                            [
+                                35,
+                                34446.12861019412
+                            ],
+                            [
+                                36,
+                                34719.424757576744
+                            ],
+                            [
+                                37,
+                                34464.34877279719
+                            ],
+                            [
+                                38,
+                                34885.06757366921
+                            ],
+                            [
+                                39,
+                                34645.91418195135
+                            ],
+                            [
+                                40,
+                                34024.14746148729
+                            ],
+                            [
+                                41,
+                                33988.874854648006
+                            ],
+                            [
+                                42,
+                                34560.69073953315
+                            ],
+                            [
+                                43,
+                                34743.61013722044
+                            ],
+                            [
+                                44,
+                                35858.4632610868
+                            ],
+                            [
+                                45,
+                                35507.90219545207
+                            ],
+                            [
+                                46,
+                                35410.310964718
+                            ],
+                            [
+                                47,
+                                35328.814734408224
+                            ],
+                            [
+                                48,
+                                35244.29042936222
+                            ],
+                            [
+                                49,
+                                36262.026127796744
+                            ],
+                            [
+                                50,
+                                36044.88869311212
+                            ],
+                            [
+                                51,
+                                36438.303203422394
+                            ],
+                            [
+                                52,
+                                36550.763950792425
+                            ],
+                            [
+                                53,
+                                36716.43229058307
+                            ],
+                            [
+                                54,
+                                36763.146723901315
+                            ],
+                            [
+                                55,
+                                35505.66972131878
+                            ],
+                            [
+                                56,
+                                35115.590269720575
+                            ],
+                            [
+                                57,
+                                35786.64293932393
+                            ],
+                            [
+                                58,
+                                35834.112083855085
+                            ],
+                            [
+                                59,
+                                36072.96390541259
+                            ],
+                            [
+                                60,
+                                36408.32637613546
+                            ],
+                            [
+                                61,
+                                36478.812841803985
+                            ],
+                            [
+                                62,
+                                36547.13629816218
+                            ],
+                            [
+                                63,
+                                36303.39071829083
+                            ],
+                            [
+                                64,
+                                35896.886446486365
+                            ],
+                            [
+                                65,
+                                35214.52855473867
+                            ],
+                            [
+                                66,
+                                35351.71455757918
+                            ],
+                            [
+                                67,
+                                35083.19996886818
+                            ],
+                            [
+                                68,
+                                34465.372240264245
+                            ],
+                            [
+                                69,
+                                34993.01753007349
+                            ],
+                            [
+                                70,
+                                34680.14958396714
+                            ],
+                            [
+                                71,
+                                34073.384160938454
+                            ],
+                            [
+                                72,
+                                33488.25549332757
+                            ],
+                            [
+                                73,
+                                32736.107187222322
+                            ],
+                            [
+                                74,
+                                32515.279946202798
+                            ],
+                            [
+                                75,
+                                31509.100137918016
+                            ],
+                            [
+                                76,
+                                30352.75020469733
+                            ],
+                            [
+                                77,
+                                30079.878949719274
+                            ],
+                            [
+                                78,
+                                29527.423530277298
+                            ],
+                            [
+                                79,
+                                28849.04178768063
+                            ],
+                            [
+                                80,
+                                28175.72637822264
+                            ],
+                            [
+                                81,
+                                27459.976532755754
+                            ],
+                            [
+                                82,
+                                26272.4823408058
+                            ],
+                            [
+                                83,
+                                25548.337020906547
+                            ],
+                            [
+                                84,
+                                24322.60153307256
+                            ],
+                            [
+                                85,
+                                23166.048045783195
+                            ],
+                            [
+                                86,
+                                21360.64033083537
+                            ],
+                            [
+                                87,
+                                20606.209868017555
+                            ],
+                            [
+                                88,
+                                19210.835950742334
+                            ],
+                            [
+                                89,
+                                17445.027244653276
+                            ],
+                            [
+                                90,
+                                16217.496146709642
+                            ],
+                            [
+                                91,
+                                14063.840128416787
+                            ],
+                            [
+                                92,
+                                12550.323365439013
+                            ],
+                            [
+                                93,
+                                10865.96755277837
+                            ],
+                            [
+                                94,
+                                8543.795784766506
+                            ],
+                            [
+                                95,
+                                6787.21390362752
+                            ],
+                            [
+                                96,
+                                4652.639341631148
+                            ],
+                            [
+                                97,
+                                2967.4210166160533
+                            ],
+                            [
+                                98,
+                                1440.257948467112
+                            ],
+                            [
+                                99,
+                                395.1468356455099
+                            ]
+                        ]
+                    },
+                    {
+                        "name": "POR_34_S82",
+                        "data": [
+                            [
+                                0,
+                                13422.021366297842
+                            ],
+                            [
+                                1,
+                                17783.8786948379
+                            ],
+                            [
+                                2,
+                                19999.593839372912
+                            ],
+                            [
+                                3,
+                                22295.47728616574
+                            ],
+                            [
+                                4,
+                                24708.566992815446
+                            ],
+                            [
+                                5,
+                                26338.960652376343
+                            ],
+                            [
+                                6,
+                                29168.47527327706
+                            ],
+                            [
+                                7,
+                                30641.275955448407
+                            ],
+                            [
+                                8,
+                                31873.34690526693
+                            ],
+                            [
+                                9,
+                                32897.666494982775
+                            ],
+                            [
+                                10,
+                                33956.056137035186
+                            ],
+                            [
+                                11,
+                                35083.358760011855
+                            ],
+                            [
+                                12,
+                                35535.79699336817
+                            ],
+                            [
+                                13,
+                                36153.045989800965
+                            ],
+                            [
+                                14,
+                                37538.28552340511
+                            ],
+                            [
+                                15,
+                                37943.54789583719
+                            ],
+                            [
+                                16,
+                                38368.696870319494
+                            ],
+                            [
+                                17,
+                                38851.04249142428
+                            ],
+                            [
+                                18,
+                                39145.51354619015
+                            ],
+                            [
+                                19,
+                                39410.97038076871
+                            ],
+                            [
+                                20,
+                                39269.03228221489
+                            ],
+                            [
+                                21,
+                                39795.0811668789
+                            ],
+                            [
+                                22,
+                                40011.977728608574
+                            ],
+                            [
+                                23,
+                                40102.99275778399
+                            ],
+                            [
+                                24,
+                                40093.086957491076
+                            ],
+                            [
+                                25,
+                                40469.49614255819
+                            ],
+                            [
+                                26,
+                                40780.91013641566
+                            ],
+                            [
+                                27,
+                                41037.06174299006
+                            ],
+                            [
+                                28,
+                                41865.94726785019
+                            ],
+                            [
+                                29,
+                                41556.03628406499
+                            ],
+                            [
+                                30,
+                                41837.401339459524
+                            ],
+                            [
+                                31,
+                                43321.08148431859
+                            ],
+                            [
+                                32,
+                                43690.32447335406
+                            ],
+                            [
+                                33,
+                                43878.67727699341
+                            ],
+                            [
+                                34,
+                                43596.968420705234
+                            ],
+                            [
+                                35,
+                                44220.887617509085
+                            ],
+                            [
+                                36,
+                                44695.10137984218
+                            ],
+                            [
+                                37,
+                                44589.86002885201
+                            ],
+                            [
+                                38,
+                                45225.295819543404
+                            ],
+                            [
+                                39,
+                                44811.78168524212
+                            ],
+                            [
+                                40,
+                                44287.00548121383
+                            ],
+                            [
+                                41,
+                                44156.1190777504
+                            ],
+                            [
+                                42,
+                                44636.94867422281
+                            ],
+                            [
+                                43,
+                                44823.211695856364
+                            ],
+                            [
+                                44,
+                                45935.134103510885
+                            ],
+                            [
+                                45,
+                                45661.4401404164
+                            ],
+                            [
+                                46,
+                                45497.98405167672
+                            ],
+                            [
+                                47,
+                                45366.82965198526
+                            ],
+                            [
+                                48,
+                                45255.182216922
+                            ],
+                            [
+                                49,
+                                46167.582282296185
+                            ],
+                            [
+                                50,
+                                45835.79322751317
+                            ],
+                            [
+                                51,
+                                46150.344679311456
+                            ],
+                            [
+                                52,
+                                46236.70931152435
+                            ],
+                            [
+                                53,
+                                46359.8752095509
+                            ],
+                            [
+                                54,
+                                46395.16436664102
+                            ],
+                            [
+                                55,
+                                45119.28872029539
+                            ],
+                            [
+                                56,
+                                44621.8960146761
+                            ],
+                            [
+                                57,
+                                44921.35809885649
+                            ],
+                            [
+                                58,
+                                44684.2798266435
+                            ],
+                            [
+                                59,
+                                44782.72737967251
+                            ],
+                            [
+                                60,
+                                45037.20848594541
+                            ],
+                            [
+                                61,
+                                45143.70804099791
+                            ],
+                            [
+                                62,
+                                45249.66298311024
+                            ],
+                            [
+                                63,
+                                44938.3082842787
+                            ],
+                            [
+                                64,
+                                44359.71732295281
+                            ],
+                            [
+                                65,
+                                43512.18326094175
+                            ],
+                            [
+                                66,
+                                43677.3164127013
+                            ],
+                            [
+                                67,
+                                43284.23322392138
+                            ],
+                            [
+                                68,
+                                42594.28899415555
+                            ],
+                            [
+                                69,
+                                42784.41219985583
+                            ],
+                            [
+                                70,
+                                42073.93707213597
+                            ],
+                            [
+                                71,
+                                41525.60132977123
+                            ],
+                            [
+                                72,
+                                40531.40643245972
+                            ],
+                            [
+                                73,
+                                39489.05535122036
+                            ],
+                            [
+                                74,
+                                39170.610465731
+                            ],
+                            [
+                                75,
+                                38064.145102818904
+                            ],
+                            [
+                                76,
+                                36637.04068970327
+                            ],
+                            [
+                                77,
+                                36160.51820919629
+                            ],
+                            [
+                                78,
+                                35468.58049708657
+                            ],
+                            [
+                                79,
+                                34698.84513428093
+                            ],
+                            [
+                                80,
+                                33778.33848278179
+                            ],
+                            [
+                                81,
+                                32722.7102197313
+                            ],
+                            [
+                                82,
+                                30949.55150035308
+                            ],
+                            [
+                                83,
+                                29999.362431731843
+                            ],
+                            [
+                                84,
+                                28521.819027008118
+                            ],
+                            [
+                                85,
+                                27018.47526291084
+                            ],
+                            [
+                                86,
+                                25172.96647926919
+                            ],
+                            [
+                                87,
+                                24241.6872235881
+                            ],
+                            [
+                                88,
+                                22675.08729698387
+                            ],
+                            [
+                                89,
+                                20798.71106651166
+                            ],
+                            [
+                                90,
+                                19475.61951861865
+                            ],
+                            [
+                                91,
+                                17367.916718395387
+                            ],
+                            [
+                                92,
+                                15633.345113877178
+                            ],
+                            [
+                                93,
+                                13576.89470775312
+                            ],
+                            [
+                                94,
+                                10859.345486848122
+                            ],
+                            [
+                                95,
+                                8756.665203232324
+                            ],
+                            [
+                                96,
+                                6020.792316185036
+                            ],
+                            [
+                                97,
+                                3948.6946176771485
+                            ],
+                            [
+                                98,
+                                2032.07223940016
+                            ],
+                            [
+                                99,
+                                605.92808778831
+                            ]
+                        ]
+                    },
+                    {
+                        "name": "POR_61_S83",
+                        "data": [
+                            [
+                                0,
+                                12714.49725239175
+                            ],
+                            [
+                                1,
+                                17243.39518349897
+                            ],
+                            [
+                                2,
+                                19257.96734291744
+                            ],
+                            [
+                                3,
+                                21288.193348262474
+                            ],
+                            [
+                                4,
+                                23327.62903703083
+                            ],
+                            [
+                                5,
+                                24317.313857854
+                            ],
+                            [
+                                6,
+                                25854.60525968666
+                            ],
+                            [
+                                7,
+                                26818.272641603588
+                            ],
+                            [
+                                8,
+                                27755.35454684344
+                            ],
+                            [
+                                9,
+                                28524.806679090772
+                            ],
+                            [
+                                10,
+                                29241.94897487972
+                            ],
+                            [
+                                11,
+                                30567.755963963
+                            ],
+                            [
+                                12,
+                                31060.48035130627
+                            ],
+                            [
+                                13,
+                                31684.699434030445
+                            ],
+                            [
+                                14,
+                                32610.76261109217
+                            ],
+                            [
+                                15,
+                                33035.89900739488
+                            ],
+                            [
+                                16,
+                                33486.069144484216
+                            ],
+                            [
+                                17,
+                                33895.32156518992
+                            ],
+                            [
+                                18,
+                                34214.33439684333
+                            ],
+                            [
+                                19,
+                                34467.80695903611
+                            ],
+                            [
+                                20,
+                                34294.10452816971
+                            ],
+                            [
+                                21,
+                                34998.773141201
+                            ],
+                            [
+                                22,
+                                35279.3174446719
+                            ],
+                            [
+                                23,
+                                35329.64201942621
+                            ],
+                            [
+                                24,
+                                35356.0499477461
+                            ],
+                            [
+                                25,
+                                35659.96834053107
+                            ],
+                            [
+                                26,
+                                36088.25380911091
+                            ],
+                            [
+                                27,
+                                36315.26141427975
+                            ],
+                            [
+                                28,
+                                36905.13567133414
+                            ],
+                            [
+                                29,
+                                37053.48994223436
+                            ],
+                            [
+                                30,
+                                37443.94419924526
+                            ],
+                            [
+                                31,
+                                38282.72158923604
+                            ],
+                            [
+                                32,
+                                38446.87821808726
+                            ],
+                            [
+                                33,
+                                38520.73932793045
+                            ],
+                            [
+                                34,
+                                38420.211615373155
+                            ],
+                            [
+                                35,
+                                38885.65660822832
+                            ],
+                            [
+                                36,
+                                39412.62631872177
+                            ],
+                            [
+                                37,
+                                39473.42165804723
+                            ],
+                            [
+                                38,
+                                40388.87486757985
+                            ],
+                            [
+                                39,
+                                40293.20878935998
+                            ],
+                            [
+                                40,
+                                39945.82564625007
+                            ],
+                            [
+                                41,
+                                39754.02126303039
+                            ],
+                            [
+                                42,
+                                39926.09536267389
+                            ],
+                            [
+                                43,
+                                40139.327225269684
+                            ],
+                            [
+                                44,
+                                40959.35089930724
+                            ],
+                            [
+                                45,
+                                40822.667531604726
+                            ],
+                            [
+                                46,
+                                40668.990473464
+                            ],
+                            [
+                                47,
+                                40813.53756408448
+                            ],
+                            [
+                                48,
+                                40766.267075417214
+                            ],
+                            [
+                                49,
+                                41789.91664232204
+                            ],
+                            [
+                                50,
+                                41554.909929353315
+                            ],
+                            [
+                                51,
+                                41847.135262337506
+                            ],
+                            [
+                                52,
+                                42342.819185706634
+                            ],
+                            [
+                                53,
+                                42682.398150240675
+                            ],
+                            [
+                                54,
+                                42791.087211706144
+                            ],
+                            [
+                                55,
+                                41818.78135302657
+                            ],
+                            [
+                                56,
+                                41517.48829415268
+                            ],
+                            [
+                                57,
+                                41311.21210086413
+                            ],
+                            [
+                                58,
+                                41107.74387652256
+                            ],
+                            [
+                                59,
+                                41175.37203982885
+                            ],
+                            [
+                                60,
+                                41440.25093908087
+                            ],
+                            [
+                                61,
+                                41393.990201160625
+                            ],
+                            [
+                                62,
+                                41397.44848241188
+                            ],
+                            [
+                                63,
+                                40964.45748642522
+                            ],
+                            [
+                                64,
+                                40388.13791768565
+                            ],
+                            [
+                                65,
+                                39718.85431306052
+                            ],
+                            [
+                                66,
+                                40052.440451165785
+                            ],
+                            [
+                                67,
+                                39717.36141264887
+                            ],
+                            [
+                                68,
+                                39196.01250447338
+                            ],
+                            [
+                                69,
+                                39659.07132165397
+                            ],
+                            [
+                                70,
+                                39614.81345102294
+                            ],
+                            [
+                                71,
+                                39358.739603521106
+                            ],
+                            [
+                                72,
+                                38193.31895822894
+                            ],
+                            [
+                                73,
+                                37272.24102203811
+                            ],
+                            [
+                                74,
+                                37094.04179768844
+                            ],
+                            [
+                                75,
+                                35999.127061177074
+                            ],
+                            [
+                                76,
+                                34895.484192275
+                            ],
+                            [
+                                77,
+                                34424.575753044344
+                            ],
+                            [
+                                78,
+                                33738.393494867225
+                            ],
+                            [
+                                79,
+                                32956.89517927232
+                            ],
+                            [
+                                80,
+                                32317.36843341399
+                            ],
+                            [
+                                81,
+                                31316.142475711848
+                            ],
+                            [
+                                82,
+                                29966.077160878758
+                            ],
+                            [
+                                83,
+                                29137.594000165453
+                            ],
+                            [
+                                84,
+                                27671.11738797617
+                            ],
+                            [
+                                85,
+                                26762.208887837776
+                            ],
+                            [
+                                86,
+                                24896.204211787277
+                            ],
+                            [
+                                87,
+                                24092.31397065188
+                            ],
+                            [
+                                88,
+                                22643.294064456608
+                            ],
+                            [
+                                89,
+                                20733.125809853078
+                            ],
+                            [
+                                90,
+                                19691.31058419988
+                            ],
+                            [
+                                91,
+                                18284.422646742514
+                            ],
+                            [
+                                92,
+                                16784.526303320345
+                            ],
+                            [
+                                93,
+                                14648.436691523137
+                            ],
+                            [
+                                94,
+                                12489.953797709755
+                            ],
+                            [
+                                95,
+                                9872.887696186774
+                            ],
+                            [
+                                96,
+                                6816.210970800862
+                            ],
+                            [
+                                97,
+                                4313.571455651691
+                            ],
+                            [
+                                98,
+                                2165.1948009793296
+                            ],
+                            [
+                                99,
+                                587.4509249722189
+                            ]
+                        ]
+                    }
+                ],
+                [
+                    {
+                        "name": "POR_13_S81",
+                        "data": [
+                            [
+                                0,
+                                0.3609732145999826
+                            ],
+                            [
+                                1,
+                                0.47792743377936453
+                            ],
+                            [
+                                2,
+                                0.5331569085363149
+                            ],
+                            [
+                                3,
+                                0.5947620513630183
+                            ],
+                            [
+                                4,
+                                0.6568217947048643
+                            ],
+                            [
+                                5,
+                                0.7082359265463475
+                            ],
+                            [
+                                6,
+                                0.7997842615873425
+                            ],
+                            [
+                                7,
+                                0.8375233879717957
+                            ],
+                            [
+                                8,
+                                0.868327946481984
+                            ],
+                            [
+                                9,
+                                0.8968545347817454
+                            ],
+                            [
+                                10,
+                                0.9265516543337167
+                            ],
+                            [
+                                11,
+                                0.9594803996367535
+                            ],
+                            [
+                                12,
+                                0.9738018729094392
+                            ],
+                            [
+                                13,
+                                0.9870029856874522
+                            ],
+                            [
+                                14,
+                                1.0352695464239787
+                            ],
+                            [
+                                15,
+                                1.0437042971719026
+                            ],
+                            [
+                                16,
+                                1.0581887513338126
+                            ],
+                            [
+                                17,
+                                1.0713532910072079
+                            ],
+                            [
+                                18,
+                                1.074539378951308
+                            ],
+                            [
+                                19,
+                                1.0770236571741945
+                            ],
+                            [
+                                20,
+                                1.0732905583233647
+                            ],
+                            [
+                                21,
+                                1.0900675176723584
+                            ],
+                            [
+                                22,
+                                1.0905540756429006
+                            ],
+                            [
+                                23,
+                                1.0920858615789102
+                            ],
+                            [
+                                24,
+                                1.0895556150713608
+                            ],
+                            [
+                                25,
+                                1.1054476831517337
+                            ],
+                            [
+                                26,
+                                1.1238986923814895
+                            ],
+                            [
+                                27,
+                                1.1298993417383658
+                            ],
+                            [
+                                28,
+                                1.1498194216752224
+                            ],
+                            [
+                                29,
+                                1.129333227822538
+                            ],
+                            [
+                                30,
+                                1.1424269405322618
+                            ],
+                            [
+                                31,
+                                1.1840649334111428
+                            ],
+                            [
+                                32,
+                                1.1957122812776646
+                            ],
+                            [
+                                33,
+                                1.2037698704464637
+                            ],
+                            [
+                                34,
+                                1.1944672234538205
+                            ],
+                            [
+                                35,
+                                1.2159394436272204
+                            ],
+                            [
+                                36,
+                                1.2255867270463372
+                            ],
+                            [
+                                37,
+                                1.2165826106614344
+                            ],
+                            [
+                                38,
+                                1.2314338756742589
+                            ],
+                            [
+                                39,
+                                1.2229918227121475
+                            ],
+                            [
+                                40,
+                                1.2010436180618504
+                            ],
+                            [
+                                41,
+                                1.1997985041501884
+                            ],
+                            [
+                                42,
+                                1.219983457205223
+                            ],
+                            [
+                                43,
+                                1.2264404647014642
+                            ],
+                            [
+                                44,
+                                1.265794492043711
+                            ],
+                            [
+                                45,
+                                1.2534197769653057
+                            ],
+                            [
+                                46,
+                                1.249974831725028
+                            ],
+                            [
+                                47,
+                                1.2470980358429136
+                            ],
+                            [
+                                48,
+                                1.2441143497046636
+                            ],
+                            [
+                                49,
+                                1.2800401570114333
+                            ],
+                            [
+                                50,
+                                1.2723752616465902
+                            ],
+                            [
+                                51,
+                                1.2862626922543938
+                            ],
+                            [
+                                52,
+                                1.2902325275916093
+                            ],
+                            [
+                                53,
+                                1.296080577199485
+                            ],
+                            [
+                                54,
+                                1.297729584630803
+                            ],
+                            [
+                                55,
+                                1.253340971204976
+                            ],
+                            [
+                                56,
+                                1.2395712673083712
+                            ],
+                            [
+                                57,
+                                1.2632592532343305
+                            ],
+                            [
+                                58,
+                                1.264934901776547
+                            ],
+                            [
+                                59,
+                                1.2733663093898842
+                            ],
+                            [
+                                60,
+                                1.2852045179932028
+                            ],
+                            [
+                                61,
+                                1.2876926720269444
+                            ],
+                            [
+                                62,
+                                1.290104472390666
+                            ],
+                            [
+                                63,
+                                1.2815003163727485
+                            ],
+                            [
+                                64,
+                                1.2671508205648587
+                            ],
+                            [
+                                65,
+                                1.2430637632169748
+                            ],
+                            [
+                                66,
+                                1.2479063936865704
+                            ],
+                            [
+                                67,
+                                1.2384278980536412
+                            ],
+                            [
+                                68,
+                                1.2166187387986933
+                            ],
+                            [
+                                69,
+                                1.235244481255374
+                            ],
+                            [
+                                70,
+                                1.2242003235614158
+                            ],
+                            [
+                                71,
+                                1.2027816608362412
+                            ],
+                            [
+                                72,
+                                1.182126769989246
+                            ],
+                            [
+                                73,
+                                1.1555761290391304
+                            ],
+                            [
+                                74,
+                                1.147780984463622
+                            ],
+                            [
+                                75,
+                                1.1122630970946286
+                            ],
+                            [
+                                76,
+                                1.0714442430994477
+                            ],
+                            [
+                                77,
+                                1.0618119582724763
+                            ],
+                            [
+                                78,
+                                1.0423104246474084
+                            ],
+                            [
+                                79,
+                                1.0183637243376458
+                            ],
+                            [
+                                80,
+                                0.9945958642792097
+                            ],
+                            [
+                                81,
+                                0.9693300795890919
+                            ],
+                            [
+                                82,
+                                0.9274118413043151
+                            ],
+                            [
+                                83,
+                                0.9018496985350122
+                            ],
+                            [
+                                84,
+                                0.8585815523820097
+                            ],
+                            [
+                                85,
+                                0.817755512980776
+                            ],
+                            [
+                                86,
+                                0.7540250869211033
+                            ],
+                            [
+                                87,
+                                0.7273938864284407
+                            ],
+                            [
+                                88,
+                                0.6781375475282416
+                            ],
+                            [
+                                89,
+                                0.6158049562541498
+                            ],
+                            [
+                                90,
+                                0.5724734255280244
+                            ],
+                            [
+                                91,
+                                0.4964499243014617
+                            ],
+                            [
+                                92,
+                                0.44302317346040987
+                            ],
+                            [
+                                93,
+                                0.3835658482877128
+                            ],
+                            [
+                                94,
+                                0.3015937846181963
+                            ],
+                            [
+                                95,
+                                0.2395868978818538
+                            ],
+                            [
+                                96,
+                                0.16423696713443858
+                            ],
+                            [
+                                97,
+                                0.10474919549838813
+                            ],
+                            [
+                                98,
+                                0.050840733609190135
+                            ],
+                            [
+                                99,
+                                0.013948581244734262
+                            ]
+                        ]
+                    },
+                    {
+                        "name": "POR_34_S82",
+                        "data": [
+                            [
+                                0,
+                                0.3758178983273613
+                            ],
+                            [
+                                1,
+                                0.49795032602054384
+                            ],
+                            [
+                                2,
+                                0.5599905646840095
+                            ],
+                            [
+                                3,
+                                0.6242755235758796
+                            ],
+                            [
+                                4,
+                                0.6918422690964632
+                            ],
+                            [
+                                5,
+                                0.7374934494858026
+                            ],
+                            [
+                                6,
+                                0.8167201329407671
+                            ],
+                            [
+                                7,
+                                0.8579586946985786
+                            ],
+                            [
+                                8,
+                                0.8924568006331777
+                            ],
+                            [
+                                9,
+                                0.9211378483618875
+                            ],
+                            [
+                                10,
+                                0.9507728608560821
+                            ],
+                            [
+                                11,
+                                0.9823374434911396
+                            ],
+                            [
+                                12,
+                                0.9950057578487566
+                            ],
+                            [
+                                13,
+                                1.012288789536258
+                            ],
+                            [
+                                14,
+                                1.0510756306529236
+                            ],
+                            [
+                                15,
+                                1.0624230163351587
+                            ],
+                            [
+                                16,
+                                1.0743272288010375
+                            ],
+                            [
+                                17,
+                                1.0878329529124728
+                            ],
+                            [
+                                18,
+                                1.0960781709686913
+                            ],
+                            [
+                                19,
+                                1.1035109880493175
+                            ],
+                            [
+                                20,
+                                1.0995367075415379
+                            ],
+                            [
+                                21,
+                                1.1142661272657752
+                            ],
+                            [
+                                22,
+                                1.1203392520030335
+                            ],
+                            [
+                                23,
+                                1.1228876816357563
+                            ],
+                            [
+                                24,
+                                1.1226103182680685
+                            ],
+                            [
+                                25,
+                                1.1331498119093348
+                            ],
+                            [
+                                26,
+                                1.141869433901229
+                            ],
+                            [
+                                27,
+                                1.1490417036964244
+                            ],
+                            [
+                                28,
+                                1.1722505786792268
+                            ],
+                            [
+                                29,
+                                1.1635730411149392
+                            ],
+                            [
+                                30,
+                                1.1714512899192997
+                            ],
+                            [
+                                31,
+                                1.2129944776861634
+                            ],
+                            [
+                                32,
+                                1.2233333171444185
+                            ],
+                            [
+                                33,
+                                1.2286072138903699
+                            ],
+                            [
+                                34,
+                                1.2207193386276864
+                            ],
+                            [
+                                35,
+                                1.23818913657166
+                            ],
+                            [
+                                36,
+                                1.2514671678498275
+                            ],
+                            [
+                                37,
+                                1.2485203998283154
+                            ],
+                            [
+                                38,
+                                1.2663126635166495
+                            ],
+                            [
+                                39,
+                                1.2547342277028022
+                            ],
+                            [
+                                40,
+                                1.2400404431596384
+                            ],
+                            [
+                                41,
+                                1.2363756111848685
+                            ],
+                            [
+                                42,
+                                1.2498388864597534
+                            ],
+                            [
+                                43,
+                                1.2550542691071238
+                            ],
+                            [
+                                44,
+                                1.2861882042234172
+                            ],
+                            [
+                                45,
+                                1.2785247467464882
+                            ],
+                            [
+                                46,
+                                1.2739479604292496
+                            ],
+                            [
+                                47,
+                                1.2702756245341364
+                            ],
+                            [
+                                48,
+                                1.267149485538078
+                            ],
+                            [
+                                49,
+                                1.2926967757445793
+                            ],
+                            [
+                                50,
+                                1.28340665007322
+                            ],
+                            [
+                                51,
+                                1.2922141211913545
+                            ],
+                            [
+                                52,
+                                1.294632339258684
+                            ],
+                            [
+                                53,
+                                1.298080996333405
+                            ],
+                            [
+                                54,
+                                1.2990690961500733
+                            ],
+                            [
+                                55,
+                                1.2633444544697467
+                            ],
+                            [
+                                56,
+                                1.2494174105344291
+                            ],
+                            [
+                                57,
+                                1.2578023778976906
+                            ],
+                            [
+                                58,
+                                1.2511641633120776
+                            ],
+                            [
+                                59,
+                                1.2539207043326228
+                            ],
+                            [
+                                60,
+                                1.26104619995757
+                            ],
+                            [
+                                61,
+                                1.264028197814698
+                            ],
+                            [
+                                62,
+                                1.2669949464567498
+                            ],
+                            [
+                                63,
+                                1.2582769847313249
+                            ],
+                            [
+                                64,
+                                1.2420763817712748
+                            ],
+                            [
+                                65,
+                                1.2183453459419296
+                            ],
+                            [
+                                66,
+                                1.2229690901861667
+                            ],
+                            [
+                                67,
+                                1.2119627228258805
+                            ],
+                            [
+                                68,
+                                1.1926442175637177
+                            ],
+                            [
+                                69,
+                                1.1979676857388581
+                            ],
+                            [
+                                70,
+                                1.1780743133453384
+                            ],
+                            [
+                                71,
+                                1.1627208594467524
+                            ],
+                            [
+                                72,
+                                1.134883306023273
+                            ],
+                            [
+                                73,
+                                1.1056973747853556
+                            ],
+                            [
+                                74,
+                                1.0967808871467488
+                            ],
+                            [
+                                75,
+                                1.0657997498118184
+                            ],
+                            [
+                                76,
+                                1.0258406880137552
+                            ],
+                            [
+                                77,
+                                1.0124980124030942
+                            ],
+                            [
+                                78,
+                                0.9931236894422117
+                            ],
+                            [
+                                79,
+                                0.9715710247262819
+                            ],
+                            [
+                                80,
+                                0.9457967493230696
+                            ],
+                            [
+                                81,
+                                0.9162390557083985
+                            ],
+                            [
+                                82,
+                                0.8665904398158011
+                            ],
+                            [
+                                83,
+                                0.8399850538580997
+                            ],
+                            [
+                                84,
+                                0.7986136954094366
+                            ],
+                            [
+                                85,
+                                0.7565199243992642
+                            ],
+                            [
+                                86,
+                                0.7048454996993878
+                            ],
+                            [
+                                87,
+                                0.6787695903356349
+                            ],
+                            [
+                                88,
+                                0.6349046406482097
+                            ],
+                            [
+                                89,
+                                0.5823659244472246
+                            ],
+                            [
+                                90,
+                                0.5453192329501896
+                            ],
+                            [
+                                91,
+                                0.4863033503896416
+                            ],
+                            [
+                                92,
+                                0.43773517745071266
+                            ],
+                            [
+                                93,
+                                0.38015436688930276
+                            ],
+                            [
+                                94,
+                                0.3040627254793043
+                            ],
+                            [
+                                95,
+                                0.2451874738702514
+                            ],
+                            [
+                                96,
+                                0.1685827680334192
+                            ],
+                            [
+                                97,
+                                0.11056383176964901
+                            ],
+                            [
+                                98,
+                                0.05689821953184603
+                            ],
+                            [
+                                99,
+                                0.016966045148900735
+                            ]
+                        ]
+                    },
+                    {
+                        "name": "POR_61_S83",
+                        "data": [
+                            [
+                                0,
+                                0.38946386216196427
+                            ],
+                            [
+                                1,
+                                0.5281907063755291
+                            ],
+                            [
+                                2,
+                                0.5899000322132842
+                            ],
+                            [
+                                3,
+                                0.6520888585119091
+                            ],
+                            [
+                                4,
+                                0.7145597910396781
+                            ],
+                            [
+                                5,
+                                0.744875301357505
+                            ],
+                            [
+                                6,
+                                0.7919648114451731
+                            ],
+                            [
+                                7,
+                                0.8214833691160455
+                            ],
+                            [
+                                8,
+                                0.8501875743026209
+                            ],
+                            [
+                                9,
+                                0.873757031531253
+                            ],
+                            [
+                                10,
+                                0.8957241610758458
+                            ],
+                            [
+                                11,
+                                0.9363355907061105
+                            ],
+                            [
+                                12,
+                                0.9514284676847892
+                            ],
+                            [
+                                13,
+                                0.9705492217316881
+                            ],
+                            [
+                                14,
+                                0.9989159069717667
+                            ],
+                            [
+                                15,
+                                1.0119384637872573
+                            ],
+                            [
+                                16,
+                                1.0257278411209
+                            ],
+                            [
+                                17,
+                                1.0382638482632347
+                            ],
+                            [
+                                18,
+                                1.0480356832818463
+                            ],
+                            [
+                                19,
+                                1.055799922878903
+                            ],
+                            [
+                                20,
+                                1.0504791604256785
+                            ],
+                            [
+                                21,
+                                1.0720642026123728
+                            ],
+                            [
+                                22,
+                                1.080657689697893
+                            ],
+                            [
+                                23,
+                                1.0821992058787069
+                            ],
+                            [
+                                24,
+                                1.083008119794137
+                            ],
+                            [
+                                25,
+                                1.0923175898177218
+                            ],
+                            [
+                                26,
+                                1.1054366073761686
+                            ],
+                            [
+                                27,
+                                1.112390186184215
+                            ],
+                            [
+                                28,
+                                1.1304589074070777
+                            ],
+                            [
+                                29,
+                                1.1350032182174916
+                            ],
+                            [
+                                30,
+                                1.1469634097936423
+                            ],
+                            [
+                                31,
+                                1.172656402234888
+                            ],
+                            [
+                                32,
+                                1.1776847626492062
+                            ],
+                            [
+                                33,
+                                1.179947237722508
+                            ],
+                            [
+                                34,
+                                1.1768679251543679
+                            ],
+                            [
+                                35,
+                                1.1911251939195342
+                            ],
+                            [
+                                36,
+                                1.207267055812858
+                            ],
+                            [
+                                37,
+                                1.2091293070041653
+                            ],
+                            [
+                                38,
+                                1.2371709932411945
+                            ],
+                            [
+                                39,
+                                1.2342405997256831
+                            ],
+                            [
+                                40,
+                                1.2235997400927867
+                            ],
+                            [
+                                41,
+                                1.2177244880568259
+                            ],
+                            [
+                                42,
+                                1.2229953723155484
+                            ],
+                            [
+                                43,
+                                1.22952697974713
+                            ],
+                            [
+                                44,
+                                1.2546455181222775
+                            ],
+                            [
+                                45,
+                                1.2504587043441149
+                            ],
+                            [
+                                46,
+                                1.2457513486853675
+                            ],
+                            [
+                                47,
+                                1.250179039931023
+                            ],
+                            [
+                                48,
+                                1.2487310749256293
+                            ],
+                            [
+                                49,
+                                1.2800869756673736
+                            ],
+                            [
+                                50,
+                                1.2728883723525968
+                            ],
+                            [
+                                51,
+                                1.2818396666543972
+                            ],
+                            [
+                                52,
+                                1.2970231986002332
+                            ],
+                            [
+                                53,
+                                1.307425004696932
+                            ],
+                            [
+                                54,
+                                1.310754311456988
+                            ],
+                            [
+                                55,
+                                1.280971144462098
+                            ],
+                            [
+                                56,
+                                1.2717420923004372
+                            ],
+                            [
+                                57,
+                                1.265423547310771
+                            ],
+                            [
+                                58,
+                                1.2591910145643896
+                            ],
+                            [
+                                59,
+                                1.2612625652635125
+                            ],
+                            [
+                                60,
+                                1.269376197840569
+                            ],
+                            [
+                                61,
+                                1.2679591629945006
+                            ],
+                            [
+                                62,
+                                1.2680650952658141
+                            ],
+                            [
+                                63,
+                                1.2548019404409865
+                            ],
+                            [
+                                64,
+                                1.237148419375605
+                            ],
+                            [
+                                65,
+                                1.2166472723491308
+                            ],
+                            [
+                                66,
+                                1.2268655093058247
+                            ],
+                            [
+                                67,
+                                1.2166015426007497
+                            ],
+                            [
+                                68,
+                                1.2006318541985006
+                            ],
+                            [
+                                69,
+                                1.2148160308723663
+                            ],
+                            [
+                                70,
+                                1.2134603468146437
+                            ],
+                            [
+                                71,
+                                1.2056164259999236
+                            ],
+                            [
+                                72,
+                                1.1699178673743835
+                            ],
+                            [
+                                73,
+                                1.1417038874379317
+                            ],
+                            [
+                                74,
+                                1.13624538154723
+                            ],
+                            [
+                                75,
+                                1.1027065232223718
+                            ],
+                            [
+                                76,
+                                1.0689003092889615
+                            ],
+                            [
+                                77,
+                                1.0544756870780492
+                            ],
+                            [
+                                78,
+                                1.033456909291424
+                            ],
+                            [
+                                79,
+                                1.009518459644317
+                            ],
+                            [
+                                80,
+                                0.9899288092276634
+                            ],
+                            [
+                                81,
+                                0.9592597768119194
+                            ],
+                            [
+                                82,
+                                0.9179052787733208
+                            ],
+                            [
+                                83,
+                                0.8925276138053365
+                            ],
+                            [
+                                84,
+                                0.8476072654961657
+                            ],
+                            [
+                                85,
+                                0.8197660533908937
+                            ],
+                            [
+                                86,
+                                0.7626075693768912
+                            ],
+                            [
+                                87,
+                                0.7379832219212332
+                            ],
+                            [
+                                88,
+                                0.6935975983441611
+                            ],
+                            [
+                                89,
+                                0.6350863185782919
+                            ],
+                            [
+                                90,
+                                0.6031739768326749
+                            ],
+                            [
+                                91,
+                                0.56007891779303
+                            ],
+                            [
+                                92,
+                                0.5141348736711188
+                            ],
+                            [
+                                93,
+                                0.4487032884798053
+                            ],
+                            [
+                                94,
+                                0.3825857639290838
+                            ],
+                            [
+                                95,
+                                0.30242115724433566
+                            ],
+                            [
+                                96,
+                                0.20879062673905416
+                            ],
+                            [
+                                97,
+                                0.132131075691073
+                            ],
+                            [
+                                98,
+                                0.0663231201975986
+                            ],
+                            [
+                                99,
+                                0.01799449097582371
+                            ]
+                        ]
+                    }
+                ]
+            ],
+            "config": {
+                "id": "qualimap_gene_coverage_profile",
+                "title": "Qualimap RNAseq: Coverage Profile Along Genes (total)",
+                "ylab": "Cumulative mapped-read depth",
+                "xlab": "Transcript Position (%)",
+                "ymin": 0,
+                "xmin": 0,
+                "xmax": 100,
+                "tt_label": "<b>{point.x}%</b>: {point.y:.2f}",
+                "data_labels": [
+                    {
+                        "name": "Counts",
+                        "ylab": "Cumulative mapped-read depth"
+                    },
+                    {
+                        "name": "Normalised",
+                        "ylab": "Percentage total cumulative mapped-read depth"
+                    }
+                ]
+            }
+        },
+        "star_alignment_plot": {
+            "plot_type": "bar_graph",
+            "samples": [
+                [
+                    "POR_13_S81",
+                    "POR_34_S82",
+                    "POR_61_S83"
+                ]
+            ],
+            "datasets": [
+                [
+                    {
+                        "name": "Uniquely mapped",
+                        "data": [
+                            19182208.0,
+                            25080902.0,
+                            24249227.0
+                        ],
+                        "color": "#437bb1"
+                    },
+                    {
+                        "name": "Mapped to multiple loci",
+                        "data": [
+                            1350849.0,
+                            1636648.0,
+                            1416436.0
+                        ],
+                        "color": "#7cb5ec"
+                    },
+                    {
+                        "name": "Mapped to too many loci",
+                        "data": [
+                            2247492.0,
+                            572318.0,
+                            1838975.0
+                        ],
+                        "color": "#f7a35c"
+                    },
+                    {
+                        "name": "Unmapped: too short",
+                        "data": [
+                            11524486.0,
+                            9726642.0,
+                            11583816.0
+                        ],
+                        "color": "#b1084c"
+                    },
+                    {
+                        "name": "Unmapped: other",
+                        "data": [
+                            252260.0,
+                            223515.0,
+                            117602.0
+                        ],
+                        "color": "#7f0000"
+                    }
+                ]
+            ],
+            "config": {
+                "id": "star_alignment_plot",
+                "title": "STAR: Alignment Scores",
+                "ylab": "# Reads",
+                "cpswitch_counts_label": "Number of Reads"
+            }
+        },
+        "star_gene_counts": {
+            "plot_type": "bar_graph",
+            "samples": [
+                [
+                    "POR_13_S81",
+                    "POR_34_S82",
+                    "POR_61_S83"
+                ],
+                [
+                    "POR_13_S81",
+                    "POR_34_S82",
+                    "POR_61_S83"
+                ],
+                [
+                    "POR_13_S81",
+                    "POR_34_S82",
+                    "POR_61_S83"
+                ]
+            ],
+            "datasets": [
+                [
+                    {
+                        "name": "Overlapping Genes",
+                        "data": [
+                            11794146.0,
+                            15706801.0,
+                            14666418.0
+                        ],
+                        "color": "#2f7ed8"
+                    },
+                    {
+                        "name": "No Feature",
+                        "data": [
+                            7388062.0,
+                            9374101.0,
+                            9582809.0
+                        ],
+                        "color": "#0d233a"
+                    },
+                    {
+                        "name": "Multimapping",
+                        "data": [
+                            1350849.0,
+                            1636648.0,
+                            1416436.0
+                        ],
+                        "color": "#f28f43"
+                    },
+                    {
+                        "name": "Unmapped",
+                        "data": [
+                            14024238.0,
+                            10522475.0,
+                            13540393.0
+                        ],
+                        "color": "#7f0000"
+                    }
+                ],
+                [
+                    {
+                        "name": "Overlapping Genes",
+                        "data": [
+                            5895262.0,
+                            7898964.0,
+                            7335734.0
+                        ],
+                        "color": "#2f7ed8"
+                    },
+                    {
+                        "name": "No Feature",
+                        "data": [
+                            13286946.0,
+                            17181938.0,
+                            16913493.0
+                        ],
+                        "color": "#0d233a"
+                    },
+                    {
+                        "name": "Multimapping",
+                        "data": [
+                            1350849.0,
+                            1636648.0,
+                            1416436.0
+                        ],
+                        "color": "#f28f43"
+                    },
+                    {
+                        "name": "Unmapped",
+                        "data": [
+                            14024238.0,
+                            10522475.0,
+                            13540393.0
+                        ],
+                        "color": "#7f0000"
+                    }
+                ],
+                [
+                    {
+                        "name": "Overlapping Genes",
+                        "data": [
+                            5908159.0,
+                            7823216.0,
+                            7345709.0
+                        ],
+                        "color": "#2f7ed8"
+                    },
+                    {
+                        "name": "No Feature",
+                        "data": [
+                            13274049.0,
+                            17257686.0,
+                            16903518.0
+                        ],
+                        "color": "#0d233a"
+                    },
+                    {
+                        "name": "Multimapping",
+                        "data": [
+                            1350849.0,
+                            1636648.0,
+                            1416436.0
+                        ],
+                        "color": "#f28f43"
+                    },
+                    {
+                        "name": "Unmapped",
+                        "data": [
+                            14024238.0,
+                            10522475.0,
+                            13540393.0
+                        ],
+                        "color": "#7f0000"
+                    }
+                ]
+            ],
+            "config": {
+                "id": "star_gene_counts",
+                "title": "STAR: Gene Counts",
+                "ylab": "# Reads",
+                "cpswitch_counts_label": "Number of Reads",
+                "data_labels": [
+                    "Unstranded",
+                    "Same Stranded",
+                    "Reverse Stranded"
+                ]
+            }
+        }
+    },
+    "report_saved_raw_data": {
+        "qualimap_rnaseq_genome_results": {
+            "POR_13_S81": {
+                "bam_file": "/scratch4/workspace/zdellaert_uri_edu-shared_TimeSeries/Porites_LCM_test/aligned/POR_Pcomp/POR_13_S81_Aligned.sortedByCoord.out.bam",
+                "reads_aligned": 20430268.0,
+                "total_alignments": 46636226.0,
+                "non_unique_alignments": 8342276.0,
+                "reads_aligned_genes": 12232821.0,
+                "ambiguous_alignments": 682.0,
+                "not_aligned": 28151265.0,
+                "5_3_bias": 0.97,
+                "reads_aligned_exonic": 12232821.0,
+                "reads_aligned_intronic": 8152476.0,
+                "reads_aligned_intergenic": 17880688.0,
+                "reads_aligned_overlapping_exon": 5279893.0
+            },
+            "POR_34_S82": {
+                "bam_file": "/scratch4/workspace/zdellaert_uri_edu-shared_TimeSeries/Porites_LCM_test/aligned/POR_Pcomp/POR_34_S82_Aligned.sortedByCoord.out.bam",
+                "reads_aligned": 26611628.0,
+                "total_alignments": 60548419.0,
+                "non_unique_alignments": 10474555.0,
+                "reads_aligned_genes": 18028523.0,
+                "ambiguous_alignments": 2199.0,
+                "not_aligned": 21150872.0,
+                "5_3_bias": 0.94,
+                "reads_aligned_exonic": 18028523.0,
+                "reads_aligned_intronic": 10053625.0,
+                "reads_aligned_intergenic": 21974119.0,
+                "reads_aligned_overlapping_exon": 6260464.0
+            },
+            "POR_61_S83": {
+                "bam_file": "/scratch4/workspace/zdellaert_uri_edu-shared_TimeSeries/Porites_LCM_test/aligned/POR_Pcomp/POR_61_S83_Aligned.sortedByCoord.out.bam",
+                "reads_aligned": 25498244.0,
+                "total_alignments": 57174597.0,
+                "non_unique_alignments": 8811439.0,
+                "reads_aligned_genes": 15561880.0,
+                "ambiguous_alignments": 1220.0,
+                "not_aligned": 27248205.0,
+                "5_3_bias": 0.88,
+                "reads_aligned_exonic": 15561880.0,
+                "reads_aligned_intronic": 10156742.0,
+                "reads_aligned_intergenic": 22614867.0,
+                "reads_aligned_overlapping_exon": 6442130.0
+            }
+        },
+        "qualimap_rnaseq_cov_hist": {
+            "POR_13_S81": {
+                "0": 10225.944918650262,
+                "1": 13539.119843990464,
+                "2": 15103.705646780352,
+                "3": 16848.906597353824,
+                "4": 18606.985843711624,
+                "5": 20063.48748700905,
+                "6": 22656.943714947687,
+                "7": 23726.04860161652,
+                "8": 24598.705369010197,
+                "9": 25406.82993025676,
+                "10": 26248.114259670394,
+                "11": 27180.94673058452,
+                "12": 27586.65715705674,
+                "13": 27960.629093679367,
+                "14": 29327.96376434563,
+                "15": 29566.910292958273,
+                "16": 29977.237775568152,
+                "17": 30350.17363932388,
+                "18": 30440.431748525833,
+                "19": 30510.808417049535,
+                "20": 30405.05413479132,
+                "21": 30880.32558227354,
+                "22": 30894.109195032757,
+                "23": 30937.502881808534,
+                "24": 30865.823986061438,
+                "25": 31316.027508817053,
+                "26": 31838.722812639193,
+                "27": 32008.7141231234,
+                "28": 32573.026465342868,
+                "29": 31992.676784376956,
+                "30": 32363.60620388705,
+                "31": 33543.16137441246,
+                "32": 33873.116985837536,
+                "33": 34101.378972280385,
+                "34": 33837.84596789989,
+                "35": 34446.12861019412,
+                "36": 34719.424757576744,
+                "37": 34464.34877279719,
+                "38": 34885.06757366921,
+                "39": 34645.91418195135,
+                "40": 34024.14746148729,
+                "41": 33988.874854648006,
+                "42": 34560.69073953315,
+                "43": 34743.61013722044,
+                "44": 35858.4632610868,
+                "45": 35507.90219545207,
+                "46": 35410.310964718,
+                "47": 35328.814734408224,
+                "48": 35244.29042936222,
+                "49": 36262.026127796744,
+                "50": 36044.88869311212,
+                "51": 36438.303203422394,
+                "52": 36550.763950792425,
+                "53": 36716.43229058307,
+                "54": 36763.146723901315,
+                "55": 35505.66972131878,
+                "56": 35115.590269720575,
+                "57": 35786.64293932393,
+                "58": 35834.112083855085,
+                "59": 36072.96390541259,
+                "60": 36408.32637613546,
+                "61": 36478.812841803985,
+                "62": 36547.13629816218,
+                "63": 36303.39071829083,
+                "64": 35896.886446486365,
+                "65": 35214.52855473867,
+                "66": 35351.71455757918,
+                "67": 35083.19996886818,
+                "68": 34465.372240264245,
+                "69": 34993.01753007349,
+                "70": 34680.14958396714,
+                "71": 34073.384160938454,
+                "72": 33488.25549332757,
+                "73": 32736.107187222322,
+                "74": 32515.279946202798,
+                "75": 31509.100137918016,
+                "76": 30352.75020469733,
+                "77": 30079.878949719274,
+                "78": 29527.423530277298,
+                "79": 28849.04178768063,
+                "80": 28175.72637822264,
+                "81": 27459.976532755754,
+                "82": 26272.4823408058,
+                "83": 25548.337020906547,
+                "84": 24322.60153307256,
+                "85": 23166.048045783195,
+                "86": 21360.64033083537,
+                "87": 20606.209868017555,
+                "88": 19210.835950742334,
+                "89": 17445.027244653276,
+                "90": 16217.496146709642,
+                "91": 14063.840128416787,
+                "92": 12550.323365439013,
+                "93": 10865.96755277837,
+                "94": 8543.795784766506,
+                "95": 6787.21390362752,
+                "96": 4652.639341631148,
+                "97": 2967.4210166160533,
+                "98": 1440.257948467112,
+                "99": 395.1468356455099
+            },
+            "POR_34_S82": {
+                "0": 13422.021366297842,
+                "1": 17783.8786948379,
+                "2": 19999.593839372912,
+                "3": 22295.47728616574,
+                "4": 24708.566992815446,
+                "5": 26338.960652376343,
+                "6": 29168.47527327706,
+                "7": 30641.275955448407,
+                "8": 31873.34690526693,
+                "9": 32897.666494982775,
+                "10": 33956.056137035186,
+                "11": 35083.358760011855,
+                "12": 35535.79699336817,
+                "13": 36153.045989800965,
+                "14": 37538.28552340511,
+                "15": 37943.54789583719,
+                "16": 38368.696870319494,
+                "17": 38851.04249142428,
+                "18": 39145.51354619015,
+                "19": 39410.97038076871,
+                "20": 39269.03228221489,
+                "21": 39795.0811668789,
+                "22": 40011.977728608574,
+                "23": 40102.99275778399,
+                "24": 40093.086957491076,
+                "25": 40469.49614255819,
+                "26": 40780.91013641566,
+                "27": 41037.06174299006,
+                "28": 41865.94726785019,
+                "29": 41556.03628406499,
+                "30": 41837.401339459524,
+                "31": 43321.08148431859,
+                "32": 43690.32447335406,
+                "33": 43878.67727699341,
+                "34": 43596.968420705234,
+                "35": 44220.887617509085,
+                "36": 44695.10137984218,
+                "37": 44589.86002885201,
+                "38": 45225.295819543404,
+                "39": 44811.78168524212,
+                "40": 44287.00548121383,
+                "41": 44156.1190777504,
+                "42": 44636.94867422281,
+                "43": 44823.211695856364,
+                "44": 45935.134103510885,
+                "45": 45661.4401404164,
+                "46": 45497.98405167672,
+                "47": 45366.82965198526,
+                "48": 45255.182216922,
+                "49": 46167.582282296185,
+                "50": 45835.79322751317,
+                "51": 46150.344679311456,
+                "52": 46236.70931152435,
+                "53": 46359.8752095509,
+                "54": 46395.16436664102,
+                "55": 45119.28872029539,
+                "56": 44621.8960146761,
+                "57": 44921.35809885649,
+                "58": 44684.2798266435,
+                "59": 44782.72737967251,
+                "60": 45037.20848594541,
+                "61": 45143.70804099791,
+                "62": 45249.66298311024,
+                "63": 44938.3082842787,
+                "64": 44359.71732295281,
+                "65": 43512.18326094175,
+                "66": 43677.3164127013,
+                "67": 43284.23322392138,
+                "68": 42594.28899415555,
+                "69": 42784.41219985583,
+                "70": 42073.93707213597,
+                "71": 41525.60132977123,
+                "72": 40531.40643245972,
+                "73": 39489.05535122036,
+                "74": 39170.610465731,
+                "75": 38064.145102818904,
+                "76": 36637.04068970327,
+                "77": 36160.51820919629,
+                "78": 35468.58049708657,
+                "79": 34698.84513428093,
+                "80": 33778.33848278179,
+                "81": 32722.7102197313,
+                "82": 30949.55150035308,
+                "83": 29999.362431731843,
+                "84": 28521.819027008118,
+                "85": 27018.47526291084,
+                "86": 25172.96647926919,
+                "87": 24241.6872235881,
+                "88": 22675.08729698387,
+                "89": 20798.71106651166,
+                "90": 19475.61951861865,
+                "91": 17367.916718395387,
+                "92": 15633.345113877178,
+                "93": 13576.89470775312,
+                "94": 10859.345486848122,
+                "95": 8756.665203232324,
+                "96": 6020.792316185036,
+                "97": 3948.6946176771485,
+                "98": 2032.07223940016,
+                "99": 605.92808778831
+            },
+            "POR_61_S83": {
+                "0": 12714.49725239175,
+                "1": 17243.39518349897,
+                "2": 19257.96734291744,
+                "3": 21288.193348262474,
+                "4": 23327.62903703083,
+                "5": 24317.313857854,
+                "6": 25854.60525968666,
+                "7": 26818.272641603588,
+                "8": 27755.35454684344,
+                "9": 28524.806679090772,
+                "10": 29241.94897487972,
+                "11": 30567.755963963,
+                "12": 31060.48035130627,
+                "13": 31684.699434030445,
+                "14": 32610.76261109217,
+                "15": 33035.89900739488,
+                "16": 33486.069144484216,
+                "17": 33895.32156518992,
+                "18": 34214.33439684333,
+                "19": 34467.80695903611,
+                "20": 34294.10452816971,
+                "21": 34998.773141201,
+                "22": 35279.3174446719,
+                "23": 35329.64201942621,
+                "24": 35356.0499477461,
+                "25": 35659.96834053107,
+                "26": 36088.25380911091,
+                "27": 36315.26141427975,
+                "28": 36905.13567133414,
+                "29": 37053.48994223436,
+                "30": 37443.94419924526,
+                "31": 38282.72158923604,
+                "32": 38446.87821808726,
+                "33": 38520.73932793045,
+                "34": 38420.211615373155,
+                "35": 38885.65660822832,
+                "36": 39412.62631872177,
+                "37": 39473.42165804723,
+                "38": 40388.87486757985,
+                "39": 40293.20878935998,
+                "40": 39945.82564625007,
+                "41": 39754.02126303039,
+                "42": 39926.09536267389,
+                "43": 40139.327225269684,
+                "44": 40959.35089930724,
+                "45": 40822.667531604726,
+                "46": 40668.990473464,
+                "47": 40813.53756408448,
+                "48": 40766.267075417214,
+                "49": 41789.91664232204,
+                "50": 41554.909929353315,
+                "51": 41847.135262337506,
+                "52": 42342.819185706634,
+                "53": 42682.398150240675,
+                "54": 42791.087211706144,
+                "55": 41818.78135302657,
+                "56": 41517.48829415268,
+                "57": 41311.21210086413,
+                "58": 41107.74387652256,
+                "59": 41175.37203982885,
+                "60": 41440.25093908087,
+                "61": 41393.990201160625,
+                "62": 41397.44848241188,
+                "63": 40964.45748642522,
+                "64": 40388.13791768565,
+                "65": 39718.85431306052,
+                "66": 40052.440451165785,
+                "67": 39717.36141264887,
+                "68": 39196.01250447338,
+                "69": 39659.07132165397,
+                "70": 39614.81345102294,
+                "71": 39358.739603521106,
+                "72": 38193.31895822894,
+                "73": 37272.24102203811,
+                "74": 37094.04179768844,
+                "75": 35999.127061177074,
+                "76": 34895.484192275,
+                "77": 34424.575753044344,
+                "78": 33738.393494867225,
+                "79": 32956.89517927232,
+                "80": 32317.36843341399,
+                "81": 31316.142475711848,
+                "82": 29966.077160878758,
+                "83": 29137.594000165453,
+                "84": 27671.11738797617,
+                "85": 26762.208887837776,
+                "86": 24896.204211787277,
+                "87": 24092.31397065188,
+                "88": 22643.294064456608,
+                "89": 20733.125809853078,
+                "90": 19691.31058419988,
+                "91": 18284.422646742514,
+                "92": 16784.526303320345,
+                "93": 14648.436691523137,
+                "94": 12489.953797709755,
+                "95": 9872.887696186774,
+                "96": 6816.210970800862,
+                "97": 4313.571455651691,
+                "98": 2165.1948009793296,
+                "99": 587.4509249722189
+            }
+        },
+        "multiqc_star": {
+            "POR_13_S81": {
+                "total_reads": 34557295.0,
+                "avg_input_read_length": 238.0,
+                "uniquely_mapped": 19182208.0,
+                "uniquely_mapped_percent": 55.51,
+                "avg_mapped_read_length": 239.15,
+                "num_splices": 16165588.0,
+                "num_annotated_splices": 13623306.0,
+                "num_GTAG_splices": 15863789.0,
+                "num_GCAG_splices": 56854.0,
+                "num_ATAC_splices": 12157.0,
+                "num_noncanonical_splices": 232788.0,
+                "mismatch_rate": 0.92,
+                "deletion_rate": 0.08,
+                "deletion_length": 2.14,
+                "insertion_rate": 0.04,
+                "insertion_length": 1.91,
+                "multimapped": 1350849.0,
+                "multimapped_percent": 3.91,
+                "multimapped_toomany": 2247492.0,
+                "multimapped_toomany_percent": 6.5,
+                "unmapped_mismatches_percent": 0.0,
+                "unmapped_tooshort_percent": 33.35,
+                "unmapped_other_percent": 0.73,
+                "unmapped_mismatches": 0,
+                "unmapped_tooshort": 11524486,
+                "unmapped_other": 252260
+            },
+            "POR_61_S83": {
+                "total_reads": 39206056.0,
+                "avg_input_read_length": 243.0,
+                "uniquely_mapped": 24249227.0,
+                "uniquely_mapped_percent": 61.85,
+                "avg_mapped_read_length": 243.47,
+                "num_splices": 19091547.0,
+                "num_annotated_splices": 16871284.0,
+                "num_GTAG_splices": 18687510.0,
+                "num_GCAG_splices": 77124.0,
+                "num_ATAC_splices": 15874.0,
+                "num_noncanonical_splices": 311039.0,
+                "mismatch_rate": 0.95,
+                "deletion_rate": 0.1,
+                "deletion_length": 2.06,
+                "insertion_rate": 0.05,
+                "insertion_length": 1.96,
+                "multimapped": 1416436.0,
+                "multimapped_percent": 3.61,
+                "multimapped_toomany": 1838975.0,
+                "multimapped_toomany_percent": 4.69,
+                "unmapped_mismatches_percent": 0.0,
+                "unmapped_tooshort_percent": 29.55,
+                "unmapped_other_percent": 0.3,
+                "unmapped_mismatches": 0,
+                "unmapped_tooshort": 11583816,
+                "unmapped_other": 117602
+            },
+            "POR_34_S82": {
+                "total_reads": 37240025.0,
+                "avg_input_read_length": 238.0,
+                "uniquely_mapped": 25080902.0,
+                "uniquely_mapped_percent": 67.35,
+                "avg_mapped_read_length": 237.42,
+                "num_splices": 20903976.0,
+                "num_annotated_splices": 18292836.0,
+                "num_GTAG_splices": 20528273.0,
+                "num_GCAG_splices": 78874.0,
+                "num_ATAC_splices": 16477.0,
+                "num_noncanonical_splices": 280352.0,
+                "mismatch_rate": 0.91,
+                "deletion_rate": 0.08,
+                "deletion_length": 2.17,
+                "insertion_rate": 0.04,
+                "insertion_length": 1.94,
+                "multimapped": 1636648.0,
+                "multimapped_percent": 4.39,
+                "multimapped_toomany": 572318.0,
+                "multimapped_toomany_percent": 1.54,
+                "unmapped_mismatches_percent": 0.0,
+                "unmapped_tooshort_percent": 26.11,
+                "unmapped_other_percent": 0.6,
+                "unmapped_mismatches": 0,
+                "unmapped_tooshort": 9726642,
+                "unmapped_other": 223515
+            }
+        },
+        "multiqc_general_stats": {
+            "POR_13_S81": {
+                "QualiMap_mqc-generalstats-qualimap-5_3_bias": 0.97,
+                "QualiMap_mqc-generalstats-qualimap-reads_aligned": 20430268.0,
+                "STAR_mqc-generalstats-star-uniquely_mapped_percent": 55.51,
+                "STAR_mqc-generalstats-star-uniquely_mapped": 19182208.0
+            },
+            "POR_34_S82": {
+                "QualiMap_mqc-generalstats-qualimap-5_3_bias": 0.94,
+                "QualiMap_mqc-generalstats-qualimap-reads_aligned": 26611628.0,
+                "STAR_mqc-generalstats-star-uniquely_mapped_percent": 67.35,
+                "STAR_mqc-generalstats-star-uniquely_mapped": 25080902.0
+            },
+            "POR_61_S83": {
+                "QualiMap_mqc-generalstats-qualimap-5_3_bias": 0.88,
+                "QualiMap_mqc-generalstats-qualimap-reads_aligned": 25498244.0,
+                "STAR_mqc-generalstats-star-uniquely_mapped_percent": 61.85,
+                "STAR_mqc-generalstats-star-uniquely_mapped": 24249227.0
+            }
+        }
+    },
+    "config_analysis_dir_abs": [
+        "/project/pi_hputnam_uri_edu/zdellaert/Porites_LCM_test/output_RNA/alignment_qc/POR_Pcomp",
+        "/scratch4/workspace/zdellaert_uri_edu-shared_TimeSeries/Porites_LCM_test/aligned/POR_Pcomp"
+    ],
+    "config_analysis_dir": [
+        ".",
+        "/scratch4/workspace/zdellaert_uri_edu-shared_TimeSeries/Porites_LCM_test/aligned/POR_Pcomp"
+    ],
+    "config_creation_date": "2026-06-02, 14:05",
+    "config_git_hash": null,
+    "config_intro_text": null,
+    "config_report_comment": null,
+    "config_report_header_info": null,
+    "config_script_path": "/modules/uri_apps/software/MultiQC/1.12-foss-2021b/lib/python3.9/site-packages/multiqc/utils",
+    "config_short_version": "1.12",
+    "config_subtitle": null,
+    "config_title": null,
+    "config_version": "1.12"
+}
