@@ -1,4 +1,4 @@
-# Time Series RNA-seq Bioinformatic Processing <!-- omit from toc -->
+# Porites LCM RNA-seq Bioinformatic Processing <!-- omit from toc -->
 
 Script Written By: Zoe Dellaert
 
