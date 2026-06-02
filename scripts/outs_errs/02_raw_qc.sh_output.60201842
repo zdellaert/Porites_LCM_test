@@ -1,0 +1,22 @@
+Starting fastqc... Tue Jun 2 01:42:52 UTC 2026
+application/gzip
+Analysis complete for POR_13_S81_R2_001.fastq.gz
+Processed POR_13_S81_R2_001.fastq.gz
+application/gzip
+Analysis complete for POR_13_S81_R1_001.fastq.gz
+Processed POR_13_S81_R1_001.fastq.gz
+application/gzip
+Analysis complete for POR_34_S82_R2_001.fastq.gz
+Processed POR_34_S82_R2_001.fastq.gz
+application/gzip
+Analysis complete for POR_61_S83_R1_001.fastq.gz
+Processed POR_61_S83_R1_001.fastq.gz
+application/gzip
+Analysis complete for POR_34_S82_R1_001.fastq.gz
+Processed POR_34_S82_R1_001.fastq.gz
+application/gzip
+Analysis complete for POR_61_S83_R2_001.fastq.gz
+Processed POR_61_S83_R2_001.fastq.gz
+fastQC done. Tue Jun 2 01:50:22 UTC 2026
+|         searching | ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 12/12  
+Initial QC of RNA-seq data complete. Tue Jun 2 01:50:39 UTC 2026

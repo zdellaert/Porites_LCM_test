@@ -1,0 +1,137 @@
+Loading perl version 5.38.2
+Loading parallel version 20240822
+Loading openjdk version 17.0.8.1_1
+Loading fastqc version 0.12.1
+Loading uri version main
+NOTE: The modules under this branch will not run on the login node. Use
+--constraint=avx512 for sbatch or srun sessions. 
+Started analysis of POR_13_S81_R2_001.fastq.gz
+Approx 5% complete for POR_13_S81_R2_001.fastq.gz
+Approx 10% complete for POR_13_S81_R2_001.fastq.gz
+Approx 15% complete for POR_13_S81_R2_001.fastq.gz
+Approx 20% complete for POR_13_S81_R2_001.fastq.gz
+Approx 25% complete for POR_13_S81_R2_001.fastq.gz
+Approx 30% complete for POR_13_S81_R2_001.fastq.gz
+Approx 35% complete for POR_13_S81_R2_001.fastq.gz
+Approx 40% complete for POR_13_S81_R2_001.fastq.gz
+Approx 45% complete for POR_13_S81_R2_001.fastq.gz
+Approx 50% complete for POR_13_S81_R2_001.fastq.gz
+Approx 55% complete for POR_13_S81_R2_001.fastq.gz
+Approx 60% complete for POR_13_S81_R2_001.fastq.gz
+Approx 65% complete for POR_13_S81_R2_001.fastq.gz
+Approx 70% complete for POR_13_S81_R2_001.fastq.gz
+Approx 75% complete for POR_13_S81_R2_001.fastq.gz
+Approx 80% complete for POR_13_S81_R2_001.fastq.gz
+Approx 85% complete for POR_13_S81_R2_001.fastq.gz
+Approx 90% complete for POR_13_S81_R2_001.fastq.gz
+Approx 95% complete for POR_13_S81_R2_001.fastq.gz
+Started analysis of POR_13_S81_R1_001.fastq.gz
+Approx 5% complete for POR_13_S81_R1_001.fastq.gz
+Approx 10% complete for POR_13_S81_R1_001.fastq.gz
+Approx 15% complete for POR_13_S81_R1_001.fastq.gz
+Approx 20% complete for POR_13_S81_R1_001.fastq.gz
+Approx 25% complete for POR_13_S81_R1_001.fastq.gz
+Approx 30% complete for POR_13_S81_R1_001.fastq.gz
+Approx 35% complete for POR_13_S81_R1_001.fastq.gz
+Approx 40% complete for POR_13_S81_R1_001.fastq.gz
+Approx 45% complete for POR_13_S81_R1_001.fastq.gz
+Approx 50% complete for POR_13_S81_R1_001.fastq.gz
+Approx 55% complete for POR_13_S81_R1_001.fastq.gz
+Approx 60% complete for POR_13_S81_R1_001.fastq.gz
+Approx 65% complete for POR_13_S81_R1_001.fastq.gz
+Approx 70% complete for POR_13_S81_R1_001.fastq.gz
+Approx 75% complete for POR_13_S81_R1_001.fastq.gz
+Approx 80% complete for POR_13_S81_R1_001.fastq.gz
+Approx 85% complete for POR_13_S81_R1_001.fastq.gz
+Approx 90% complete for POR_13_S81_R1_001.fastq.gz
+Approx 95% complete for POR_13_S81_R1_001.fastq.gz
+Started analysis of POR_34_S82_R2_001.fastq.gz
+Approx 5% complete for POR_34_S82_R2_001.fastq.gz
+Approx 10% complete for POR_34_S82_R2_001.fastq.gz
+Approx 15% complete for POR_34_S82_R2_001.fastq.gz
+Approx 20% complete for POR_34_S82_R2_001.fastq.gz
+Approx 25% complete for POR_34_S82_R2_001.fastq.gz
+Approx 30% complete for POR_34_S82_R2_001.fastq.gz
+Approx 35% complete for POR_34_S82_R2_001.fastq.gz
+Approx 40% complete for POR_34_S82_R2_001.fastq.gz
+Approx 45% complete for POR_34_S82_R2_001.fastq.gz
+Approx 50% complete for POR_34_S82_R2_001.fastq.gz
+Approx 55% complete for POR_34_S82_R2_001.fastq.gz
+Approx 60% complete for POR_34_S82_R2_001.fastq.gz
+Approx 65% complete for POR_34_S82_R2_001.fastq.gz
+Approx 70% complete for POR_34_S82_R2_001.fastq.gz
+Approx 75% complete for POR_34_S82_R2_001.fastq.gz
+Approx 80% complete for POR_34_S82_R2_001.fastq.gz
+Approx 85% complete for POR_34_S82_R2_001.fastq.gz
+Approx 90% complete for POR_34_S82_R2_001.fastq.gz
+Approx 95% complete for POR_34_S82_R2_001.fastq.gz
+Started analysis of POR_61_S83_R1_001.fastq.gz
+Approx 5% complete for POR_61_S83_R1_001.fastq.gz
+Approx 10% complete for POR_61_S83_R1_001.fastq.gz
+Approx 15% complete for POR_61_S83_R1_001.fastq.gz
+Approx 20% complete for POR_61_S83_R1_001.fastq.gz
+Approx 25% complete for POR_61_S83_R1_001.fastq.gz
+Approx 30% complete for POR_61_S83_R1_001.fastq.gz
+Approx 35% complete for POR_61_S83_R1_001.fastq.gz
+Approx 40% complete for POR_61_S83_R1_001.fastq.gz
+Approx 45% complete for POR_61_S83_R1_001.fastq.gz
+Approx 50% complete for POR_61_S83_R1_001.fastq.gz
+Approx 55% complete for POR_61_S83_R1_001.fastq.gz
+Approx 60% complete for POR_61_S83_R1_001.fastq.gz
+Approx 65% complete for POR_61_S83_R1_001.fastq.gz
+Approx 70% complete for POR_61_S83_R1_001.fastq.gz
+Approx 75% complete for POR_61_S83_R1_001.fastq.gz
+Approx 80% complete for POR_61_S83_R1_001.fastq.gz
+Approx 85% complete for POR_61_S83_R1_001.fastq.gz
+Approx 90% complete for POR_61_S83_R1_001.fastq.gz
+Approx 95% complete for POR_61_S83_R1_001.fastq.gz
+Started analysis of POR_34_S82_R1_001.fastq.gz
+Approx 5% complete for POR_34_S82_R1_001.fastq.gz
+Approx 10% complete for POR_34_S82_R1_001.fastq.gz
+Approx 15% complete for POR_34_S82_R1_001.fastq.gz
+Approx 20% complete for POR_34_S82_R1_001.fastq.gz
+Approx 25% complete for POR_34_S82_R1_001.fastq.gz
+Approx 30% complete for POR_34_S82_R1_001.fastq.gz
+Approx 35% complete for POR_34_S82_R1_001.fastq.gz
+Approx 40% complete for POR_34_S82_R1_001.fastq.gz
+Approx 45% complete for POR_34_S82_R1_001.fastq.gz
+Approx 50% complete for POR_34_S82_R1_001.fastq.gz
+Approx 55% complete for POR_34_S82_R1_001.fastq.gz
+Approx 60% complete for POR_34_S82_R1_001.fastq.gz
+Approx 65% complete for POR_34_S82_R1_001.fastq.gz
+Approx 70% complete for POR_34_S82_R1_001.fastq.gz
+Approx 75% complete for POR_34_S82_R1_001.fastq.gz
+Approx 80% complete for POR_34_S82_R1_001.fastq.gz
+Approx 85% complete for POR_34_S82_R1_001.fastq.gz
+Approx 90% complete for POR_34_S82_R1_001.fastq.gz
+Approx 95% complete for POR_34_S82_R1_001.fastq.gz
+Started analysis of POR_61_S83_R2_001.fastq.gz
+Approx 5% complete for POR_61_S83_R2_001.fastq.gz
+Approx 10% complete for POR_61_S83_R2_001.fastq.gz
+Approx 15% complete for POR_61_S83_R2_001.fastq.gz
+Approx 20% complete for POR_61_S83_R2_001.fastq.gz
+Approx 25% complete for POR_61_S83_R2_001.fastq.gz
+Approx 30% complete for POR_61_S83_R2_001.fastq.gz
+Approx 35% complete for POR_61_S83_R2_001.fastq.gz
+Approx 40% complete for POR_61_S83_R2_001.fastq.gz
+Approx 45% complete for POR_61_S83_R2_001.fastq.gz
+Approx 50% complete for POR_61_S83_R2_001.fastq.gz
+Approx 55% complete for POR_61_S83_R2_001.fastq.gz
+Approx 60% complete for POR_61_S83_R2_001.fastq.gz
+Approx 65% complete for POR_61_S83_R2_001.fastq.gz
+Approx 70% complete for POR_61_S83_R2_001.fastq.gz
+Approx 75% complete for POR_61_S83_R2_001.fastq.gz
+Approx 80% complete for POR_61_S83_R2_001.fastq.gz
+Approx 85% complete for POR_61_S83_R2_001.fastq.gz
+Approx 90% complete for POR_61_S83_R2_001.fastq.gz
+Approx 95% complete for POR_61_S83_R2_001.fastq.gz
+
+  /// MultiQC 🔍 | v1.12
+
+|           multiqc | MultiQC Version v1.35 now available!
+|           multiqc | Search path : /project/pi_hputnam_uri_edu/zdellaert/Porites_LCM_test/output_RNA/raw_qc
+|            fastqc | Found 6 reports
+|           multiqc | Compressing plot data
+|           multiqc | Report      : multiqc_report.html
+|           multiqc | Data        : multiqc_data
+|           multiqc | MultiQC complete

@@ -4,8 +4,8 @@
 #SBATCH --ntasks-per-node=8
 #SBATCH --signal=2
 #SBATCH --no-requeue
-#SBATCH --mem=200GB
-#SBATCH -t 12:00:00
+#SBATCH --mem=75GB
+#SBATCH -t 2:00:00
 #SBATCH --mail-type=BEGIN,END,FAIL #email you when job starts, stops and/or fails
 #SBATCH --error=../scripts/outs_errs/%x_error.%j #if your job fails, the error report will be put in this file
 #SBATCH --output=../scripts/outs_errs/%x_output.%j #once your job is completed, any final job report comments will be put in this file

@@ -44,6 +44,10 @@ Last Updated: 6/1/2026
 - [QC raw files](#qc-raw-files)
   - [Script: 02\_raw\_qc.sh](#script-02_raw_qcsh)
   - [Interpretation of QC data](#interpretation-of-qc-data)
+- [Trimming Reads](#trimming-reads)
+  - [Script: 03\_trimming.sh](#script-03_trimmingsh)
+  - [Other trimming tools I have used in the past](#other-trimming-tools-i-have-used-in-the-past)
+  - [Interpretation of Post-Trim QC data](#interpretation-of-post-trim-qc-data)
 
 ## Download genomes
  
@@ -228,4 +232,221 @@ echo "Initial QC of RNA-seq data complete." $(date)
 ```
 
 ### Interpretation of QC data
+
+[View results here](https://github.com/zdellaert/TimeSeries/tree/main/4-multi-species/output_RNA/raw_qc), [MultiQC report](https://github.com/zdellaert/Porites_LCM_test/blob/main/output_RNA/raw_qc/multiqc_report.html)
+
+Important notes:
+- Looking pretty good for LCM samples!!
+- Top overrepresented sequence: Clontech SMART CDS Primer II A (100% over 26bp)
+  - GTGGTATCAACGCAGAGTACTTTTTTTTTTTT
+
+<img width="800" alt="screenshot" src="https://github.com/zdellaert/Porites_LCM_test/blob/main/output_RNA/raw_qc/raw_multiQC_1.png?raw=true">
+
+In the [library preparation](https://github.com/zdellaert/ZD_Putnam_Lab_Notebook/blob/master/_posts/2026-04-24-LCM-TS-Low-Input-RNA-Library-Prep.md), several [oligos and adapters](https://github.com/zdellaert/ZD_Putnam_Lab_Notebook/blob/master/protocols/manualE6420_NEBNext_Low_Input_RNA_Library_Prep.pdf) are used:
+
+1. Oligo Sequences
+   1. NEBNext Template Switching Oligo: 5 ́-GCT AAT CAT TGC AAG CAG TGG TAT CAA CGC AGA GTA CAT rGrGrG-3 ́
+   2. NEBNext Single Cell RT Primer Mix: 5 ́-AAG CAG TGG TAT CAA CGC AGA GTA CTT TTT TTT TTT TTT TTT TTT TTT TTT TTT TV-3 ́
+   3. NEBNext Single Cell cDNA PCR Primer: 5 ́-AAG CAG TGG TAT CAA CGC AGA GT-3 ́
+
+2. Adaptor Trimming Sequences: The NEBNext libraries for Illumina resemble TruSeq libraries and can be trimmed similar to TrueSeq:
+   1. AdaptorRead1: AGATCGGAAGAGCACACGTCTGAACTCCAGTCA
+   2. AdaptorRead2: AGATCGGAAGAGCGTCGTGTAGGGAAAGAGTGT
+
+These were the index primers, cDNA input, and PCR cycles used for each sample:
+
+| Sample | cDNA concentration | amount cDNA input (conc * 26 uL) | PCR cycles  for final step | Index_ID  | index  |
+|--------|--------------------|----------------------------------|----------------------------|-----------|--------|
+| 13     | 2.26               | 58.76                            | 8                          | E7500S-18 | GTCCGC |
+| 34     | 3.09               | 80.34                            | 8                          | E7500S-22 | CGTACG |
+| 61     | 3.05               | 79.3                             | 8                          | E7500S-23 | GAGTGG |
+
+Index primer full sequences from [oligo kit E7500S](https://www.neb.com/en-us/-/media/nebus/files/manuals/manuale7335_e7500_-e7710_e7730.pdf?rev=2e735fd18b544d46b36ee0e88353ef5c&sc_lang=en-us&hash=CC77B45817715F3ED3A8F3B1953450EB):
+
+| INDEX PRIMER | INDEX PRIMER SEQUENCE  | EXPECTED INDEX PRIMER SEQUENCE READ |
+|---------------|------------------------|-----------------------------|
+| NEBNext Index 18 Primer for Illumina (10 µM) | 5´-CAAGCAGAAGACGGCATACGAGATGT_**GCGGAC**_GTGACTGGAGTTCAGACGTGTGCTCTTCCGATC-s-T-3´ | GTCCGC | 
+| NEBNext Index 22 Primer for Illumina (10 µM) | 5´-CAAGCAGAAGACGGCATACGAGATTA_**CGTACG**_GTGACTGGAGTTCAGACGTGTGCTCTTCCGATC-s-T-3´ | CGTACG | 
+| NEBNext Index 23 Primer for Illumina (10 µM) | 5´-CAAGCAGAAGACGGCATACGAGATAT_**CCACTC**_GTGACTGGAGTTCAGACGTGTGCTCTTCCGATC-s-T-3´ | GAGTGG | 
+
+## Trimming Reads
+
+**NOTE: I just found this trimming guide from NEB specifically for this kit: https://github.com/nebiolabs/nebnext-single-cell-rna-seq**
+
+I am going to use [flexbar](https://cutadapt.readthedocs.io/en/stable/guide.html) for trimming and quality control based on NEB recommendation.
+
+```
+flexbar --reads input_reads_1.fastq \
+        --reads2 input_reads_2.fastq \
+        --stdout-reads \
+        --adapters tso_g_wo_hp.fasta \
+        --adapter-trim-end LEFT \
+        --adapter-revcomp ON \
+        --adapter-revcomp-end RIGHT \
+        --htrim-left GT \
+        --htrim-right CA \
+        --htrim-min-length 3 \
+        --htrim-max-length 5 \
+        --htrim-max-first \
+        --htrim-adapter \
+        --min-read-length 2 \
+        --threads 1 | \
+    flexbar \
+        --reads - \
+        --interleaved \
+        --target output_reads \
+        --adapters ilmn_20_2_seqs.fasta \
+        --adapter-trim-end RIGHT \
+        --min-read-length 2 \
+        --threads 1
+```
+
+```
+mkdir -p /project/pi_hputnam_uri_edu/zdellaert/Porites_LCM_test/data_RNA/oligo_fastas/
+cd /project/pi_hputnam_uri_edu/zdellaert/Porites_LCM_test/data_RNA/oligo_fastas/
+
+wget https://raw.githubusercontent.com/nebiolabs/nebnext-single-cell-rna-seq/refs/heads/master/ilmn_20_2_seqs.fasta
+wget https://raw.githubusercontent.com/nebiolabs/nebnext-single-cell-rna-seq/refs/heads/master/tso_g_wo_hp.fasta
+
+cd /project/pi_hputnam_uri_edu/zdellaert/Porites_LCM_test/scripts
+nano 03_trimming.sh
+
+#enter text in next code chunk
+```
+
+### Script: 03_trimming.sh
+
+```
+#!/usr/bin/env bash
+#SBATCH --export=NONE
+#SBATCH --nodes=1
+#SBATCH --ntasks-per-node=24
+#SBATCH --signal=2
+#SBATCH --no-requeue
+#SBATCH --mem=80GB
+#SBATCH -t 03:59:00
+#SBATCH --mail-type=BEGIN,END,FAIL #email you when job starts, stops and/or fails
+#SBATCH --error=../scripts/outs_errs/%x_error.%j #if your job fails, the error report will be put in this file
+#SBATCH --output=../scripts/outs_errs/%x_output.%j #once your job is completed, any final job report comments will be put in this file
+
+# load modules needed
+module load parallel/20240822
+
+# make and define directories needed
+data_dir="/project/pi_hputnam_uri_edu/zdellaert/Porites_LCM_test/data_RNA/"
+out_dir="/scratch4/workspace/zdellaert_uri_edu-shared_TimeSeries/Porites_LCM_test/trimmed/"
+qc_dir="/project/pi_hputnam_uri_edu/zdellaert/Porites_LCM_test/output_RNA/trimmed_qc/"
+
+mkdir -p ${out_dir}
+mkdir -p ${qc_dir}
+
+# create an list of fastq files to process
+R1_files=(${data_dir}*_R1_001.fastq.gz)
+
+echo "There are ${#R1_files[@]} samples to process"
+echo "Starting trimming at $(date)"
+
+# define flexbar function to allow for parallel processing
+
+run_flexbar() {
+  R1_file=$1
+  data_dir=$2
+  out_dir=$3
+  qc_dir=$4
+
+  # extract sample name
+  sample_name=$(basename "$R1_file" "_R1_001.fastq.gz")
+
+  # define R2 file
+  R2_file="${data_dir}${sample_name}_R2_001.fastq.gz"
+
+  flexbar --reads "$R1_file" \
+        --reads2 "$R2_file" \
+        --stdout-reads \
+        --adapters ${data_dir}oligo_fastas/tso_g_wo_hp.fasta \
+        --adapter-trim-end LEFT \
+        --adapter-revcomp ON \
+        --adapter-revcomp-end RIGHT \
+        --htrim-left GT \
+        --htrim-right CA \
+        --htrim-min-length 3 \
+        --htrim-max-length 5 \
+        --htrim-max-first \
+        --htrim-adapter \
+        --min-read-length 2 \
+        --threads 4 | \
+    flexbar \
+        --reads - \
+        --interleaved \
+        --target "${out_dir}${sample_name}_flexbar" \
+        --adapters ${data_dir}oligo_fastas/ilmn_20_2_seqs.fasta \
+        --adapter-trim-end RIGHT \
+        --min-read-length 2 \
+        --threads 4
+
+  echo "trimming of "${sample_name}" complete at $(date)"
+}
+
+export -f run_flexbar
+
+# run flexbar in parallel
+parallel -j 6 run_flexbar {} "$data_dir" "$out_dir" "$qc_dir" ::: "${R1_files[@]}"
+
+# now move onto qc
+echo "Starting fastqc on trimmed files at" $(date)
+
+# load modules needed
+module load fastqc/0.12.1
+module load uri/main
+module load MultiQC/1.12-foss-2021b
+
+# create an list of fastq files to process
+trimmed_files=(${out_dir}*trim.fastq.gz)
+
+# Run fastqc in parallel
+parallel -j 6 "fastqc {} -o "${qc_dir}" && echo 'Processed {}'" ::: "${trimmed_files[@]}"
+echo "fastQC done." $(date)
+
+#Compile MultiQC report from FastQC files
+echo "Running MultiQC"
+cd "${qc_dir}"
+multiqc --interactive .
+
+echo "QC of trimmed RNA-seq data complete." $(date)
+```
+
+### Other trimming tools I have used in the past
+
+Cutadapt code with comments:
+
+```
+cutadapt \
+    -a AGATCGGAAGAGCACACGTCTGAACTCCAGTCAC \  # NEB AdaptorRead1 
+    -A AGATCGGAAGAGCGTCGTGTAGGGAAAGAGTGT \  # NEB AdaptorRead2
+    -o trimmed_R1.fastq.gz -p trimmed_R2.fastq.gz \ #output files
+    input_R1.fastq.gz input_R2.fastq.gz \ #input files
+    -q 20,20 \ #trims low-quality bases (score < 20) from the 3' end (first 20) and 5' (second 20) of the read
+    --minimum-length 20 #after trimming, only keep a sequence if longer than 20 bp
+```
+
+Fastp commented code:
+
+```
+fastp --in1 "$R1_file" --in2 "$R2_file" \
+      --out1 "${out_dir}${sample_name}_R1_trim.fastq.gz" \
+      --out2 "${out_dir}${sample_name}_R2_trim.fastq.gz" \
+      --detect_adapter_for_pe \ # detect adapters even though paired-end
+      --qualified_quality_phred 20 \ # remove reads with < 20 phred quality score
+      --trim_poly_g \ # trim polyG, common with this sequencer type and present in FastQC data
+      --trim_front1 10 --trim_front2 10 \ #remove first 10 bases of all reads, low quality seen in FastQC data
+      --length_required 20 \ #after trimming, remove any reads less than 20 bp long
+      --thread 2 \ #use 2 threads
+      --overrepresentation_analysis \ #run the optional overrepresentation analysis
+      --html "${qc_dir}${sample_name}_fastp.html" \
+      --json "${qc_dir}${sample_name}_fastp.json"
+```
+
+### Interpretation of Post-Trim QC data
+
+[View results here](https://github.com/zdellaert/Porites_LCM_test/blob/main/output_RNA/trimmed_qc), [MultiQC report](https://github.com/zdellaert/Porites_LCM_test/blob/main/output_RNA/trimmed_qc/multiqc_report.html)
 
