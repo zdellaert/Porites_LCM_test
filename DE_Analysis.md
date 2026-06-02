@@ -388,6 +388,10 @@ DE_05$query <- rownames(DE_05)
 resOrdered$query <- rownames(resOrdered)
 
 DESeq_SwissProt <- as.data.frame(resOrdered) %>% left_join(SwissProt) %>% select(query,everything())
+DESeq_SwissProt$short_name <- ifelse(nchar(DESeq_SwissProt$ProteinNames) > 50,
+                            paste0(substr(DESeq_SwissProt$ProteinNames, 1, 47), "..."),
+                            DESeq_SwissProt$ProteinNames)
+
 DE_05_SwissProt <- DESeq_SwissProt %>% filter(query %in% DE_05$query)
 ```
 
@@ -404,14 +408,12 @@ write.csv(DE_05_SwissProt,
 ## 3. Heatmap of differentially expressed genes, with Swissprot annotation
 
 ``` r
-DE_05_SwissProt$short_name <- ifelse(nchar(DE_05_SwissProt$ProteinNames) > 50,
-                            paste0(substr(DE_05_SwissProt$ProteinNames, 1, 47), "..."),
-                            DE_05_SwissProt$ProteinNames)
-
-gene_labels <- DE_05_SwissProt %>%
+gene_labels <- DESeq_SwissProt %>%
   select(query,short_name) %>%
   mutate_all(~ ifelse(is.na(.), "", .)) #replace NAs with "" for labelling purposes
+```
 
+``` r
 #view most significantly differentially expressed genes in order by p-value with labels
 topDEGenes <- order(res$padj)[1:50]
 
@@ -453,14 +455,6 @@ dev.off()
     ##   2
 
 ``` r
-DE_05_SwissProt$short_name <- ifelse(nchar(DE_05_SwissProt$ProteinNames) > 50,
-                            paste0(substr(DE_05_SwissProt$ProteinNames, 1, 47), "..."),
-                            DE_05_SwissProt$ProteinNames)
-
-gene_labels <- DE_05_SwissProt %>%
-  select(query,short_name) %>%
-  mutate_all(~ ifelse(is.na(.), "", .)) #replace NAs with "" for labelling purposes
-
 #view most significantly differentially expressed genes in order by LFC with labels
 topDEGenes <- order(res$log2FoldChange)[1:50]
 
