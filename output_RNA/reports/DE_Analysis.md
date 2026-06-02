@@ -21,12 +21,27 @@ Zoe Dellaert
     DESeq2](#5-create-deseq-object-and-run-deseq2)
   - [6. VST-Transforming count data for
     visualization](#6-vst-transforming-count-data-for-visualization)
-  - [7. Two tools to identiy potential
-    outliers:](#7-two-tools-to-identiy-potential-outliers)
+  - [7. Visualize sample-sample
+    relationships](#7-visualize-sample-sample-relationships)
     - [PCA](#pca)
     - [Hierarchical Clustering](#hierarchical-clustering)
-  - [Heatmap of variable genes](#heatmap-of-variable-genes)
-    - [Text summary](#text-summary)
+    - [Heatmap of variable genes](#heatmap-of-variable-genes)
+  - [Preprocessing Summary](#preprocessing-summary)
+- [DE Analysis](#de-analysis)
+  - [1. Extract results for bulk vs. OralGastro
+    contrast](#1-extract-results-for-bulk-vs-oralgastro-contrast)
+    - [MA Plots with Log2 Fold Change Transform
+      Comparisons](#ma-plots-with-log2-fold-change-transform-comparisons)
+  - [2. Extract results for adjusted p-value \< 0.05 with LFC transform
+    of choice (or
+    none)](#2-extract-results-for-adjusted-p-value--005-with-lfc-transform-of-choice-or-none)
+    - [Join with annotation data](#join-with-annotation-data)
+    - [Save csvs](#save-csvs)
+  - [3. Heatmap of differentially expressed
+    genes](#3-heatmap-of-differentially-expressed-genes)
+    - [Heatmap of differentially expressed genes, with Swissprot
+      annotation](#heatmap-of-differentially-expressed-genes-with-swissprot-annotation)
+  - [Appendix](#appendix)
 
 # Preproccessing of bulk RNA-seq data
 
@@ -61,9 +76,8 @@ sessionInfo() #provides list of loaded packages and version of R
     ## LAPACK: /usr/lib/x86_64-linux-gnu/openblas-pthread/libopenblasp-r0.3.26.so;  LAPACK version 3.12.0
     ## 
     ## locale:
-    ##  [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C               LC_TIME=en_US.UTF-8        LC_COLLATE=en_US.UTF-8    
-    ##  [5] LC_MONETARY=en_US.UTF-8    LC_MESSAGES=en_US.UTF-8    LC_PAPER=en_US.UTF-8       LC_NAME=C                 
-    ##  [9] LC_ADDRESS=C               LC_TELEPHONE=C             LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       
+    ##  [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C               LC_TIME=en_US.UTF-8        LC_COLLATE=en_US.UTF-8     LC_MONETARY=en_US.UTF-8    LC_MESSAGES=en_US.UTF-8   
+    ##  [7] LC_PAPER=en_US.UTF-8       LC_NAME=C                  LC_ADDRESS=C               LC_TELEPHONE=C             LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       
     ## 
     ## time zone: Etc/UTC
     ## tzcode source: system (glibc)
@@ -72,48 +86,29 @@ sessionInfo() #provides list of loaded packages and version of R
     ## [1] stats4    stats     graphics  grDevices utils     datasets  methods   base     
     ## 
     ## other attached packages:
-    ##  [1] BiocParallel_1.44.0         ggnewscale_0.5.2            genefilter_1.90.0           RColorBrewer_1.1-3         
-    ##  [5] pheatmap_1.0.13             DESeq2_1.50.2               SummarizedExperiment_1.40.0 Biobase_2.70.0             
-    ##  [9] MatrixGenerics_1.22.0       matrixStats_1.5.0           GenomicRanges_1.62.0        Seqinfo_1.0.0              
-    ## [13] IRanges_2.44.0              S4Vectors_0.48.0            BiocGenerics_0.56.0         generics_0.1.4             
-    ## [17] SeuratWrappers_0.4.0        future_1.70.0               scCustomize_3.3.0           patchwork_1.3.2            
-    ## [21] Seurat_5.5.0                SeuratObject_5.4.0          sp_2.2-1                    lubridate_1.9.4            
-    ## [25] forcats_1.0.0               stringr_1.6.0               dplyr_1.2.1                 purrr_1.2.1                
-    ## [29] readr_2.2.0                 tidyr_1.3.2                 tibble_3.3.1                ggplot2_4.0.3              
-    ## [33] tidyverse_2.0.0             Matrix_1.6-4               
+    ##  [1] BiocParallel_1.44.0         ggnewscale_0.5.2            genefilter_1.90.0           RColorBrewer_1.1-3          pheatmap_1.0.13            
+    ##  [6] DESeq2_1.50.2               SummarizedExperiment_1.40.0 Biobase_2.70.0              MatrixGenerics_1.22.0       matrixStats_1.5.0          
+    ## [11] GenomicRanges_1.62.0        Seqinfo_1.0.0               IRanges_2.44.0              S4Vectors_0.48.0            BiocGenerics_0.56.0        
+    ## [16] generics_0.1.4              lubridate_1.9.4             forcats_1.0.0               stringr_1.6.0               dplyr_1.2.1                
+    ## [21] purrr_1.2.1                 readr_2.2.0                 tidyr_1.3.2                 tibble_3.3.1                ggplot2_4.0.3              
+    ## [26] tidyverse_2.0.0            
     ## 
     ## loaded via a namespace (and not attached):
-    ##   [1] RcppAnnoy_0.0.23        splines_4.5.1           later_1.4.8             R.oo_1.27.1             polyclip_1.10-7        
-    ##   [6] janitor_2.2.1           XML_3.99-0.18           fastDummies_1.7.6       lifecycle_1.0.5         globals_0.19.1         
-    ##  [11] lattice_0.22-7          hdf5r_1.3.12            MASS_7.3-65             magrittr_2.0.5          plotly_4.12.0          
-    ##  [16] rmarkdown_2.31          yaml_2.3.12             remotes_2.5.0           httpuv_1.6.17           otel_0.2.0             
-    ##  [21] sctransform_0.4.3       spam_2.11-4             spatstat.sparse_3.2-0   reticulate_1.46.0       DBI_1.2.3              
-    ##  [26] cowplot_1.2.0           pbapply_1.7-4           pkgload_1.5.2           abind_1.4-8             Rtsne_0.17             
-    ##  [31] R.utils_2.13.0          GenomeInfoDbData_1.2.14 circlize_0.4.18         ggrepel_0.9.8           irlba_2.3.7            
-    ##  [36] listenv_0.10.1          spatstat.utils_3.2-3    goftest_1.2-3           RSpectra_0.16-2         annotate_1.86.1        
-    ##  [41] spatstat.random_3.5-0   fitdistrplus_1.2-6      parallelly_1.47.0       codetools_0.2-20        DelayedArray_0.36.0    
-    ##  [46] tidyselect_1.2.1        shape_1.4.6.1           UCSC.utils_1.4.0        farver_2.1.2            spatstat.explore_3.8-1 
-    ##  [51] jsonlite_2.0.0          progressr_0.19.0        ggridges_0.5.7          survival_3.8-3          systemfonts_1.3.2      
-    ##  [56] tools_4.5.1             ragg_1.5.2              ica_1.0-3               Rcpp_1.1.1-1.1          glue_1.8.1             
-    ##  [61] SparseArray_1.10.2      gridExtra_2.3           xfun_0.56               GenomeInfoDb_1.44.3     withr_3.0.2            
-    ##  [66] BiocManager_1.30.27     fastmap_1.2.0           mcprogress_0.1.1        digest_0.6.39           rsvd_1.0.5             
-    ##  [71] timechange_0.3.0        R6_2.6.1                mime_0.13               textshaping_1.0.5       ggprism_1.0.7          
-    ##  [76] colorspace_2.1-2        scattermore_1.2         tensor_1.5.1            RSQLite_3.52.0          dichromat_2.0-0.1      
-    ##  [81] spatstat.data_3.1-9     R.methodsS3_1.8.2       RhpcBLASctl_0.23-42     data.table_1.18.4       httr_1.4.8             
-    ##  [86] htmlwidgets_1.6.4       S4Arrays_1.10.0         uwot_0.2.4              pkgconfig_2.0.3         gtable_0.3.6           
-    ##  [91] rsconnect_1.4.2         blob_1.2.4              lmtest_0.9-40           S7_0.2.2                XVector_0.50.0         
-    ##  [96] htmltools_0.5.9         dotCall64_1.2           scales_1.4.0            png_0.1-9               harmony_2.0.3          
-    ## [101] spatstat.univar_3.2-0   snakecase_0.11.1        knitr_1.50              rstudioapi_0.17.1       tzdb_0.5.0             
-    ## [106] reshape2_1.4.5          nlme_3.1-168            cachem_1.1.0            zoo_1.8-15              GlobalOptions_0.1.4    
-    ## [111] KernSmooth_2.23-26      parallel_4.5.1          miniUI_0.1.2            vipor_0.4.7             AnnotationDbi_1.72.0   
-    ## [116] ggrastr_1.0.2           pillar_1.11.1           grid_4.5.1              vctrs_0.7.3             RANN_2.6.2             
-    ## [121] promises_1.5.0          xtable_1.8-8            cluster_2.1.8.2         beeswarm_0.4.0          paletteer_1.7.0        
-    ## [126] evaluate_1.0.5          locfit_1.5-9.12         cli_3.6.5               compiler_4.5.1          crayon_1.5.3           
-    ## [131] rlang_1.2.0             future.apply_1.20.2     labeling_0.4.3          rematch2_2.1.2          plyr_1.8.9             
-    ## [136] ggbeeswarm_0.7.3        stringi_1.8.7           viridisLite_0.4.3       deldir_2.0-4            Biostrings_2.78.0      
-    ## [141] lazyeval_0.2.3          spatstat.geom_3.8-1     RcppHNSW_0.7.0          hms_1.1.4               bit64_4.6.0-1          
-    ## [146] KEGGREST_1.50.0         shiny_1.13.0            ROCR_1.0-12             memoise_2.0.1           igraph_2.3.2           
-    ## [151] bit_4.6.0
+    ##  [1] DBI_1.2.3               rlang_1.2.0             magrittr_2.0.5          otel_0.2.0              compiler_4.5.1          RSQLite_3.52.0         
+    ##  [7] png_0.1-9               systemfonts_1.3.2       vctrs_0.7.3             pkgconfig_2.0.3         crayon_1.5.3            fastmap_1.2.0          
+    ## [13] XVector_0.50.0          labeling_0.4.3          rmarkdown_2.31          tzdb_0.5.0              UCSC.utils_1.4.0        ragg_1.5.2             
+    ## [19] bit_4.6.0               xfun_0.56               cachem_1.1.0            GenomeInfoDb_1.44.3     jsonlite_2.0.0          blob_1.2.4             
+    ## [25] DelayedArray_0.36.0     irlba_2.3.7             parallel_4.5.1          R6_2.6.1                stringi_1.8.7           SQUAREM_2026.1         
+    ## [31] numDeriv_2016.8-1.1     Rcpp_1.1.1-1.1          knitr_1.51              Matrix_1.6-4            splines_4.5.1           timechange_0.3.0       
+    ## [37] tidyselect_1.2.1        rstudioapi_0.17.1       dichromat_2.0-0.1       abind_1.4-8             yaml_2.3.12             codetools_0.2-20       
+    ## [43] plyr_1.8.9              lattice_0.22-7          withr_3.0.2             KEGGREST_1.50.0         S7_0.2.2                coda_0.19-4.1          
+    ## [49] evaluate_1.0.5          survival_3.8-3          Biostrings_2.78.0       pillar_1.11.1           rsconnect_1.4.2         invgamma_1.2           
+    ## [55] emdbook_1.3.14          truncnorm_1.0-9         hms_1.1.4               scales_1.4.0            ashr_2.2-63             xtable_1.8-8           
+    ## [61] glue_1.8.1              apeglm_1.30.0           tools_4.5.1             annotate_1.86.1         locfit_1.5-9.12         mvtnorm_1.3-3          
+    ## [67] XML_3.99-0.18           grid_4.5.1              bbmle_1.0.25.1          bdsmatrix_1.3-7         AnnotationDbi_1.72.0    GenomeInfoDbData_1.2.14
+    ## [73] cli_3.6.6               textshaping_1.0.5       mixsqp_0.3-54           S4Arrays_1.10.0         gtable_0.3.6            digest_0.6.39          
+    ## [79] SparseArray_1.10.2      farver_2.1.2            memoise_2.0.1           htmltools_0.5.9         lifecycle_1.0.5         httr_1.4.8             
+    ## [85] MASS_7.3-65             bit64_4.6.0-1
 
 ``` r
 save_ggplot <- function(plot, filename, width = 10, height = 7, units = "in", dpi = 300,bg = "white") {
@@ -159,9 +154,10 @@ cat("Raw counts:", nrow(counts_raw), "genes x", ncol(counts_raw), "samples")
 ``` r
 # read in SwissProt annotation
 SwissProt <- read.delim(file.path("../HI_genome_annotations/annotation/Porites_compressa_HIv1_Swissprot_GO.tsv"))
-cat("Annotations:", nrow(SwissProt), "Swissprot-annotated genes")
+cat("\nAnnotations:", nrow(SwissProt), "Swissprot-annotated genes")
 ```
 
+    ## 
     ## Annotations: 22929 Swissprot-annotated genes
 
 ## 2. Extract metadata from sample names
@@ -256,7 +252,7 @@ vst_mat <- assay(vst)
 write.csv(vst_mat, file = file.path(outdir, "vst_expression_matrix.csv"))
 ```
 
-## 7. Two tools to identiy potential outliers:
+## 7. Visualize sample-sample relationships
 
 ### PCA
 
@@ -277,7 +273,27 @@ print(PCA_simple)
 ![](./DE_Analysis_files/figure-gfm/pca-1.png)<!-- -->
 
 ``` r
-save_ggplot(PCA_simple, "PCA_simple", width = 8, height = 6)
+save_ggplot(PCA_simple, "PCA", width = 8, height = 6)
+```
+
+``` r
+pcaData <- plotPCA(vst, intgroup=c("tissue"), returnData=TRUE, ntop = nrow(vst))
+percentVar <- round(100 * attr(pcaData, "percentVar"))
+
+PCA_simple <- ggplot(data = pcaData, aes(x=PC1, y=PC2, color=tissue, shape=sample)) +
+  geom_point(size=4) +
+  xlab(paste0("PC1: ",percentVar[1],"% variance")) +
+  ylab(paste0("PC2: ",percentVar[2],"% variance")) + 
+  labs(color = "Tissue", shape = "Sample") +
+  coord_fixed() + theme_bw() + ggtitle("PCA of VST-transformed counts")
+
+print(PCA_simple)
+```
+
+![](./DE_Analysis_files/figure-gfm/pca-allgene-1.png)<!-- -->
+
+``` r
+save_ggplot(PCA_simple, "PCA_allGenes", width = 8, height = 6)
 ```
 
 ### Hierarchical Clustering
@@ -293,12 +309,12 @@ abline(h = 100, col = "red", lty = 2)
 
 ![](./DE_Analysis_files/figure-gfm/cluster-1.png)<!-- -->
 
-## Heatmap of variable genes
+### Heatmap of variable genes
 
 ``` r
 topVarGenes <- head(order(rowVars(vst_mat), decreasing=TRUE), 500)
 
-png("output_RNA/analysis/plots/top500vargenes_heatmap.png")
+png("output_RNA/analysis/plots/top500vargenes_heatmap.png", width = 2000, height = 2400, res = 300)
 pheatmap(vst_mat[topVarGenes, ], cluster_rows=TRUE, show_rownames=FALSE,
          cluster_cols=TRUE, cutree_cols = 2,
          annotation_col= meta %>% select(tissue))
@@ -313,7 +329,7 @@ dev.off()
     ## png 
     ##   3
 
-### Text summary
+## Preprocessing Summary
 
     ## Preprocessing Summary:
 
@@ -349,9 +365,157 @@ dev.off()
 
     ##   VST appropriate: Yes
 
-    ##   PC1 variance: 84 %
+    ##   PC1 variance: 64 %
 
-    ##   PC2 variance: 16 %
+    ##   PC2 variance: 36 %
+
+# DE Analysis
+
+## 1. Extract results for bulk vs. OralGastro contrast
+
+``` r
+resultsNames(dds) 
+```
+
+    ## [1] "Intercept"                  "tissue_Oral_Gastro_vs_bulk"
+
+``` r
+res <- results(dds, name="tissue_Oral_Gastro_vs_bulk")
+```
+
+### MA Plots with Log2 Fold Change Transform Comparisons
+
+``` r
+resNorm <- lfcShrink(dds, coef="tissue_Oral_Gastro_vs_bulk", type="normal")
+resAsh <- lfcShrink(dds, coef="tissue_Oral_Gastro_vs_bulk", type="ashr")
+resLFC <- lfcShrink(dds, coef="tissue_Oral_Gastro_vs_bulk", res=res, type = "apeglm")
+
+par(mfrow=c(1,4), mar=c(4,4,2,1))
+xlim <- c(1,1e5); ylim <- c(-20,20)
+plotMA(res, xlim=xlim, ylim=ylim, main="no LFC transform")
+plotMA(resLFC, xlim=xlim, ylim=ylim, main="apeglm")
+plotMA(resNorm, xlim=xlim, ylim=ylim, main="normal")
+plotMA(resAsh, xlim=xlim, ylim=ylim, main="ashr")
+```
+
+![](./DE_Analysis_files/figure-gfm/res_transform-1.png)<!-- -->
+
+## 2. Extract results for adjusted p-value \< 0.05 with LFC transform of choice (or none)
+
+``` r
+#res <- resLFC #resAsh
+
+resOrdered <- res[order(res$pvalue),] # save differentially expressed genes
+
+DE_05 <- as.data.frame(resOrdered) %>% filter(padj < 0.05 & abs(log2FoldChange) > 1)
+DE_05_Up <- DE_05 %>% filter(log2FoldChange > 0) #Higher in Oral Gastro
+DE_05_Down <- DE_05 %>% filter(log2FoldChange < 0) #Lower in Oral Gastro
+
+nrow(DE_05)
+```
+
+    ## [1] 1478
+
+``` r
+nrow(DE_05_Up) #Higher in Oral Gastro
+```
+
+    ## [1] 304
+
+``` r
+nrow(DE_05_Down) #Lower in Oral Gastro
+```
+
+    ## [1] 1174
+
+### Join with annotation data
+
+``` r
+DE_05$query <- rownames(DE_05)
+resOrdered$query <- rownames(resOrdered)
+
+DESeq_SwissProt <- as.data.frame(resOrdered) %>% left_join(SwissProt) %>% select(query,everything()) 
+DE_05_SwissProt <- DESeq_SwissProt %>% filter(query %in% DE_05$query)
+```
+
+### Save csvs
+
+``` r
+write.csv(DESeq_SwissProt, 
+          file = file.path(outdir, "DESeq_results.csv"))
+
+write.csv(DE_05_SwissProt, 
+          file = file.path(outdir, "DEG_05.csv"))
+```
+
+## 3. Heatmap of differentially expressed genes
+
+``` r
+topDEGenes <- order(res$padj)[1:50]
+
+png("output_RNA/analysis/plots/top50_DE_heatmap.png", width = 2000, height = 2400, res = 300)
+pheatmap(vst_mat[topDEGenes, ], cluster_rows=TRUE, show_rownames=FALSE,
+         cluster_cols=TRUE, cutree_cols = 2,
+         annotation_col= meta %>% select(tissue))
+```
+
+![](./DE_Analysis_files/figure-gfm/DE-heatmap-1.png)<!-- -->
+
+``` r
+dev.off()
+```
+
+    ## png 
+    ##   3
+
+### Heatmap of differentially expressed genes, with Swissprot annotation
+
+``` r
+DE_05_SwissProt$short_name <- ifelse(nchar(DE_05_SwissProt$ProteinNames) > 30, 
+                            paste0(substr(DE_05_SwissProt$ProteinNames, 1, 27), "..."), 
+                            DE_05_SwissProt$ProteinNames)
+
+gene_labels <- DE_05_SwissProt %>% 
+  select(query,short_name) %>%
+  mutate_all(~ ifelse(is.na(.), "", .)) #replace NAs with "" for labelling purposes
+
+#view most significantly differentially expressed genes in order by p-value with labels
+topDEGenes <- order(res$padj)[1:50]
+
+png("output_RNA/analysis/plots/top50_DE_ordered_heatmap_swissprot.png", width = 2000, height = 2400, res = 300)
+pheatmap(vst_mat[topDEGenes, ], 
+         cluster_rows=FALSE, show_rownames=TRUE,
+         cluster_cols=TRUE, cutree_cols = 2,
+         annotation_col=(meta%>% select(tissue)),
+         labels_row = gene_labels[match(rownames(res)[topDEGenes],(gene_labels$query)),2], fontsize_row = 6)
+```
+
+![](./DE_Analysis_files/figure-gfm/heatmap-swissprot-1.png)<!-- -->
+
+``` r
+dev.off()
+```
+
+    ## png 
+    ##   3
+
+``` r
+png("output_RNA/analysis/plots/top50_DE_heatmap_swissprot.png", width = 2000, height = 2400, res = 300)
+pheatmap(vst_mat[topDEGenes, ], 
+         cluster_rows=TRUE, show_rownames=TRUE,
+         cluster_cols=TRUE, cutree_cols = 2,
+         annotation_col=(meta%>% select(tissue)),
+         labels_row = gene_labels[match(rownames(res)[topDEGenes],(gene_labels$query)),2], fontsize_row = 6)
+dev.off()
+```
+
+    ## png 
+    ##   3
+
+## Appendix
+
+To knit: rmarkdown::render(“DE_Analysis.Rmd”, output_dir =
+“output_RNA/reports/”)
 
 ``` r
 sessionInfo()
@@ -366,9 +530,8 @@ sessionInfo()
     ## LAPACK: /usr/lib/x86_64-linux-gnu/openblas-pthread/libopenblasp-r0.3.26.so;  LAPACK version 3.12.0
     ## 
     ## locale:
-    ##  [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C               LC_TIME=en_US.UTF-8        LC_COLLATE=en_US.UTF-8    
-    ##  [5] LC_MONETARY=en_US.UTF-8    LC_MESSAGES=en_US.UTF-8    LC_PAPER=en_US.UTF-8       LC_NAME=C                 
-    ##  [9] LC_ADDRESS=C               LC_TELEPHONE=C             LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       
+    ##  [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C               LC_TIME=en_US.UTF-8        LC_COLLATE=en_US.UTF-8     LC_MONETARY=en_US.UTF-8    LC_MESSAGES=en_US.UTF-8   
+    ##  [7] LC_PAPER=en_US.UTF-8       LC_NAME=C                  LC_ADDRESS=C               LC_TELEPHONE=C             LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       
     ## 
     ## time zone: Etc/UTC
     ## tzcode source: system (glibc)
@@ -377,45 +540,26 @@ sessionInfo()
     ## [1] stats4    stats     graphics  grDevices utils     datasets  methods   base     
     ## 
     ## other attached packages:
-    ##  [1] BiocParallel_1.44.0         ggnewscale_0.5.2            genefilter_1.90.0           RColorBrewer_1.1-3         
-    ##  [5] pheatmap_1.0.13             DESeq2_1.50.2               SummarizedExperiment_1.40.0 Biobase_2.70.0             
-    ##  [9] MatrixGenerics_1.22.0       matrixStats_1.5.0           GenomicRanges_1.62.0        Seqinfo_1.0.0              
-    ## [13] IRanges_2.44.0              S4Vectors_0.48.0            BiocGenerics_0.56.0         generics_0.1.4             
-    ## [17] SeuratWrappers_0.4.0        future_1.70.0               scCustomize_3.3.0           patchwork_1.3.2            
-    ## [21] Seurat_5.5.0                SeuratObject_5.4.0          sp_2.2-1                    lubridate_1.9.4            
-    ## [25] forcats_1.0.0               stringr_1.6.0               dplyr_1.2.1                 purrr_1.2.1                
-    ## [29] readr_2.2.0                 tidyr_1.3.2                 tibble_3.3.1                ggplot2_4.0.3              
-    ## [33] tidyverse_2.0.0             Matrix_1.6-4               
+    ##  [1] BiocParallel_1.44.0         ggnewscale_0.5.2            genefilter_1.90.0           RColorBrewer_1.1-3          pheatmap_1.0.13            
+    ##  [6] DESeq2_1.50.2               SummarizedExperiment_1.40.0 Biobase_2.70.0              MatrixGenerics_1.22.0       matrixStats_1.5.0          
+    ## [11] GenomicRanges_1.62.0        Seqinfo_1.0.0               IRanges_2.44.0              S4Vectors_0.48.0            BiocGenerics_0.56.0        
+    ## [16] generics_0.1.4              lubridate_1.9.4             forcats_1.0.0               stringr_1.6.0               dplyr_1.2.1                
+    ## [21] purrr_1.2.1                 readr_2.2.0                 tidyr_1.3.2                 tibble_3.3.1                ggplot2_4.0.3              
+    ## [26] tidyverse_2.0.0            
     ## 
     ## loaded via a namespace (and not attached):
-    ##   [1] RcppAnnoy_0.0.23        splines_4.5.1           later_1.4.8             R.oo_1.27.1             polyclip_1.10-7        
-    ##   [6] janitor_2.2.1           XML_3.99-0.18           fastDummies_1.7.6       lifecycle_1.0.5         globals_0.19.1         
-    ##  [11] lattice_0.22-7          hdf5r_1.3.12            MASS_7.3-65             magrittr_2.0.5          plotly_4.12.0          
-    ##  [16] rmarkdown_2.31          yaml_2.3.12             remotes_2.5.0           httpuv_1.6.17           otel_0.2.0             
-    ##  [21] sctransform_0.4.3       spam_2.11-4             spatstat.sparse_3.2-0   reticulate_1.46.0       DBI_1.2.3              
-    ##  [26] cowplot_1.2.0           pbapply_1.7-4           pkgload_1.5.2           abind_1.4-8             Rtsne_0.17             
-    ##  [31] R.utils_2.13.0          GenomeInfoDbData_1.2.14 circlize_0.4.18         ggrepel_0.9.8           irlba_2.3.7            
-    ##  [36] listenv_0.10.1          spatstat.utils_3.2-3    goftest_1.2-3           RSpectra_0.16-2         annotate_1.86.1        
-    ##  [41] spatstat.random_3.5-0   fitdistrplus_1.2-6      parallelly_1.47.0       codetools_0.2-20        DelayedArray_0.36.0    
-    ##  [46] tidyselect_1.2.1        shape_1.4.6.1           UCSC.utils_1.4.0        farver_2.1.2            spatstat.explore_3.8-1 
-    ##  [51] jsonlite_2.0.0          progressr_0.19.0        ggridges_0.5.7          survival_3.8-3          systemfonts_1.3.2      
-    ##  [56] tools_4.5.1             ragg_1.5.2              ica_1.0-3               Rcpp_1.1.1-1.1          glue_1.8.1             
-    ##  [61] SparseArray_1.10.2      gridExtra_2.3           xfun_0.56               GenomeInfoDb_1.44.3     withr_3.0.2            
-    ##  [66] BiocManager_1.30.27     fastmap_1.2.0           mcprogress_0.1.1        digest_0.6.39           rsvd_1.0.5             
-    ##  [71] timechange_0.3.0        R6_2.6.1                mime_0.13               textshaping_1.0.5       ggprism_1.0.7          
-    ##  [76] colorspace_2.1-2        scattermore_1.2         tensor_1.5.1            RSQLite_3.52.0          dichromat_2.0-0.1      
-    ##  [81] spatstat.data_3.1-9     R.methodsS3_1.8.2       RhpcBLASctl_0.23-42     data.table_1.18.4       httr_1.4.8             
-    ##  [86] htmlwidgets_1.6.4       S4Arrays_1.10.0         uwot_0.2.4              pkgconfig_2.0.3         gtable_0.3.6           
-    ##  [91] rsconnect_1.4.2         blob_1.2.4              lmtest_0.9-40           S7_0.2.2                XVector_0.50.0         
-    ##  [96] htmltools_0.5.9         dotCall64_1.2           scales_1.4.0            png_0.1-9               harmony_2.0.3          
-    ## [101] spatstat.univar_3.2-0   snakecase_0.11.1        knitr_1.50              rstudioapi_0.17.1       tzdb_0.5.0             
-    ## [106] reshape2_1.4.5          nlme_3.1-168            cachem_1.1.0            zoo_1.8-15              GlobalOptions_0.1.4    
-    ## [111] KernSmooth_2.23-26      parallel_4.5.1          miniUI_0.1.2            vipor_0.4.7             AnnotationDbi_1.72.0   
-    ## [116] ggrastr_1.0.2           pillar_1.11.1           grid_4.5.1              vctrs_0.7.3             RANN_2.6.2             
-    ## [121] promises_1.5.0          xtable_1.8-8            cluster_2.1.8.2         beeswarm_0.4.0          paletteer_1.7.0        
-    ## [126] evaluate_1.0.5          locfit_1.5-9.12         cli_3.6.5               compiler_4.5.1          crayon_1.5.3           
-    ## [131] rlang_1.2.0             future.apply_1.20.2     labeling_0.4.3          rematch2_2.1.2          plyr_1.8.9             
-    ## [136] ggbeeswarm_0.7.3        stringi_1.8.7           viridisLite_0.4.3       deldir_2.0-4            Biostrings_2.78.0      
-    ## [141] lazyeval_0.2.3          spatstat.geom_3.8-1     RcppHNSW_0.7.0          hms_1.1.4               bit64_4.6.0-1          
-    ## [146] KEGGREST_1.50.0         shiny_1.13.0            ROCR_1.0-12             memoise_2.0.1           igraph_2.3.2           
-    ## [151] bit_4.6.0
+    ##  [1] DBI_1.2.3               rlang_1.2.0             magrittr_2.0.5          otel_0.2.0              compiler_4.5.1          RSQLite_3.52.0         
+    ##  [7] png_0.1-9               systemfonts_1.3.2       vctrs_0.7.3             pkgconfig_2.0.3         crayon_1.5.3            fastmap_1.2.0          
+    ## [13] XVector_0.50.0          labeling_0.4.3          rmarkdown_2.31          tzdb_0.5.0              UCSC.utils_1.4.0        ragg_1.5.2             
+    ## [19] bit_4.6.0               xfun_0.56               cachem_1.1.0            GenomeInfoDb_1.44.3     jsonlite_2.0.0          blob_1.2.4             
+    ## [25] DelayedArray_0.36.0     irlba_2.3.7             parallel_4.5.1          R6_2.6.1                stringi_1.8.7           SQUAREM_2026.1         
+    ## [31] numDeriv_2016.8-1.1     Rcpp_1.1.1-1.1          knitr_1.51              Matrix_1.6-4            splines_4.5.1           timechange_0.3.0       
+    ## [37] tidyselect_1.2.1        rstudioapi_0.17.1       dichromat_2.0-0.1       abind_1.4-8             yaml_2.3.12             codetools_0.2-20       
+    ## [43] plyr_1.8.9              lattice_0.22-7          withr_3.0.2             KEGGREST_1.50.0         S7_0.2.2                coda_0.19-4.1          
+    ## [49] evaluate_1.0.5          survival_3.8-3          Biostrings_2.78.0       pillar_1.11.1           rsconnect_1.4.2         invgamma_1.2           
+    ## [55] emdbook_1.3.14          truncnorm_1.0-9         hms_1.1.4               scales_1.4.0            ashr_2.2-63             xtable_1.8-8           
+    ## [61] glue_1.8.1              apeglm_1.30.0           tools_4.5.1             annotate_1.86.1         locfit_1.5-9.12         mvtnorm_1.3-3          
+    ## [67] XML_3.99-0.18           grid_4.5.1              bbmle_1.0.25.1          bdsmatrix_1.3-7         AnnotationDbi_1.72.0    GenomeInfoDbData_1.2.14
+    ## [73] cli_3.6.6               textshaping_1.0.5       mixsqp_0.3-54           S4Arrays_1.10.0         gtable_0.3.6            digest_0.6.39          
+    ## [79] SparseArray_1.10.2      farver_2.1.2            memoise_2.0.1           htmltools_0.5.9         lifecycle_1.0.5         httr_1.4.8             
+    ## [85] MASS_7.3-65             bit64_4.6.0-1

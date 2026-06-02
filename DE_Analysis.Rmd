@@ -73,7 +73,7 @@ cat("Raw counts:", nrow(counts_raw), "genes x", ncol(counts_raw), "samples")
 
 # read in SwissProt annotation
 SwissProt <- read.delim(file.path("../HI_genome_annotations/annotation/Porites_compressa_HIv1_Swissprot_GO.tsv"))
-cat("Annotations:", nrow(SwissProt), "Swissprot-annotated genes")
+cat("\nAnnotations:", nrow(SwissProt), "Swissprot-annotated genes")
 ```
 
 ## 2. Extract metadata from sample names
@@ -168,7 +168,22 @@ PCA_simple <- ggplot(data = pcaData, aes(x=PC1, y=PC2, color=tissue, shape=sampl
   coord_fixed() + theme_bw() + ggtitle("PCA of VST-transformed counts")
 
 print(PCA_simple)
-save_ggplot(PCA_simple, "PCA_simple", width = 8, height = 6)
+save_ggplot(PCA_simple, "PCA", width = 8, height = 6)
+```
+
+```{r pca-allgene}
+pcaData <- plotPCA(vst, intgroup=c("tissue"), returnData=TRUE, ntop = nrow(vst))
+percentVar <- round(100 * attr(pcaData, "percentVar"))
+
+PCA_simple <- ggplot(data = pcaData, aes(x=PC1, y=PC2, color=tissue, shape=sample)) +
+  geom_point(size=4) +
+  xlab(paste0("PC1: ",percentVar[1],"% variance")) +
+  ylab(paste0("PC2: ",percentVar[2],"% variance")) + 
+  labs(color = "Tissue", shape = "Sample") +
+  coord_fixed() + theme_bw() + ggtitle("PCA of VST-transformed counts")
+
+print(PCA_simple)
+save_ggplot(PCA_simple, "PCA_allGenes", width = 8, height = 6)
 ```
 
 ### Hierarchical Clustering
@@ -187,7 +202,7 @@ abline(h = 100, col = "red", lty = 2)
 ```{r heatmap}
 topVarGenes <- head(order(rowVars(vst_mat), decreasing=TRUE), 500)
 
-png("output_RNA/analysis/plots/top500vargenes_heatmap.png")
+png("output_RNA/analysis/plots/top500vargenes_heatmap.png", width = 2000, height = 2400, res = 300)
 pheatmap(vst_mat[topVarGenes, ], cluster_rows=TRUE, show_rownames=FALSE,
          cluster_cols=TRUE, cutree_cols = 2,
          annotation_col= meta %>% select(tissue))
@@ -195,7 +210,7 @@ dev.off()
 
 ```
 
-### Text summary
+## Preprocessing Summary
 
 ```{r final, echo=FALSE}
 cat("Preprocessing Summary:")
@@ -223,6 +238,105 @@ cat("  VST appropriate:", ifelse(all(sizeFactors(SF.dds) < 4), "Yes", "No - cons
 cat("  PC1 variance:", percentVar[1], "%\n")
 cat("  PC2 variance:", percentVar[2], "%\n")
 ```
+
+
+# DE Analysis
+
+## 1. Extract results for bulk vs. OralGastro contrast
+
+```{r res}
+resultsNames(dds) 
+res <- results(dds, name="tissue_Oral_Gastro_vs_bulk")
+```
+
+### MA Plots with Log2 Fold Change Transform Comparisons
+
+```{r res_transform}
+resNorm <- lfcShrink(dds, coef="tissue_Oral_Gastro_vs_bulk", type="normal")
+resAsh <- lfcShrink(dds, coef="tissue_Oral_Gastro_vs_bulk", type="ashr")
+resLFC <- lfcShrink(dds, coef="tissue_Oral_Gastro_vs_bulk", res=res, type = "apeglm")
+
+par(mfrow=c(1,4), mar=c(4,4,2,1))
+xlim <- c(1,1e5); ylim <- c(-20,20)
+plotMA(res, xlim=xlim, ylim=ylim, main="no LFC transform")
+plotMA(resLFC, xlim=xlim, ylim=ylim, main="apeglm")
+plotMA(resNorm, xlim=xlim, ylim=ylim, main="normal")
+plotMA(resAsh, xlim=xlim, ylim=ylim, main="ashr")
+```
+
+## 2. Extract results for adjusted p-value < 0.05 with LFC transform of choice (or none)
+
+```{r DE_05}
+#res <- resLFC #resAsh
+
+resOrdered <- res[order(res$pvalue),] # save differentially expressed genes
+
+DE_05 <- as.data.frame(resOrdered) %>% filter(padj < 0.05 & abs(log2FoldChange) > 1)
+DE_05_Up <- DE_05 %>% filter(log2FoldChange > 0) #Higher in Oral Gastro
+DE_05_Down <- DE_05 %>% filter(log2FoldChange < 0) #Lower in Oral Gastro
+
+nrow(DE_05)
+nrow(DE_05_Up) #Higher in Oral Gastro
+nrow(DE_05_Down) #Lower in Oral Gastro
+```
+
+### Join with annotation data
+
+```{r DE_Swissprot}
+DE_05$query <- rownames(DE_05)
+resOrdered$query <- rownames(resOrdered)
+
+DESeq_SwissProt <- as.data.frame(resOrdered) %>% left_join(SwissProt) %>% select(query,everything()) 
+DE_05_SwissProt <- DESeq_SwissProt %>% filter(query %in% DE_05$query)
+```
+
+### Save csvs
+
+```{r csv_save}
+write.csv(DESeq_SwissProt, 
+          file = file.path(outdir, "DESeq_results.csv"))
+
+write.csv(DE_05_SwissProt, 
+          file = file.path(outdir, "DEG_05.csv"))
+```
+
+## 3. Heatmap of differentially expressed genes, with Swissprot annotation
+
+```{r heatmap-swissprot}
+DE_05_SwissProt$short_name <- ifelse(nchar(DE_05_SwissProt$ProteinNames) > 30, 
+                            paste0(substr(DE_05_SwissProt$ProteinNames, 1, 27), "..."), 
+                            DE_05_SwissProt$ProteinNames)
+
+gene_labels <- DE_05_SwissProt %>% 
+  select(query,short_name) %>%
+  mutate_all(~ ifelse(is.na(.), "", .)) #replace NAs with "" for labelling purposes
+
+#view most significantly differentially expressed genes in order by p-value with labels
+topDEGenes <- order(res$padj)[1:50]
+
+png("output_RNA/analysis/plots/top50_DE_heatmap_swissprot.png", width = 2000, height = 2400, res = 300)
+pheatmap(vst_mat[topDEGenes, ], 
+         cluster_rows=TRUE, show_rownames=TRUE,
+         cluster_cols=TRUE, cutree_cols = 2,
+         annotation_col=(meta%>% select(tissue)),
+         labels_row = gene_labels[match(rownames(res)[topDEGenes],(gene_labels$query)),2], fontsize_row = 6)
+dev.off()
+
+
+png("output_RNA/analysis/plots/top50_DE_ordered_heatmap_swissprot.png", width = 2000, height = 2400, res = 300)
+pheatmap(vst_mat[topDEGenes, ], 
+         cluster_rows=FALSE, show_rownames=TRUE,
+         cluster_cols=TRUE, cutree_cols = 2,
+         annotation_col=(meta%>% select(tissue)),
+         labels_row = gene_labels[match(rownames(res)[topDEGenes],(gene_labels$query)),2], fontsize_row = 6)
+dev.off()
+```
+
+
+
+## Appendix
+
+To knit: rmarkdown::render("DE_Analysis.Rmd", output_dir = "output_RNA/reports/")
 
 ```{r}
 sessionInfo()
