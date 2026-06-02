@@ -1,5 +1,7 @@
 # Porites LCM RNA-seq Bioinformatic Processing <!-- omit from toc -->
 
+## For Gene Expression Results: go [here](https://github.com/zdellaert/Porites_LCM_test/blob/main/DE_Analysis.md)
+
 Script Written By: Zoe Dellaert
 
 Last Updated: 6/1/2026
@@ -15,6 +17,8 @@ Last Updated: 6/1/2026
 - Sample prep: https://zdellaert.github.io/ZD_Putnam_Lab_Notebook/LCM-Porites-Troubleshooting/
 - RNA extraction protocol: https://zdellaert.github.io/ZD_Putnam_Lab_Notebook/LCM-RNA-Microprep/
 - Pool of 3 samples 
+
+SEE images [here](https://github.com/zdellaert/Porites_LCM_test/blob/main/DissectionAreas.pdf)
 
 | Slide        | Section | Tube # | Number dissections | Tissue             | Extraction Buffer | Notes             | Total Dissection Area | Digestion          | Tapestation assessment 1-3 | TS Conc (pg/uL) | pg in 8 uL | pg/area |
 |--------------|---------|--------|--------------------|--------------------|-------------------|-------------------|-----------------------|--------------------|----------------------------|-----------------|------------|---------|
@@ -34,6 +38,7 @@ Last Updated: 6/1/2026
 
 ## Workflow <!-- omit from toc -->
 
+- [For Gene Expression Results: go here](#for-gene-expression-results-go-here)
 - [Download genomes](#download-genomes)
   - [Convert gff3 files into gtf files](#convert-gff3-files-into-gtf-files)
 - [Make directory structure on Unity](#make-directory-structure-on-unity)
@@ -754,6 +759,11 @@ cd "${qc_dir}"
 
 multiqc . "${alignments_dir}"
 ```
+
+<img width="800" alt="screenshot" src="https://github.com/zdellaert/Porites_LCM_test/blob/main/output_RNA/alignment_qc/POR_Pcomp/qualimap_1.png?raw=true">
+
+<img width="800" alt="screenshot" src="https://github.com/zdellaert/Porites_LCM_test/blob/main/output_RNA/alignment_qc/POR_Pcomp/qualimap_2.png?raw=true">
+
 
 ## Assembly with Stringtie
 
