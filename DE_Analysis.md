@@ -356,7 +356,7 @@ plotMA(resAsh, xlim=xlim, ylim=ylim, main="ashr")
 ## 2. Extract results for adjusted p-value \< 0.05 with LFC transform of choice (or none)
 
 ``` r
-#res <- resLFC #resAsh
+res <- resLFC #resAsh
 
 resOrdered <- res[order(res$pvalue),] # save differentially expressed genes
  
