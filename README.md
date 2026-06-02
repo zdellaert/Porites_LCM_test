@@ -48,6 +48,18 @@ Last Updated: 6/1/2026
   - [Script: 03\_trimming.sh](#script-03_trimmingsh)
   - [Other trimming tools I have used in the past](#other-trimming-tools-i-have-used-in-the-past)
   - [Interpretation of Post-Trim QC data](#interpretation-of-post-trim-qc-data)
+- [Alignment with STAR](#alignment-with-star)
+  - [First, write a general alignment script](#first-write-a-general-alignment-script)
+    - [Script: 04\_STAR.sh](#script-04_starsh)
+- [Assess Mapping Quality](#assess-mapping-quality)
+  - [Script: 05\_qualimap.sh](#script-05_qualimapsh)
+  - [Run script on the alignments performed above](#run-script-on-the-alignments-performed-above)
+- [Assembly with Stringtie](#assembly-with-stringtie)
+  - [Script: 06\_stringtie.sh](#script-06_stringtiesh)
+  - [Run script on the alignments performed above](#run-script-on-the-alignments-performed-above-1)
+- [Generate gene count matrix](#generate-gene-count-matrix)
+  - [Script: 07\_prepDE.sh](#script-07_prepdesh)
+  - [Run script on the alignments performed above](#run-script-on-the-alignments-performed-above-2)
 
 ## Download genomes
  
@@ -449,4 +461,357 @@ fastp --in1 "$R1_file" --in2 "$R2_file" \
 ### Interpretation of Post-Trim QC data
 
 [View results here](https://github.com/zdellaert/Porites_LCM_test/blob/main/output_RNA/trimmed_qc), [MultiQC report](https://github.com/zdellaert/Porites_LCM_test/blob/main/output_RNA/trimmed_qc/multiqc_report.html)
+
+All adapter content is gone!
+
+## Alignment with STAR
+
+I am using [STAR](https://github.com/alexdobin/STAR) for alignment, manual is [here](https://github.com/alexdobin/STAR/blob/master/doc/STARmanual.pdf)
+
+### First, write a general alignment script
+
+```
+cd /project/pi_hputnam_uri_edu/zdellaert/Porites_LCM_test/scripts
+nano 04_STAR.sh
+
+#enter text in next code chunk
+```
+
+#### Script: 04_STAR.sh
+
+```
+#!/usr/bin/env bash
+#SBATCH --export=NONE
+#SBATCH --ntasks=1 --cpus-per-task=20
+#SBATCH --mem=100GB
+#SBATCH --time=24:00:00
+#SBATCH --error=../scripts/outs_errs/%x_error.%j #if your job fails, the error report will be put in this file
+#SBATCH --output=../scripts/outs_errs/%x_output.%j #once your job is completed, any final job report comments will be put in this file
+#SBATCH --mail-type=END,FAIL,TIME_LIMIT_80
+#SBATCH --no-requeue
+
+species=$1
+genome=$2
+genome_path=$3
+gff_path=$4
+makeindex=$5
+
+scratch_dir="/scratch4/workspace/zdellaert_uri_edu-shared_TimeSeries/Porites_LCM_test"
+data_dir="${scratch_dir}/trimmed/"
+
+genome_index_dir="${scratch_dir}/STAR_indexes/${genome}"
+out_dir="${scratch_dir}/aligned/${species}_${genome}"
+
+mkdir -p "${genome_index_dir}"
+mkdir -p "${out_dir}"
+
+cd "${scratch_dir}"
+
+# load modules 
+module load uri/main STAR/2.7.11b-GCC-12.3.0
+
+# genome index generation
+if [ "${makeindex}" = "T" ]; then
+  STAR --runMode genomeGenerate \
+      --runThreadN 20 \
+      --genomeDir "${genome_index_dir}" \
+      --genomeFastaFiles "${genome_path}" \
+      --sjdbGTFfile "${gff_path}" \
+      --sjdbGTFtagExonParentTranscript Parent \
+      --genomeSAindexNbases 13
+fi
+
+trimmed=( "${data_dir}"*"${species}"*"R1_trim.fastq.gz" )
+
+# run star
+
+for R1_file in "${trimmed[@]}"; do
+
+  # extract sample name
+  sample_name=$(basename "${R1_file}" "_R1_trim.fastq.gz")
+
+  # define R2 file
+  R2_file="${data_dir}${sample_name}_R2_trim.fastq.gz"
+
+  STAR --runMode alignReads \
+       --genomeDir "${genome_index_dir}" \
+       --runThreadN 10 \
+       --readFilesCommand zcat \
+       --readFilesIn "${R1_file}" "${R2_file}" \
+       --outSAMtype BAM SortedByCoordinate \
+       --outSAMunmapped Within \
+       --outSAMattributes Standard \
+       --outFileNamePrefix "${out_dir}/${sample_name}_" \
+       --quantMode GeneCounts
+done
+```
+
+Then run as follows:
+
+```
+cd /project/pi_hputnam_uri_edu/zdellaert/Porites_LCM_test/scripts
+
+# run STAR standard script
+sbatch --dependency=afterok:60202668 04_STAR.sh POR Pcomp \
+     "/work/pi_hputnam_uri_edu/HI_Genomes/Pcompressa/Porites_compressa_HIv1.assembly.fasta" \
+     "/work/pi_hputnam_uri_edu/HI_Genomes/Pcompressa/Porites_compressa_HIv1.gff3" \
+     T
+```
+
+## Assess Mapping Quality
+
+I am using [Qualimap](http://qualimap.conesalab.org/) to assess the STAR mapping quality, then performing multiqc on the Qualimap and STAR log files to get a cohesive mapping report. Qualimap is SUPER slow, so I am running it as an array job. 
+
+```
+cd /project/pi_hputnam_uri_edu/zdellaert/Porites_LCM_test/scripts
+nano 05_qualimap.sh
+
+#enter text in next code chunk
+```
+
+### Script: 05_qualimap.sh
+
+```
+#!/usr/bin/env bash
+#SBATCH --export=NONE
+#SBATCH --ntasks=1 --cpus-per-task=2
+#SBATCH --mem=16GB
+#SBATCH --time=04:00:00
+#SBATCH --error=../scripts/outs_errs/%x_%A_%a_error #if your job fails, the error report will be put in this file
+#SBATCH --output=../scripts/outs_errs/%x_%A_%a_output #once your job is completed, any final job report comments will be put in this file
+#SBATCH --array=0-41
+#SBATCH --mail-type=END,FAIL,TIME_LIMIT_80
+#SBATCH --no-requeue
+
+species=$1
+genome=$2
+gtf_path=$3
+
+# load modules needed
+module load qualimap/2.2.1
+
+# list and make required directories
+scratch_dir="/scratch4/workspace/zdellaert_uri_edu-shared_TimeSeries/Porites_LCM_test"
+alignments_dir="${scratch_dir}/aligned/${species}_${genome}"
+
+qc_dir="/project/pi_hputnam_uri_edu/zdellaert/Porites_LCM_test/output_RNA/alignment_qc/${species}_${genome}"
+
+# make the output directory if it does not exist (-p checks for this)
+mkdir -p "${qc_dir}"
+
+# make list of BAM files
+
+bam_files=("${alignments_dir}"/*Aligned.sortedByCoord.out.bam)
+
+# get the BAM for this array task
+f="${bam_files[$SLURM_ARRAY_TASK_ID]}"
+sample_name=$(basename "$f" | sed -E 's/_Aligned.*//')
+
+echo "Running Qualimap on ${sample_name}..."
+
+	qualimap rnaseq \
+    --java-mem-size=8G \
+    -gtf "${gtf_path}" \
+    -pe \
+    --sequencing-protocol non-strand-specific \
+    -bam "${f}"  \
+    -outdir "${qc_dir}"/"${sample_name}" 
+```
+
+Then run as follows:
+
+```
+# run Qualimap standard script
+sbatch 05_qualimap.sh "$species" "$genome" "$gtf_path"
+```
+
+### Run script on the alignments performed above
+
+```
+cd /project/pi_hputnam_uri_edu/zdellaert/Porites_LCM_test/scripts
+
+sbatch --dependency=afterok:60203024 05_qualimap.sh POR Pcomp "/work/pi_hputnam_uri_edu/HI_Genomes/Pcompressa/Porites_compressa_HIv1.gtf"
+```
+
+Then:
+
+```
+# load modules needed for multiqc
+module purge
+module load uri/main
+module load MultiQC/1.12-foss-2021b
+
+scratch_dir="/scratch4/workspace/zdellaert_uri_edu-shared_TimeSeries/Porites_LCM_test"
+
+species="POR"
+genome="Pcomp"
+alignments_dir="${scratch_dir}/aligned/${species}_${genome}"
+qc_dir="/project/pi_hputnam_uri_edu/zdellaert/Porites_LCM_test/output_RNA/alignment_qc/${species}_${genome}"
+
+cd "${qc_dir}"
+
+multiqc . "${alignments_dir}"
+```
+
+## Assembly with Stringtie
+
+I will use [Stringtie](https://ccb.jhu.edu/software/stringtie/index.shtml?t=manual) to perform reference-guided assembly of the RNA-seq data. For initial analysis, I am running stringtie in estimation mode, with the -e flag. It will only assemble known transcripts from the gff/gtf file and not novel transcripts.
+
+> StringTie will not attempt to assemble the input read alignments but instead it will only estimate the expression levels of the "reference" transcripts provided in the -G file. With this option, no "novel" transcript assemblies (isoforms) will be produced, and read alignments not overlapping any of the given reference transcripts will be ignored.
+
+```
+cd /project/pi_hputnam_uri_edu/zdellaert/Porites_LCM_test/scripts
+nano 06_stringtie.sh
+
+#enter text in next code chunk
+```
+
+### Script: 06_stringtie.sh
+
+```
+#!/usr/bin/env bash
+#SBATCH --nodes=1
+#SBATCH --ntasks=1
+#SBATCH --cpus-per-task=16
+#SBATCH --no-requeue
+#SBATCH --mem=16GB
+#SBATCH -t 03:59:00 
+#SBATCH --mail-type=END,FAIL,TIME_LIMIT_80
+#SBATCH --error=../scripts/outs_errs/%x_error.%j #if your job fails, the error report will be put in this file
+#SBATCH --output=../scripts/outs_errs/%x_output.%j #once your job is completed, any final job report comments will be put in this file
+
+species=$1
+genome=$2
+gtf_path=$3
+
+# load required modules
+module load uri/main StringTie/2.2.1-GCC-11.2.0
+
+# list and make required directories
+scratch_dir="/scratch4/workspace/zdellaert_uri_edu-shared_TimeSeries/Porites_LCM_test"
+alignments_dir="${scratch_dir}/aligned/${species}_${genome}"
+
+out_dir="${scratch_dir}/stringtie/${species}_${genome}"
+
+# make the output directory if it does not exist (-p checks for this)
+mkdir -p "${out_dir}"
+
+cd "${alignments_dir}"
+
+# call the STAR bam files into an array
+bams=(*Aligned.sortedByCoord.out.bam)
+
+for f in "${bams[@]}"; do 
+    sample_name=$(echo "$f" | sed -E 's/_Aligned.*//')
+
+    # -p 16 : use 16 cores
+    # --rf : library is reverse-forward stranded
+    # -e : exclude novel genes
+    # -B : create Ballgown input files for downstream analysis
+    # -v : enable verbose mode
+    # -G : gtf annotation file
+    # -A : output name for gene abundance estimate files
+    # -o : output name for gtf file
+
+    stringtie -p 16 --rf -e -B -v \
+        -G "${gtf_path}" \
+        -A "${out_dir}"/"${sample_name}".gene_abund.tab \
+        -o "${out_dir}"/"${sample_name}".gtf \
+        "$f" #input bam file
+
+    echo "StringTie assembly for seq file ${f}" $(date)
+done
+```
+
+Then run as follows:
+
+```
+# run stringtie standard script
+sbatch 06_stringtie.sh "$species" "$genome" "$gtf_path"
+```
+
+### Run script on the alignments performed above
+
+```
+cd /project/pi_hputnam_uri_edu/zdellaert/Porites_LCM_test/scripts
+
+sbatch --dependency=afterok:60203026 06_stringtie.sh POR Pcomp "/work/pi_hputnam_uri_edu/HI_Genomes/Pcompressa/Porites_compressa_HIv1.gtf"
+```
+
+## Generate gene count matrix
+
+We will be using the [prepDE.py script from Stringtie](https://ccb.jhu.edu/software/stringtie/index.shtml?t=manual).
+
+Download script from [stringtie website](https://ccb.jhu.edu/software/stringtie/dl/prepDE.py3) or [github repository](https://github.com/gpertea/stringtie/blob/master/prepDE.py3). I am using the python3 version, but this and the original version (prepDE.py) are very similar and should give the exact same result. I am using [this input file format](https://ccb.jhu.edu/software/stringtie/dl/sample_lst.txt).
+
+
+```
+cd /project/pi_hputnam_uri_edu/zdellaert/Porites_LCM_test/scripts
+wget https://ccb.jhu.edu/software/stringtie/dl/prepDE.py3
+nano 07_prepDE.sh
+
+#enter text in next code chunk
+```
+
+### Script: 07_prepDE.sh
+
+```
+#!/usr/bin/env bash
+#SBATCH --nodes=1
+#SBATCH --ntasks=1
+#SBATCH --cpus-per-task=16
+#SBATCH --no-requeue
+#SBATCH --mem=16GB
+#SBATCH -t 03:59:00 
+#SBATCH --mail-type=END,FAIL,TIME_LIMIT_80
+#SBATCH --error=../scripts/outs_errs/%x_error.%j #if your job fails, the error report will be put in this file
+#SBATCH --output=../scripts/outs_errs/%x_output.%j #once your job is completed, any final job report comments will be put in this file
+
+species=$1
+genome=$2
+
+# load required modules
+module load uri/main StringTie/2.2.1-GCC-11.2.0
+
+# list and make required directories
+scratch_dir="/scratch4/workspace/zdellaert_uri_edu-shared_TimeSeries/Porites_LCM_test"
+stringtie_dir="${scratch_dir}/stringtie/${species}_${genome}"
+out_dir="/project/pi_hputnam_uri_edu/zdellaert/Porites_LCM_test/output_RNA/count_matrices"
+script_dir="/project/pi_hputnam_uri_edu/zdellaert/Porites_LCM_test/scripts"
+
+# make the output directory if it does not exist (-p checks for this)
+mkdir -p "${out_dir}"
+
+# move into stringtie directory
+cd "${stringtie_dir}"
+
+# make input file
+for filename in *.gtf; do
+    sample_name=$(basename "$filename" .gtf)
+
+    echo $sample_name $PWD/$filename
+done > listGTF.txt
+
+#Compile the gene count matrix
+python "${script_dir}"/prepDE.py3 -g "${out_dir}"/"${species}"_"${genome}"_gene_count_matrix.csv -i listGTF.txt
+
+echo "Gene count matrix compiled." $(date)
+```
+
+Then run as follows:
+
+```
+# run stringtie standard script
+sbatch 07_prepDE.sh "$species" "$genome"
+```
+
+### Run script on the alignments performed above
+
+```
+cd /project/pi_hputnam_uri_edu/zdellaert/Porites_LCM_test/scripts
+
+sbatch --dependency=afterok:60203030 07_prepDE.sh POR Pcomp
+```
+
+Woohoo! [Gene count matrix complete.](https://github.com/zdellaert/Porites_LCM_test/blob/main/output_RNA/count_matrices).
 
