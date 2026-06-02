@@ -1,0 +1,16 @@
+	STAR --runMode genomeGenerate --runThreadN 20 --genomeDir /scratch4/workspace/zdellaert_uri_edu-shared_TimeSeries/Porites_LCM_test/STAR_indexes/Pcomp --genomeFastaFiles /work/pi_hputnam_uri_edu/HI_Genomes/Pcompressa/Porites_compressa_HIv1.assembly.fasta --sjdbGTFfile /work/pi_hputnam_uri_edu/HI_Genomes/Pcompressa/Porites_compressa_HIv1.genes.gff3 --sjdbGTFtagExonParentTranscript Parent --genomeSAindexNbases 13
+	STAR version: 2.7.11b   compiled: 2024-09-18T11:48:15-04:00 uri-cpu006:/tmp/STAR/2.7.11b/GCC-12.3.0/STAR-2.7.11b/source
+Jun 02 10:35:22 ..... started STAR run
+Jun 02 10:35:22 ... starting to generate Genome files
+Jun 02 10:35:32 ..... processing annotations GTF
+Jun 02 10:35:35 ... starting to sort Suffix Array. This may take a long time...
+Jun 02 10:35:38 ... sorting Suffix Array chunks and saving them to disk...
+Jun 02 10:36:56 ... loading chunks from disk, packing SA...
+Jun 02 10:37:14 ... finished generating suffix array
+Jun 02 10:37:14 ... generating Suffix Array index
+Jun 02 10:38:12 ... completed Suffix Array index
+Jun 02 10:38:12 ..... inserting junctions into the genome indices
+Jun 02 10:39:21 ... writing Genome to disk ...
+Jun 02 10:39:22 ... writing Suffix Array to disk ...
+Jun 02 10:39:29 ... writing SAindex to disk
+Jun 02 10:39:30 ..... finished successfully

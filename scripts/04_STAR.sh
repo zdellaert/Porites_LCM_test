@@ -2,7 +2,7 @@
 #SBATCH --export=NONE
 #SBATCH --ntasks=1 --cpus-per-task=20
 #SBATCH --mem=100GB
-#SBATCH --time=24:00:00
+#SBATCH --time=2:00:00
 #SBATCH --error=../scripts/outs_errs/%x_error.%j #if your job fails, the error report will be put in this file
 #SBATCH --output=../scripts/outs_errs/%x_output.%j #once your job is completed, any final job report comments will be put in this file
 #SBATCH --mail-type=END,FAIL,TIME_LIMIT_80
@@ -39,22 +39,21 @@ if [ "${makeindex}" = "T" ]; then
       --genomeSAindexNbases 13
 fi
 
-trimmed=( "${data_dir}"*"${species}"*"R1_trim.fastq.gz" )
+trimmed=( "${data_dir}"*"${species}"*"_flexbar_1.fastq" )
 
 # run star
 
 for R1_file in "${trimmed[@]}"; do
 
   # extract sample name
-  sample_name=$(basename "${R1_file}" "_R1_trim.fastq.gz")
+  sample_name=$(basename "${R1_file}" "_flexbar_1.fastq")
 
   # define R2 file
-  R2_file="${data_dir}${sample_name}_R2_trim.fastq.gz"
+  R2_file="${data_dir}${sample_name}_flexbar_2.fastq"
 
   STAR --runMode alignReads \
        --genomeDir "${genome_index_dir}" \
        --runThreadN 10 \
-       --readFilesCommand zcat \
        --readFilesIn "${R1_file}" "${R2_file}" \
        --outSAMtype BAM SortedByCoordinate \
        --outSAMunmapped Within \

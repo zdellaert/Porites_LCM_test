@@ -1,0 +1,7 @@
+Module	Section	Sample Name	Source
+FastQC	all_sections	POR_34_S82_flexbar_1	/project/pi_hputnam_uri_edu/zdellaert/Porites_LCM_test/output_RNA/trimmed_qc/POR_34_S82_flexbar_1_fastqc.zip
+FastQC	all_sections	POR_13_S81_flexbar_1	/project/pi_hputnam_uri_edu/zdellaert/Porites_LCM_test/output_RNA/trimmed_qc/POR_13_S81_flexbar_1_fastqc.zip
+FastQC	all_sections	POR_13_S81_flexbar_2	/project/pi_hputnam_uri_edu/zdellaert/Porites_LCM_test/output_RNA/trimmed_qc/POR_13_S81_flexbar_2_fastqc.zip
+FastQC	all_sections	POR_61_S83_flexbar_2	/project/pi_hputnam_uri_edu/zdellaert/Porites_LCM_test/output_RNA/trimmed_qc/POR_61_S83_flexbar_2_fastqc.zip
+FastQC	all_sections	POR_61_S83_flexbar_1	/project/pi_hputnam_uri_edu/zdellaert/Porites_LCM_test/output_RNA/trimmed_qc/POR_61_S83_flexbar_1_fastqc.zip
+FastQC	all_sections	POR_34_S82_flexbar_2	/project/pi_hputnam_uri_edu/zdellaert/Porites_LCM_test/output_RNA/trimmed_qc/POR_34_S82_flexbar_2_fastqc.zip

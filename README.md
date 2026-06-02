@@ -48,6 +48,8 @@ Last Updated: 6/1/2026
   - [Script: 03\_trimming.sh](#script-03_trimmingsh)
   - [Other trimming tools I have used in the past](#other-trimming-tools-i-have-used-in-the-past)
   - [Interpretation of Post-Trim QC data](#interpretation-of-post-trim-qc-data)
+- [Alternative Version: trimming Reads](#alternative-version-trimming-reads)
+  - [Script: 03b\_trimming.sh](#script-03b_trimmingsh)
 - [Alignment with STAR](#alignment-with-star)
   - [First, write a general alignment script](#first-write-a-general-alignment-script)
     - [Script: 04\_STAR.sh](#script-04_starsh)
@@ -413,7 +415,7 @@ module load uri/main
 module load MultiQC/1.12-foss-2021b
 
 # create an list of fastq files to process
-trimmed_files=(${out_dir}*trim.fastq.gz)
+trimmed_files=(${out_dir}*_flexbar_*.fastq)
 
 # Run fastqc in parallel
 parallel -j 6 "fastqc {} -o "${qc_dir}" && echo 'Processed {}'" ::: "${trimmed_files[@]}"
@@ -462,7 +464,108 @@ fastp --in1 "$R1_file" --in2 "$R2_file" \
 
 [View results here](https://github.com/zdellaert/Porites_LCM_test/blob/main/output_RNA/trimmed_qc), [MultiQC report](https://github.com/zdellaert/Porites_LCM_test/blob/main/output_RNA/trimmed_qc/multiqc_report.html)
 
-All adapter content is gone!
+Most Adapter content is gone but there is still a lot of poly A. Also of note, there are detectable rRNA overrepresented sequences in 5/6 files, but they show < 1% , which is fantastic.
+
+## Alternative Version: trimming Reads
+
+```
+cd /project/pi_hputnam_uri_edu/zdellaert/Porites_LCM_test/scripts
+nano 03b_trimming.sh
+
+#enter text in next code chunk
+```
+
+### Script: 03b_trimming.sh
+
+```
+#!/usr/bin/env bash
+#SBATCH --export=NONE
+#SBATCH --nodes=1
+#SBATCH --ntasks-per-node=24
+#SBATCH --signal=2
+#SBATCH --no-requeue
+#SBATCH --mem=80GB
+#SBATCH -t 03:59:00
+#SBATCH --mail-type=BEGIN,END,FAIL #email you when job starts, stops and/or fails
+#SBATCH --error=../scripts/outs_errs/%x_error.%j #if your job fails, the error report will be put in this file
+#SBATCH --output=../scripts/outs_errs/%x_output.%j #once your job is completed, any final job report comments will be put in this file
+
+# load modules needed
+module load parallel/20240822
+
+# make and define directories needed
+data_dir="/project/pi_hputnam_uri_edu/zdellaert/Porites_LCM_test/data_RNA/"
+out_dir="/scratch4/workspace/zdellaert_uri_edu-shared_TimeSeries/Porites_LCM_test/trimmed_fastp/"
+qc_dir="/project/pi_hputnam_uri_edu/zdellaert/Porites_LCM_test/output_RNA/trimmed_fastp_qc/"
+
+mkdir -p ${out_dir}
+mkdir -p ${qc_dir}
+
+# create an list of fastq files to process
+R1_files=(${data_dir}*_R1_001.fastq.gz)
+
+echo "There are ${#R1_files[@]} samples to process"
+echo "Starting trimming at $(date)"
+
+# define flexbar function to allow for parallel processing
+
+run_flexbar() {
+  R1_file=$1
+  data_dir=$2
+  out_dir=$3
+  qc_dir=$4
+
+  # extract sample name
+  sample_name=$(basename "$R1_file" "_R1_001.fastq.gz")
+
+  # define R2 file
+  R2_file="${data_dir}${sample_name}_R2_001.fastq.gz"
+
+  # fastp
+  fastp --in1 "$R1_file" --in2 "$R2_file" \
+        --out1 "${out_dir}${sample_name}_R1_trim.fastq.gz" \
+        --out2 "${out_dir}${sample_name}_R2_trim.fastq.gz" \
+        --detect_adapter_for_pe \
+        --qualified_quality_phred 20 \
+        --trim_poly_g \
+        --trim_poly_a \
+        --trim_front1 10 --trim_front2 10 \
+        --length_required 20 \
+        --thread 2 \
+        --overrepresentation_analysis \
+        --html "${qc_dir}${sample_name}_fastp.html" \
+        --json "${qc_dir}${sample_name}_fastp.json"
+
+  echo "trimming of "${sample_name}" complete at $(date)"
+}
+
+export -f run_fastp
+
+# run fastp in parallel
+parallel -j 6 run_fastp {} "$data_dir" "$out_dir" "$qc_dir" ::: "${R1_files[@]}"
+
+# now move onto qc
+echo "Starting fastqc on trimmed files at" $(date)
+
+# load modules needed
+module load fastqc/0.12.1
+module load uri/main
+module load MultiQC/1.12-foss-2021b
+
+# create an list of fastq files to process
+trimmed_files=(${out_dir}*_flexbar_*.fastq)
+
+# Run fastqc in parallel
+parallel -j 6 "fastqc {} -o "${qc_dir}" && echo 'Processed {}'" ::: "${trimmed_files[@]}"
+echo "fastQC done." $(date)
+
+#Compile MultiQC report from FastQC files
+echo "Running MultiQC"
+cd "${qc_dir}"
+multiqc --interactive .
+
+echo "QC of trimmed RNA-seq data complete." $(date)
+```
 
 ## Alignment with STAR
 
@@ -484,7 +587,7 @@ nano 04_STAR.sh
 #SBATCH --export=NONE
 #SBATCH --ntasks=1 --cpus-per-task=20
 #SBATCH --mem=100GB
-#SBATCH --time=24:00:00
+#SBATCH --time=2:00:00
 #SBATCH --error=../scripts/outs_errs/%x_error.%j #if your job fails, the error report will be put in this file
 #SBATCH --output=../scripts/outs_errs/%x_output.%j #once your job is completed, any final job report comments will be put in this file
 #SBATCH --mail-type=END,FAIL,TIME_LIMIT_80
@@ -521,22 +624,21 @@ if [ "${makeindex}" = "T" ]; then
       --genomeSAindexNbases 13
 fi
 
-trimmed=( "${data_dir}"*"${species}"*"R1_trim.fastq.gz" )
+trimmed=( "${data_dir}"*"${species}"*"_flexbar_1.fastq" )
 
 # run star
 
 for R1_file in "${trimmed[@]}"; do
 
   # extract sample name
-  sample_name=$(basename "${R1_file}" "_R1_trim.fastq.gz")
+  sample_name=$(basename "${R1_file}" "_flexbar_1.fastq")
 
   # define R2 file
-  R2_file="${data_dir}${sample_name}_R2_trim.fastq.gz"
+  R2_file="${data_dir}${sample_name}_flexbar_2.fastq"
 
   STAR --runMode alignReads \
        --genomeDir "${genome_index_dir}" \
        --runThreadN 10 \
-       --readFilesCommand zcat \
        --readFilesIn "${R1_file}" "${R2_file}" \
        --outSAMtype BAM SortedByCoordinate \
        --outSAMunmapped Within \
@@ -552,9 +654,9 @@ Then run as follows:
 cd /project/pi_hputnam_uri_edu/zdellaert/Porites_LCM_test/scripts
 
 # run STAR standard script
-sbatch --dependency=afterok:60202668 04_STAR.sh POR Pcomp \
+sbatch 04_STAR.sh POR Pcomp \
      "/work/pi_hputnam_uri_edu/HI_Genomes/Pcompressa/Porites_compressa_HIv1.assembly.fasta" \
-     "/work/pi_hputnam_uri_edu/HI_Genomes/Pcompressa/Porites_compressa_HIv1.gff3" \
+     "/work/pi_hputnam_uri_edu/HI_Genomes/Pcompressa/Porites_compressa_HIv1.genes.gff3" \
      T
 ```
 

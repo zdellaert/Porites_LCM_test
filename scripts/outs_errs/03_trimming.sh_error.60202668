@@ -1,2 +1,15 @@
 Loading perl version 5.38.2
 Loading parallel version 20240822
+Loading openjdk version 17.0.8.1_1
+Loading fastqc version 0.12.1
+Loading uri version main
+NOTE: The modules under this branch will not run on the login node. Use
+--constraint=avx512 for sbatch or srun sessions. 
+Skipping '/scratch4/workspace/zdellaert_uri_edu-shared_TimeSeries/Porites_LCM_test/trimmed/*trim.fastq.gz' which didn't exist, or couldn't be read
+
+  /// MultiQC 🔍 | v1.12
+
+|           multiqc | MultiQC Version v1.35 now available!
+|           multiqc | Search path : /project/pi_hputnam_uri_edu/zdellaert/Porites_LCM_test/output_RNA/trimmed_qc
+|           multiqc | No analysis results found. Cleaning up..
+|           multiqc | MultiQC complete
