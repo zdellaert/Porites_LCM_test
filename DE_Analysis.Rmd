@@ -303,8 +303,8 @@ write.csv(DE_05_SwissProt,
 ## 3. Heatmap of differentially expressed genes, with Swissprot annotation
 
 ```{r heatmap-swissprot}
-DE_05_SwissProt$short_name <- ifelse(nchar(DE_05_SwissProt$ProteinNames) > 30, 
-                            paste0(substr(DE_05_SwissProt$ProteinNames, 1, 27), "..."), 
+DE_05_SwissProt$short_name <- ifelse(nchar(DE_05_SwissProt$ProteinNames) > 50, 
+                            paste0(substr(DE_05_SwissProt$ProteinNames, 1, 47), "..."), 
                             DE_05_SwissProt$ProteinNames)
 
 gene_labels <- DE_05_SwissProt %>% 
@@ -315,20 +315,52 @@ gene_labels <- DE_05_SwissProt %>%
 topDEGenes <- order(res$padj)[1:50]
 
 png("output_RNA/analysis/plots/top50_DE_heatmap_swissprot.png", width = 2000, height = 2400, res = 300)
-pheatmap(vst_mat[topDEGenes, ], 
+print(pheatmap(vst_mat[topDEGenes, ], 
          cluster_rows=TRUE, show_rownames=TRUE,
          cluster_cols=TRUE, cutree_cols = 2,
          annotation_col=(meta%>% select(tissue)),
-         labels_row = gene_labels[match(rownames(res)[topDEGenes],(gene_labels$query)),2], fontsize_row = 6)
+         labels_row = gene_labels[match(rownames(res)[topDEGenes],(gene_labels$query)),2], fontsize_row = 6))
 dev.off()
 
 
 png("output_RNA/analysis/plots/top50_DE_ordered_heatmap_swissprot.png", width = 2000, height = 2400, res = 300)
-pheatmap(vst_mat[topDEGenes, ], 
+print(pheatmap(vst_mat[topDEGenes, ], 
          cluster_rows=FALSE, show_rownames=TRUE,
          cluster_cols=TRUE, cutree_cols = 2,
          annotation_col=(meta%>% select(tissue)),
-         labels_row = gene_labels[match(rownames(res)[topDEGenes],(gene_labels$query)),2], fontsize_row = 6)
+         labels_row = gene_labels[match(rownames(res)[topDEGenes],(gene_labels$query)),2], fontsize_row = 6))
+dev.off()
+```
+
+```{r heatmap-swissprot}
+DE_05_SwissProt$short_name <- ifelse(nchar(DE_05_SwissProt$ProteinNames) > 50, 
+                            paste0(substr(DE_05_SwissProt$ProteinNames, 1, 47), "..."), 
+                            DE_05_SwissProt$ProteinNames)
+
+gene_labels <- DE_05_SwissProt %>% 
+  select(query,short_name) %>%
+  mutate_all(~ ifelse(is.na(.), "", .)) #replace NAs with "" for labelling purposes
+
+#view most significantly differentially expressed genes in order by LFC with labels
+topDEGenes <- order(res$log2FoldChange)[1:50]
+
+png("output_RNA/analysis/plots/top50_LFC_ordered_heatmap_swissprot.png", width = 2000, height = 2400, res = 300)
+print(pheatmap(vst_mat[topDEGenes, ], 
+         cluster_rows=FALSE, show_rownames=TRUE,
+         cluster_cols=TRUE, cutree_cols = 2,
+         annotation_col=(meta%>% select(tissue)),
+         labels_row = gene_labels[match(rownames(res)[topDEGenes],(gene_labels$query)),2], fontsize_row = 6))
+dev.off()
+
+#view most significantly differentially expressed genes in order by LFC with labels
+topDEGenes <- order(res$log2FoldChange, decreasing = TRUE)[1:50]
+
+png("output_RNA/analysis/plots/top50_LFC_up_ordered_heatmap_swissprot.png", width = 2000, height = 2400, res = 300)
+print(pheatmap(vst_mat[topDEGenes, ], 
+         cluster_rows=FALSE, show_rownames=TRUE,
+         cluster_cols=TRUE, cutree_cols = 2,
+         annotation_col=(meta%>% select(tissue)),
+         labels_row = gene_labels[match(rownames(res)[topDEGenes],(gene_labels$query)),2], fontsize_row = 6))
 dev.off()
 ```
 
