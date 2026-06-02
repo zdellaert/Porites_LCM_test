@@ -528,7 +528,7 @@ run_flexbar() {
         --detect_adapter_for_pe \
         --qualified_quality_phred 20 \
         --trim_poly_g \
-        --trim_poly_a \
+        --trim_poly_x \
         --trim_front1 10 --trim_front2 10 \
         --length_required 20 \
         --thread 2 \
@@ -732,7 +732,7 @@ sbatch 05_qualimap.sh "$species" "$genome" "$gtf_path"
 ```
 cd /project/pi_hputnam_uri_edu/zdellaert/Porites_LCM_test/scripts
 
-sbatch --dependency=afterok:60203024 05_qualimap.sh POR Pcomp "/work/pi_hputnam_uri_edu/HI_Genomes/Pcompressa/Porites_compressa_HIv1.gtf"
+sbatch 05_qualimap.sh POR Pcomp "/work/pi_hputnam_uri_edu/HI_Genomes/Pcompressa/Porites_compressa_HIv1.gtf"
 ```
 
 Then:
@@ -837,7 +837,7 @@ sbatch 06_stringtie.sh "$species" "$genome" "$gtf_path"
 ```
 cd /project/pi_hputnam_uri_edu/zdellaert/Porites_LCM_test/scripts
 
-sbatch --dependency=afterok:60203026 06_stringtie.sh POR Pcomp "/work/pi_hputnam_uri_edu/HI_Genomes/Pcompressa/Porites_compressa_HIv1.gtf"
+sbatch  06_stringtie.sh POR Pcomp "/work/pi_hputnam_uri_edu/HI_Genomes/Pcompressa/Porites_compressa_HIv1.gtf"
 ```
 
 ## Generate gene count matrix
@@ -912,7 +912,7 @@ sbatch 07_prepDE.sh "$species" "$genome"
 ```
 cd /project/pi_hputnam_uri_edu/zdellaert/Porites_LCM_test/scripts
 
-sbatch --dependency=afterok:60203030 07_prepDE.sh POR Pcomp
+sbatch 07_prepDE.sh POR Pcomp
 ```
 
 Woohoo! [Gene count matrix complete.](https://github.com/zdellaert/Porites_LCM_test/blob/main/output_RNA/count_matrices).

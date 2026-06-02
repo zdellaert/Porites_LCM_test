@@ -1,0 +1,55 @@
+RNA-Seq QC report
+-----------------------------------
+
+>>>>>>> Input
+
+    bam file = /scratch4/workspace/zdellaert_uri_edu-shared_TimeSeries/Porites_LCM_test/aligned/POR_Pcomp/POR_34_S82_Aligned.sortedByCoord.out.bam
+    gff file = /work/pi_hputnam_uri_edu/HI_Genomes/Pcompressa/Porites_compressa_HIv1.gtf
+    counting algorithm = uniquely-mapped-reads
+    protocol = non-strand-specific
+
+
+>>>>>>> Reads alignment
+
+    reads aligned (left/right) = 26,666,043 / 26,663,135
+    read pairs aligned  = 26,611,628
+    total alignments = 60,548,419
+    secondary alignments = 7,219,241
+    non-unique alignments = 10,474,555
+    aligned to genes  = 18,028,523
+    ambiguous alignments = 2,199
+    no feature assigned = 32,027,744
+    not aligned = 21,150,872
+    SSP estimation (fwd/rev) = 0.5 / 0.5
+
+
+>>>>>>> Reads genomic origin
+
+    exonic =  18,028,523 (36.02%)
+    intronic = 10,053,625 (20.08%)
+    intergenic = 21,974,119 (43.9%)
+    overlapping exon = 6,260,464 (12.51%)
+
+
+>>>>>>> Transcript coverage profile
+
+    5' bias = 0.58
+    3' bias = 0.64
+    5'-3' bias = 0.94
+
+
+>>>>>>> Junction analysis
+
+    reads at junctions = 20,903,873
+
+    TCCT : 5.46%
+    ACCT : 5.07%
+    AGGT : 4.1%
+    AGGA : 4.05%
+    ATCT : 3.49%
+    AGCT : 2.84%
+    AGGC : 2.76%
+    AGAT : 2.65%
+    AGGG : 2.2%
+    TACG : 2.15%
+    AGAA : 2.02%

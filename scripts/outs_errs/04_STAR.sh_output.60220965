@@ -1,0 +1,24 @@
+	STAR --runMode alignReads --genomeDir /scratch4/workspace/zdellaert_uri_edu-shared_TimeSeries/Porites_LCM_test/STAR_indexes/Pcomp --runThreadN 10 --readFilesIn /scratch4/workspace/zdellaert_uri_edu-shared_TimeSeries/Porites_LCM_test/trimmed/POR_13_S81_flexbar_1.fastq /scratch4/workspace/zdellaert_uri_edu-shared_TimeSeries/Porites_LCM_test/trimmed/POR_13_S81_flexbar_2.fastq --outSAMtype BAM SortedByCoordinate --outSAMunmapped Within --outSAMattributes Standard --outFileNamePrefix /scratch4/workspace/zdellaert_uri_edu-shared_TimeSeries/Porites_LCM_test/aligned/POR_Pcomp/POR_13_S81_ --quantMode GeneCounts
+	STAR version: 2.7.11b   compiled: 2024-09-18T11:48:15-04:00 uri-cpu006:/tmp/STAR/2.7.11b/GCC-12.3.0/STAR-2.7.11b/source
+Jun 02 11:27:58 ..... started STAR run
+Jun 02 11:27:58 ..... loading genome
+Jun 02 11:28:10 ..... started mapping
+Jun 02 11:50:34 ..... finished mapping
+Jun 02 11:50:35 ..... started sorting BAM
+Jun 02 11:51:55 ..... finished successfully
+	STAR --runMode alignReads --genomeDir /scratch4/workspace/zdellaert_uri_edu-shared_TimeSeries/Porites_LCM_test/STAR_indexes/Pcomp --runThreadN 10 --readFilesIn /scratch4/workspace/zdellaert_uri_edu-shared_TimeSeries/Porites_LCM_test/trimmed/POR_34_S82_flexbar_1.fastq /scratch4/workspace/zdellaert_uri_edu-shared_TimeSeries/Porites_LCM_test/trimmed/POR_34_S82_flexbar_2.fastq --outSAMtype BAM SortedByCoordinate --outSAMunmapped Within --outSAMattributes Standard --outFileNamePrefix /scratch4/workspace/zdellaert_uri_edu-shared_TimeSeries/Porites_LCM_test/aligned/POR_Pcomp/POR_34_S82_ --quantMode GeneCounts
+	STAR version: 2.7.11b   compiled: 2024-09-18T11:48:15-04:00 uri-cpu006:/tmp/STAR/2.7.11b/GCC-12.3.0/STAR-2.7.11b/source
+Jun 02 11:51:58 ..... started STAR run
+Jun 02 11:51:58 ..... loading genome
+Jun 02 11:52:02 ..... started mapping
+Jun 02 12:12:30 ..... finished mapping
+Jun 02 12:12:31 ..... started sorting BAM
+Jun 02 12:13:34 ..... finished successfully
+	STAR --runMode alignReads --genomeDir /scratch4/workspace/zdellaert_uri_edu-shared_TimeSeries/Porites_LCM_test/STAR_indexes/Pcomp --runThreadN 10 --readFilesIn /scratch4/workspace/zdellaert_uri_edu-shared_TimeSeries/Porites_LCM_test/trimmed/POR_61_S83_flexbar_1.fastq /scratch4/workspace/zdellaert_uri_edu-shared_TimeSeries/Porites_LCM_test/trimmed/POR_61_S83_flexbar_2.fastq --outSAMtype BAM SortedByCoordinate --outSAMunmapped Within --outSAMattributes Standard --outFileNamePrefix /scratch4/workspace/zdellaert_uri_edu-shared_TimeSeries/Porites_LCM_test/aligned/POR_Pcomp/POR_61_S83_ --quantMode GeneCounts
+	STAR version: 2.7.11b   compiled: 2024-09-18T11:48:15-04:00 uri-cpu006:/tmp/STAR/2.7.11b/GCC-12.3.0/STAR-2.7.11b/source
+Jun 02 12:13:38 ..... started STAR run
+Jun 02 12:13:38 ..... loading genome
+Jun 02 12:13:42 ..... started mapping
+Jun 02 12:33:02 ..... finished mapping
+Jun 02 12:33:03 ..... started sorting BAM
+Jun 02 12:34:23 ..... finished successfully

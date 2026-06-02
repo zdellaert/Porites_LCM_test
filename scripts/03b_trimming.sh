@@ -1,17 +1,18 @@
 #!/usr/bin/env bash
 #SBATCH --export=NONE
 #SBATCH --nodes=1
-#SBATCH --ntasks-per-node=14
+#SBATCH --ntasks-per-node=8
 #SBATCH --signal=2
 #SBATCH --no-requeue
-#SBATCH --mem=80GB
-#SBATCH -t 03:59:00
+#SBATCH --mem=40GB
+#SBATCH -t 01:59:00
 #SBATCH --mail-type=BEGIN,END,FAIL #email you when job starts, stops and/or fails
 #SBATCH --error=../scripts/outs_errs/%x_error.%j #if your job fails, the error report will be put in this file
 #SBATCH --output=../scripts/outs_errs/%x_output.%j #once your job is completed, any final job report comments will be put in this file
 
 # load modules needed
 module load parallel/20240822
+module load fastp/0.23.4
 
 # make and define directories needed
 data_dir="/project/pi_hputnam_uri_edu/zdellaert/Porites_LCM_test/data_RNA/"
@@ -48,10 +49,10 @@ run_fastp() {
         --detect_adapter_for_pe \
         --qualified_quality_phred 20 \
         --trim_poly_g \
-        --trim_poly_a \
+        --trim_poly_x \
         --trim_front1 10 --trim_front2 10 \
         --length_required 20 \
-        --thread 4 \
+        --thread 2 \
         --overrepresentation_analysis \
         --html "${qc_dir}${sample_name}_fastp.html" \
         --json "${qc_dir}${sample_name}_fastp.json"

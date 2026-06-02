@@ -5,7 +5,7 @@
 #SBATCH --time=04:00:00
 #SBATCH --error=../scripts/outs_errs/%x_%A_%a_error #if your job fails, the error report will be put in this file
 #SBATCH --output=../scripts/outs_errs/%x_%A_%a_output #once your job is completed, any final job report comments will be put in this file
-#SBATCH --array=0-41
+#SBATCH --array=0-2
 #SBATCH --mail-type=END,FAIL,TIME_LIMIT_80
 #SBATCH --no-requeue
 

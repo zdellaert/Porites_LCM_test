@@ -1,0 +1,301 @@
+Loading perl version 5.38.2
+Loading parallel version 20240822
+Loading gzip version 1.13
+Loading zlib-ng version 2.1.6
+Loading libdeflate version 1.18
+Loading libisal version 2.29.0
+Loading fastp version 0.23.4
+Detecting adapter sequence for read1...
+>Illumina TruSeq Adapter Read 1
+AGATCGGAAGAGCACACGTCTGAACTCCAGTCA
+
+Detecting adapter sequence for read2...
+>Illumina TruSeq Adapter Read 2
+AGATCGGAAGAGCGTCGTGTAGGGAAAGAGTGT
+
+Read1 before filtering:
+total reads: 38069538
+total bases: 5748500238
+Q20 bases: 5414168447(94.184%)
+Q30 bases: 5058192246(87.9915%)
+
+Read2 before filtering:
+total reads: 38069538
+total bases: 5748500238
+Q20 bases: 5441655891(94.6622%)
+Q30 bases: 5091450367(88.5701%)
+
+Read1 after filtering:
+total reads: 35600303
+total bases: 4122835018
+Q20 bases: 4013276810(97.3426%)
+Q30 bases: 3849735489(93.3759%)
+
+Read2 after filtering:
+total reads: 35600303
+total bases: 4122997466
+Q20 bases: 4014833165(97.3766%)
+Q30 bases: 3872745243(93.9303%)
+
+Filtering result:
+reads passed filter: 71200606
+reads failed due to low quality: 4127090
+reads failed due to too many N: 12314
+reads failed due to too short: 799066
+reads with adapter trimmed: 44796979
+bases trimmed due to adapters: 1654750622
+reads with polyX in 3' end: 2511777
+bases trimmed in polyX tail: 111721486
+
+Duplication rate: 7.53621%
+
+Insert size peak (evaluated by paired-end reads): 161
+
+JSON report: /project/pi_hputnam_uri_edu/zdellaert/Porites_LCM_test/output_RNA/trimmed_fastp_qc/POR_34_S82_fastp.json
+HTML report: /project/pi_hputnam_uri_edu/zdellaert/Porites_LCM_test/output_RNA/trimmed_fastp_qc/POR_34_S82_fastp.html
+
+fastp --in1 /project/pi_hputnam_uri_edu/zdellaert/Porites_LCM_test/data_RNA/POR_34_S82_R1_001.fastq.gz --in2 /project/pi_hputnam_uri_edu/zdellaert/Porites_LCM_test/data_RNA/POR_34_S82_R2_001.fastq.gz --out1 /scratch4/workspace/zdellaert_uri_edu-shared_TimeSeries/Porites_LCM_test/trimmed_fastp/POR_34_S82_R1_trim.fastq.gz --out2 /scratch4/workspace/zdellaert_uri_edu-shared_TimeSeries/Porites_LCM_test/trimmed_fastp/POR_34_S82_R2_trim.fastq.gz --detect_adapter_for_pe --qualified_quality_phred 20 --trim_poly_g --trim_poly_x --trim_front1 10 --trim_front2 10 --length_required 20 --thread 2 --overrepresentation_analysis --html /project/pi_hputnam_uri_edu/zdellaert/Porites_LCM_test/output_RNA/trimmed_fastp_qc/POR_34_S82_fastp.html --json /project/pi_hputnam_uri_edu/zdellaert/Porites_LCM_test/output_RNA/trimmed_fastp_qc/POR_34_S82_fastp.json 
+fastp v0.23.4, time used: 774 seconds
+Detecting adapter sequence for read1...
+>Illumina TruSeq Adapter Read 1
+AGATCGGAAGAGCACACGTCTGAACTCCAGTCA
+
+Detecting adapter sequence for read2...
+>Illumina TruSeq Adapter Read 2
+AGATCGGAAGAGCGTCGTGTAGGGAAAGAGTGT
+
+Read1 before filtering:
+total reads: 35284752
+total bases: 5327997552
+Q20 bases: 4971475476(93.3085%)
+Q30 bases: 4581593835(85.9909%)
+
+Read2 before filtering:
+total reads: 35284752
+total bases: 5327997552
+Q20 bases: 4949409199(92.8944%)
+Q30 bases: 4582066719(85.9998%)
+
+Read1 after filtering:
+total reads: 31936512
+total bases: 3807011035
+Q20 bases: 3663652377(96.2344%)
+Q30 bases: 3473592788(91.242%)
+
+Read2 after filtering:
+total reads: 31936512
+total bases: 3807815298
+Q20 bases: 3666033120(96.2765%)
+Q30 bases: 3506090652(92.0762%)
+
+Filtering result:
+reads passed filter: 63873024
+reads failed due to low quality: 6023294
+reads failed due to too many N: 10478
+reads failed due to too short: 662708
+reads with adapter trimmed: 35789814
+bases trimmed due to adapters: 1280638111
+reads with polyX in 3' end: 2833385
+bases trimmed in polyX tail: 103698244
+
+Duplication rate: 9.80371%
+
+Insert size peak (evaluated by paired-end reads): 161
+
+JSON report: /project/pi_hputnam_uri_edu/zdellaert/Porites_LCM_test/output_RNA/trimmed_fastp_qc/POR_13_S81_fastp.json
+HTML report: /project/pi_hputnam_uri_edu/zdellaert/Porites_LCM_test/output_RNA/trimmed_fastp_qc/POR_13_S81_fastp.html
+
+fastp --in1 /project/pi_hputnam_uri_edu/zdellaert/Porites_LCM_test/data_RNA/POR_13_S81_R1_001.fastq.gz --in2 /project/pi_hputnam_uri_edu/zdellaert/Porites_LCM_test/data_RNA/POR_13_S81_R2_001.fastq.gz --out1 /scratch4/workspace/zdellaert_uri_edu-shared_TimeSeries/Porites_LCM_test/trimmed_fastp/POR_13_S81_R1_trim.fastq.gz --out2 /scratch4/workspace/zdellaert_uri_edu-shared_TimeSeries/Porites_LCM_test/trimmed_fastp/POR_13_S81_R2_trim.fastq.gz --detect_adapter_for_pe --qualified_quality_phred 20 --trim_poly_g --trim_poly_x --trim_front1 10 --trim_front2 10 --length_required 20 --thread 2 --overrepresentation_analysis --html /project/pi_hputnam_uri_edu/zdellaert/Porites_LCM_test/output_RNA/trimmed_fastp_qc/POR_13_S81_fastp.html --json /project/pi_hputnam_uri_edu/zdellaert/Porites_LCM_test/output_RNA/trimmed_fastp_qc/POR_13_S81_fastp.json 
+fastp v0.23.4, time used: 777 seconds
+Detecting adapter sequence for read1...
+>Illumina TruSeq Adapter Read 1
+AGATCGGAAGAGCACACGTCTGAACTCCAGTCA
+
+Detecting adapter sequence for read2...
+>Illumina TruSeq Adapter Read 2
+AGATCGGAAGAGCGTCGTGTAGGGAAAGAGTGT
+
+Read1 before filtering:
+total reads: 40124527
+total bases: 6058803577
+Q20 bases: 5707076217(94.1948%)
+Q30 bases: 5320375430(87.8123%)
+
+Read2 before filtering:
+total reads: 40124527
+total bases: 6058803577
+Q20 bases: 5689130593(93.8986%)
+Q30 bases: 5311921631(87.6728%)
+
+Read1 after filtering:
+total reads: 36870334
+total bases: 4462347372
+Q20 bases: 4313015290(96.6535%)
+Q30 bases: 4113408058(92.1804%)
+
+Read2 after filtering:
+total reads: 36870334
+total bases: 4461722795
+Q20 bases: 4315372762(96.7199%)
+Q30 bases: 4143478142(92.8672%)
+
+Filtering result:
+reads passed filter: 73740668
+reads failed due to low quality: 5567362
+reads failed due to too many N: 9104
+reads failed due to too short: 931920
+reads with adapter trimmed: 39383552
+bases trimmed due to adapters: 1358921369
+reads with polyX in 3' end: 3128139
+bases trimmed in polyX tail: 136516221
+
+Duplication rate: 8.72913%
+
+Insert size peak (evaluated by paired-end reads): 161
+
+JSON report: /project/pi_hputnam_uri_edu/zdellaert/Porites_LCM_test/output_RNA/trimmed_fastp_qc/POR_61_S83_fastp.json
+HTML report: /project/pi_hputnam_uri_edu/zdellaert/Porites_LCM_test/output_RNA/trimmed_fastp_qc/POR_61_S83_fastp.html
+
+fastp --in1 /project/pi_hputnam_uri_edu/zdellaert/Porites_LCM_test/data_RNA/POR_61_S83_R1_001.fastq.gz --in2 /project/pi_hputnam_uri_edu/zdellaert/Porites_LCM_test/data_RNA/POR_61_S83_R2_001.fastq.gz --out1 /scratch4/workspace/zdellaert_uri_edu-shared_TimeSeries/Porites_LCM_test/trimmed_fastp/POR_61_S83_R1_trim.fastq.gz --out2 /scratch4/workspace/zdellaert_uri_edu-shared_TimeSeries/Porites_LCM_test/trimmed_fastp/POR_61_S83_R2_trim.fastq.gz --detect_adapter_for_pe --qualified_quality_phred 20 --trim_poly_g --trim_poly_x --trim_front1 10 --trim_front2 10 --length_required 20 --thread 2 --overrepresentation_analysis --html /project/pi_hputnam_uri_edu/zdellaert/Porites_LCM_test/output_RNA/trimmed_fastp_qc/POR_61_S83_fastp.html --json /project/pi_hputnam_uri_edu/zdellaert/Porites_LCM_test/output_RNA/trimmed_fastp_qc/POR_61_S83_fastp.json 
+fastp v0.23.4, time used: 833 seconds
+Loading openjdk version 17.0.8.1_1
+Loading fastqc version 0.12.1
+Loading uri version main
+NOTE: The modules under this branch will not run on the login node. Use
+--constraint=avx512 for sbatch or srun sessions. 
+Removing gzip version 1.13
+
+The following have been reloaded with a version change:
+  1) gzip/1.13-6ywtnqq => gzip/1.10-GCCcore-11.2.0
+
+Started analysis of POR_13_S81_R1_trim.fastq.gz
+Approx 5% complete for POR_13_S81_R1_trim.fastq.gz
+Approx 10% complete for POR_13_S81_R1_trim.fastq.gz
+Approx 15% complete for POR_13_S81_R1_trim.fastq.gz
+Approx 20% complete for POR_13_S81_R1_trim.fastq.gz
+Approx 25% complete for POR_13_S81_R1_trim.fastq.gz
+Approx 30% complete for POR_13_S81_R1_trim.fastq.gz
+Approx 35% complete for POR_13_S81_R1_trim.fastq.gz
+Approx 40% complete for POR_13_S81_R1_trim.fastq.gz
+Approx 45% complete for POR_13_S81_R1_trim.fastq.gz
+Approx 50% complete for POR_13_S81_R1_trim.fastq.gz
+Approx 55% complete for POR_13_S81_R1_trim.fastq.gz
+Approx 60% complete for POR_13_S81_R1_trim.fastq.gz
+Approx 65% complete for POR_13_S81_R1_trim.fastq.gz
+Approx 70% complete for POR_13_S81_R1_trim.fastq.gz
+Approx 75% complete for POR_13_S81_R1_trim.fastq.gz
+Approx 80% complete for POR_13_S81_R1_trim.fastq.gz
+Approx 85% complete for POR_13_S81_R1_trim.fastq.gz
+Approx 90% complete for POR_13_S81_R1_trim.fastq.gz
+Approx 95% complete for POR_13_S81_R1_trim.fastq.gz
+Started analysis of POR_13_S81_R2_trim.fastq.gz
+Approx 5% complete for POR_13_S81_R2_trim.fastq.gz
+Approx 10% complete for POR_13_S81_R2_trim.fastq.gz
+Approx 15% complete for POR_13_S81_R2_trim.fastq.gz
+Approx 20% complete for POR_13_S81_R2_trim.fastq.gz
+Approx 25% complete for POR_13_S81_R2_trim.fastq.gz
+Approx 30% complete for POR_13_S81_R2_trim.fastq.gz
+Approx 35% complete for POR_13_S81_R2_trim.fastq.gz
+Approx 40% complete for POR_13_S81_R2_trim.fastq.gz
+Approx 45% complete for POR_13_S81_R2_trim.fastq.gz
+Approx 50% complete for POR_13_S81_R2_trim.fastq.gz
+Approx 55% complete for POR_13_S81_R2_trim.fastq.gz
+Approx 60% complete for POR_13_S81_R2_trim.fastq.gz
+Approx 65% complete for POR_13_S81_R2_trim.fastq.gz
+Approx 70% complete for POR_13_S81_R2_trim.fastq.gz
+Approx 75% complete for POR_13_S81_R2_trim.fastq.gz
+Approx 80% complete for POR_13_S81_R2_trim.fastq.gz
+Approx 85% complete for POR_13_S81_R2_trim.fastq.gz
+Approx 90% complete for POR_13_S81_R2_trim.fastq.gz
+Approx 95% complete for POR_13_S81_R2_trim.fastq.gz
+Started analysis of POR_34_S82_R1_trim.fastq.gz
+Approx 5% complete for POR_34_S82_R1_trim.fastq.gz
+Approx 10% complete for POR_34_S82_R1_trim.fastq.gz
+Approx 15% complete for POR_34_S82_R1_trim.fastq.gz
+Approx 20% complete for POR_34_S82_R1_trim.fastq.gz
+Approx 25% complete for POR_34_S82_R1_trim.fastq.gz
+Approx 30% complete for POR_34_S82_R1_trim.fastq.gz
+Approx 35% complete for POR_34_S82_R1_trim.fastq.gz
+Approx 40% complete for POR_34_S82_R1_trim.fastq.gz
+Approx 45% complete for POR_34_S82_R1_trim.fastq.gz
+Approx 50% complete for POR_34_S82_R1_trim.fastq.gz
+Approx 55% complete for POR_34_S82_R1_trim.fastq.gz
+Approx 60% complete for POR_34_S82_R1_trim.fastq.gz
+Approx 65% complete for POR_34_S82_R1_trim.fastq.gz
+Approx 70% complete for POR_34_S82_R1_trim.fastq.gz
+Approx 75% complete for POR_34_S82_R1_trim.fastq.gz
+Approx 80% complete for POR_34_S82_R1_trim.fastq.gz
+Approx 85% complete for POR_34_S82_R1_trim.fastq.gz
+Approx 90% complete for POR_34_S82_R1_trim.fastq.gz
+Approx 95% complete for POR_34_S82_R1_trim.fastq.gz
+Started analysis of POR_34_S82_R2_trim.fastq.gz
+Approx 5% complete for POR_34_S82_R2_trim.fastq.gz
+Approx 10% complete for POR_34_S82_R2_trim.fastq.gz
+Approx 15% complete for POR_34_S82_R2_trim.fastq.gz
+Approx 20% complete for POR_34_S82_R2_trim.fastq.gz
+Approx 25% complete for POR_34_S82_R2_trim.fastq.gz
+Approx 30% complete for POR_34_S82_R2_trim.fastq.gz
+Approx 35% complete for POR_34_S82_R2_trim.fastq.gz
+Approx 40% complete for POR_34_S82_R2_trim.fastq.gz
+Approx 45% complete for POR_34_S82_R2_trim.fastq.gz
+Approx 50% complete for POR_34_S82_R2_trim.fastq.gz
+Approx 55% complete for POR_34_S82_R2_trim.fastq.gz
+Approx 60% complete for POR_34_S82_R2_trim.fastq.gz
+Approx 65% complete for POR_34_S82_R2_trim.fastq.gz
+Approx 70% complete for POR_34_S82_R2_trim.fastq.gz
+Approx 75% complete for POR_34_S82_R2_trim.fastq.gz
+Approx 80% complete for POR_34_S82_R2_trim.fastq.gz
+Approx 85% complete for POR_34_S82_R2_trim.fastq.gz
+Approx 90% complete for POR_34_S82_R2_trim.fastq.gz
+Approx 95% complete for POR_34_S82_R2_trim.fastq.gz
+Started analysis of POR_61_S83_R2_trim.fastq.gz
+Approx 5% complete for POR_61_S83_R2_trim.fastq.gz
+Approx 10% complete for POR_61_S83_R2_trim.fastq.gz
+Approx 15% complete for POR_61_S83_R2_trim.fastq.gz
+Approx 20% complete for POR_61_S83_R2_trim.fastq.gz
+Approx 25% complete for POR_61_S83_R2_trim.fastq.gz
+Approx 30% complete for POR_61_S83_R2_trim.fastq.gz
+Approx 35% complete for POR_61_S83_R2_trim.fastq.gz
+Approx 40% complete for POR_61_S83_R2_trim.fastq.gz
+Approx 45% complete for POR_61_S83_R2_trim.fastq.gz
+Approx 50% complete for POR_61_S83_R2_trim.fastq.gz
+Approx 55% complete for POR_61_S83_R2_trim.fastq.gz
+Approx 60% complete for POR_61_S83_R2_trim.fastq.gz
+Approx 65% complete for POR_61_S83_R2_trim.fastq.gz
+Approx 70% complete for POR_61_S83_R2_trim.fastq.gz
+Approx 75% complete for POR_61_S83_R2_trim.fastq.gz
+Approx 80% complete for POR_61_S83_R2_trim.fastq.gz
+Approx 85% complete for POR_61_S83_R2_trim.fastq.gz
+Approx 90% complete for POR_61_S83_R2_trim.fastq.gz
+Approx 95% complete for POR_61_S83_R2_trim.fastq.gz
+Started analysis of POR_61_S83_R1_trim.fastq.gz
+Approx 5% complete for POR_61_S83_R1_trim.fastq.gz
+Approx 10% complete for POR_61_S83_R1_trim.fastq.gz
+Approx 15% complete for POR_61_S83_R1_trim.fastq.gz
+Approx 20% complete for POR_61_S83_R1_trim.fastq.gz
+Approx 25% complete for POR_61_S83_R1_trim.fastq.gz
+Approx 30% complete for POR_61_S83_R1_trim.fastq.gz
+Approx 35% complete for POR_61_S83_R1_trim.fastq.gz
+Approx 40% complete for POR_61_S83_R1_trim.fastq.gz
+Approx 45% complete for POR_61_S83_R1_trim.fastq.gz
+Approx 50% complete for POR_61_S83_R1_trim.fastq.gz
+Approx 55% complete for POR_61_S83_R1_trim.fastq.gz
+Approx 60% complete for POR_61_S83_R1_trim.fastq.gz
+Approx 65% complete for POR_61_S83_R1_trim.fastq.gz
+Approx 70% complete for POR_61_S83_R1_trim.fastq.gz
+Approx 75% complete for POR_61_S83_R1_trim.fastq.gz
+Approx 80% complete for POR_61_S83_R1_trim.fastq.gz
+Approx 85% complete for POR_61_S83_R1_trim.fastq.gz
+Approx 90% complete for POR_61_S83_R1_trim.fastq.gz
+Approx 95% complete for POR_61_S83_R1_trim.fastq.gz
+
+  /// MultiQC 🔍 | v1.12
+
+|           multiqc | MultiQC Version v1.35 now available!
+|           multiqc | Search path : /project/pi_hputnam_uri_edu/zdellaert/Porites_LCM_test/output_RNA/trimmed_fastp_qc
+|             fastp | Found 3 reports
+|            fastqc | Found 6 reports
+|           multiqc | Compressing plot data
+|           multiqc | Report      : multiqc_report.html
+|           multiqc | Data        : multiqc_data
+|           multiqc | MultiQC complete

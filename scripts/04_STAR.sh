@@ -2,7 +2,7 @@
 #SBATCH --export=NONE
 #SBATCH --ntasks=1 --cpus-per-task=20
 #SBATCH --mem=100GB
-#SBATCH --time=2:00:00
+#SBATCH --time=2:00:00 --qos=short
 #SBATCH --error=../scripts/outs_errs/%x_error.%j #if your job fails, the error report will be put in this file
 #SBATCH --output=../scripts/outs_errs/%x_output.%j #once your job is completed, any final job report comments will be put in this file
 #SBATCH --mail-type=END,FAIL,TIME_LIMIT_80

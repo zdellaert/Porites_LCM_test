@@ -1,0 +1,28 @@
+There are 3 samples to process
+Starting trimming at Tue Jun  2 11:33:36 UTC 2026
+trimming of POR_34_S82 complete at Tue Jun  2 11:46:32 UTC 2026
+trimming of POR_13_S81 complete at Tue Jun  2 11:46:34 UTC 2026
+trimming of POR_61_S83 complete at Tue Jun  2 11:47:30 UTC 2026
+Starting fastqc on trimmed files at Tue Jun 2 11:47:30 UTC 2026
+application/gzip
+Analysis complete for POR_13_S81_R1_trim.fastq.gz
+Processed /scratch4/workspace/zdellaert_uri_edu-shared_TimeSeries/Porites_LCM_test/trimmed_fastp/POR_13_S81_R1_trim.fastq.gz
+application/gzip
+Analysis complete for POR_13_S81_R2_trim.fastq.gz
+Processed /scratch4/workspace/zdellaert_uri_edu-shared_TimeSeries/Porites_LCM_test/trimmed_fastp/POR_13_S81_R2_trim.fastq.gz
+application/gzip
+Analysis complete for POR_34_S82_R1_trim.fastq.gz
+Processed /scratch4/workspace/zdellaert_uri_edu-shared_TimeSeries/Porites_LCM_test/trimmed_fastp/POR_34_S82_R1_trim.fastq.gz
+application/gzip
+Analysis complete for POR_34_S82_R2_trim.fastq.gz
+Processed /scratch4/workspace/zdellaert_uri_edu-shared_TimeSeries/Porites_LCM_test/trimmed_fastp/POR_34_S82_R2_trim.fastq.gz
+application/gzip
+Analysis complete for POR_61_S83_R2_trim.fastq.gz
+Processed /scratch4/workspace/zdellaert_uri_edu-shared_TimeSeries/Porites_LCM_test/trimmed_fastp/POR_61_S83_R2_trim.fastq.gz
+application/gzip
+Analysis complete for POR_61_S83_R1_trim.fastq.gz
+Processed /scratch4/workspace/zdellaert_uri_edu-shared_TimeSeries/Porites_LCM_test/trimmed_fastp/POR_61_S83_R1_trim.fastq.gz
+fastQC done. Tue Jun 2 11:52:30 UTC 2026
+Running MultiQC
+|         searching | ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 18/18  
+QC of trimmed RNA-seq data complete. Tue Jun 2 11:52:47 UTC 2026
