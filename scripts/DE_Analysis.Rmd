@@ -8,7 +8,11 @@ output:
     html_preview: false
 ---
 
-# Preproccessing of bulk RNA-seq data
+# LCM Low-Input Library Sanity Check Pilot
+
+This is a technical pilot to evaluate whether low-input LCM library prep on microdissected oral gastrodermis tissue from *Porites compressa* captured expected tissue-specific markers, compared against bulk whole-tissue references (n=1 OG LCM vs n=2 all-tissue LCM). 
+
+This is NOT a powered differential expression analysis. P-values and  padj are reported by DESeq2 but should not be interpreted as evidence of biological significance. Log2 fold changes are used here as an enrichment metric (OG vs bulk mixture) for library prep evaluation.
 
 ```{r setup}
 # set up file paths so that Rmd outputs can be viewed using github markdown
@@ -205,7 +209,6 @@ pheatmap(vst_mat[topVarGenes, ], cluster_rows=TRUE, show_rownames=FALSE,
          cluster_cols=TRUE, cutree_cols = 2,
          annotation_col= meta %>% select(tissue))
 dev.off()
-
 ```
 
 ## Preprocessing Summary
@@ -308,6 +311,15 @@ write.csv(DE_05_SwissProt,
 gene_labels <- DESeq_SwissProt %>%
   select(query,short_name) %>%
   mutate_all(~ ifelse(is.na(.), "", .)) #replace NAs with "" for labelling purposes
+
+
+DESeq_SwissProt$med_name <- ifelse(nchar(DESeq_SwissProt$ProteinNames) > 80,
+                            paste0(substr(DESeq_SwissProt$ProteinNames, 1, 77), "..."),
+                            DESeq_SwissProt$ProteinNames)
+
+gene_labels_full <- DESeq_SwissProt %>%
+  select(query,med_name) %>%
+  mutate_all(~ ifelse(is.na(.), "", .)) #replace NAs with "" for labelling purposes
 ```
 
 
@@ -364,7 +376,116 @@ print(heat2)
 dev.off()
 ```
 
+## 4. Genes of interest
 
+### Solute Carrier (SLC) Family genes
+
+```{r slc}
+solute_all <- DESeq_SwissProt %>% filter(grepl("Solute carrier", ProteinNames, ignore.case = TRUE))
+solute_all <- solute_all %>%
+  mutate(SLC_family = str_extract(ProteinNames, "Solute carrier family \\d+")) %>%
+  mutate(SLC_family = str_replace(SLC_family,"Solute carrier family ", "SLC")) 
+
+nrow(solute_all)
+
+solute_de <- DE_05_SwissProt %>% filter(grepl("Solute carrier", ProteinNames, ignore.case = TRUE))
+solute_de <- solute_de %>%
+  mutate(SLC_family = str_extract(ProteinNames, "Solute carrier family \\d+")) %>%
+  mutate(SLC_family = str_replace(SLC_family,"Solute carrier family ", "SLC")) 
+
+solute_de_upOG <- solute_de %>% filter(log2FoldChange > 0)
+nrow(solute_de_upOG)
+
+solute_de_downOG <- solute_de %>% filter(log2FoldChange < 0)
+nrow(solute_de_downOG)
+
+length(unique(solute_all$SLC_family))
+
+length(unique(solute_de_upOG$SLC_family))
+length(unique(solute_de_downOG$SLC_family))
+table(solute_de$SLC_family)
+```
+
+```{r slc-heatmap}
+#view most significantly differentially expressed genes in order by LFC with labels
+heat1 <- pheatmap(vst_mat[solute_de$query, ],
+         cluster_rows=TRUE, show_rownames=TRUE,
+         cluster_cols=TRUE, cutree_cols = 2,
+         annotation_col=(meta%>% select(tissue)),
+         labels_row = gene_labels_full[match(solute_de$query,(gene_labels_full$query)),2], fontsize_row =9)
+
+png("../output_RNA/analysis/plots/SLC_heatmap_swissprot.png", width = 4000, height = 2400, res = 300)
+print(heat1)
+dev.off()
+```
+
+### Biomin_genes
+
+```{r biomin}
+biomin <- read.csv("../../HI_genome_annotations/annotation/biomineralization/Pcomp_Biomin_Spis_ortholog.csv") %>% select(-X)
+
+biomin_all <- biomin %>% inner_join(DESeq_SwissProt, join_by("Pcomp_gene"=="query"))
+
+biomin_de <- biomin %>%  inner_join(DE_05_SwissProt, join_by("Pcomp_gene"=="query"))
+
+biomin_de_upOG <- biomin_de %>% filter(log2FoldChange > 0)
+nrow(biomin_de_upOG)
+
+biomin_de_downOG <- biomin_de %>% filter(log2FoldChange < 0)
+nrow(biomin_de_downOG)
+```
+
+```{r biomin-heatmap}
+heat1 <- pheatmap(vst_mat[biomin_de$Pcomp_gene, ],
+         cluster_rows=TRUE, show_rownames=TRUE,
+         cluster_cols=TRUE, cutree_cols = 2,
+         annotation_col=(meta%>% select(tissue)),
+         labels_row = biomin_de$definition, fontsize_row =9)
+
+png("../output_RNA/analysis/plots/Biomin_heatmap.png", width = 4000, height = 2400, res = 300)
+print(heat1)
+dev.off()
+```
+
+```{r biomin-heatmap-2}
+heat1 <- pheatmap(vst_mat[biomin_de$Pcomp_gene, ],
+         cluster_rows=TRUE, show_rownames=TRUE,
+         cluster_cols=TRUE, cutree_cols = 2,
+         annotation_col=(meta%>% select(tissue)),
+         labels_row = gene_labels_full[match(biomin_de$Pcomp_gene,(gene_labels_full$query)),2], fontsize_row =9)
+
+png("../output_RNA/analysis/plots/Biomin_heatmap_swissprot.png", width = 4000, height = 2400, res = 300)
+print(heat1)
+dev.off()
+```
+### Membrane genes
+
+```{r membrane}
+membrane <- read.csv("../../HI_genome_annotations/annotation/calcium_membrane_transport/Pcomp_membrane_channels.csv") %>%
+  select(query,short_name,gene_set,Bhattacharya_ID) %>% dplyr::rename(pretty_name = short_name)
+
+membrane_all <- membrane %>% inner_join(DESeq_SwissProt, join_by("query"=="query"))
+
+membrane_de <- membrane %>%  inner_join(DE_05_SwissProt, join_by("query"=="query"))
+
+membrane_de_upOG <- membrane_de %>% filter(log2FoldChange > 0)
+nrow(membrane_de_upOG)
+
+membrane_de_downOG <- membrane_de %>% filter(log2FoldChange < 0)
+nrow(membrane_de_downOG)
+```
+
+```{r membrane-membranemap}
+heat1 <- pheatmap(vst_mat[membrane_de$query, ],
+         cluster_rows=TRUE, show_rownames=TRUE,
+         cluster_cols=TRUE, cutree_cols = 2,
+         annotation_col=(meta%>% select(tissue)),
+         labels_row = membrane_de$pretty_name, fontsize_row =9)
+
+png("../output_RNA/analysis/plots/membrane_heatmap.png", width = 4000, height = 2400, res = 300)
+print(heat1)
+dev.off()
+```
 
 ## Appendix
 

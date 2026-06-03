@@ -663,6 +663,11 @@ sbatch 04_STAR.sh POR Pcomp \
      "/work/pi_hputnam_uri_edu/HI_Genomes/Pcompressa/Porites_compressa_HIv1.assembly.fasta" \
      "/work/pi_hputnam_uri_edu/HI_Genomes/Pcompressa/Porites_compressa_HIv1.genes.gff3" \
      T
+
+sbatch 04_STAR.sh POR Dtrenchii \
+     "/work/pi_hputnam_uri_edu/Dinos/Dtrenchii.fasta" \
+     "/work/pi_hputnam_uri_edu/Dinos/Dtrenchii.gtf" \
+     T
 ```
 
 ## Assess Mapping Quality

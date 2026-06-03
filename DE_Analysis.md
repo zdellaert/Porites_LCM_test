@@ -1,10 +1,10 @@
 RNA-seq Analysis
 ================
 Zoe Dellaert
-2026-06-02
+2026-06-03
 
-- [Preproccessing of bulk RNA-seq
-  data](#preproccessing-of-bulk-rna-seq-data)
+- [LCM Low-Input Library Sanity Check
+  Pilot](#lcm-low-input-library-sanity-check-pilot)
   - [0. Setup species-specific
     parameters](#0-setup-species-specific-parameters)
   - [1. Read in raw count data](#1-read-in-raw-count-data)
@@ -39,9 +39,24 @@ Zoe Dellaert
     - [Save csvs](#save-csvs)
   - [3. Heatmap of differentially expressed genes, with Swissprot
     annotation](#3-heatmap-of-differentially-expressed-genes-with-swissprot-annotation)
+  - [4. Genes of interest](#4-genes-of-interest)
+    - [Solute Carrier (SLC) Family
+      genes](#solute-carrier-slc-family-genes)
+    - [Biomin_genes](#biomin_genes)
+    - [Membrane genes](#membrane-genes)
   - [Appendix](#appendix)
 
-# Preproccessing of bulk RNA-seq data
+# LCM Low-Input Library Sanity Check Pilot
+
+This is a technical pilot to evaluate whether low-input LCM library prep
+on microdissected oral gastrodermis tissue from *Porites compressa*
+captured expected tissue-specific markers, compared against bulk
+whole-tissue references (n=1 OG LCM vs n=2 all-tissue LCM).
+
+This is NOT a powered differential expression analysis. P-values and
+padj are reported by DESeq2 but should not be interpreted as evidence of
+biological significance. Log2 fold changes are used here as an
+enrichment metric (OG vs bulk mixture) for library prep evaluation.
 
 ``` r
 # set up file paths so that Rmd outputs can be viewed using github markdown
@@ -52,10 +67,181 @@ knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE,fig.width = 
 
 #load packages
 library(tidyverse)
+```
+
+    ## ── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+    ## ✔ dplyr     1.2.1     ✔ readr     2.2.0
+    ## ✔ forcats   1.0.1     ✔ stringr   1.6.0
+    ## ✔ ggplot2   4.0.3     ✔ tibble    3.3.1
+    ## ✔ lubridate 1.9.4     ✔ tidyr     1.3.2
+    ## ✔ purrr     1.2.1     
+    ## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+    ## ✖ dplyr::filter() masks stats::filter()
+    ## ✖ dplyr::lag()    masks stats::lag()
+    ## ℹ Use the conflicted package (<http://conflicted.r-lib.org/>) to force all conflicts to become errors
+
+``` r
 library(DESeq2)
+```
+
+    ## Loading required package: S4Vectors
+    ## Loading required package: stats4
+    ## Loading required package: BiocGenerics
+    ## Loading required package: generics
+    ## 
+    ## Attaching package: 'generics'
+    ## 
+    ## The following object is masked from 'package:lubridate':
+    ## 
+    ##     as.difftime
+    ## 
+    ## The following object is masked from 'package:dplyr':
+    ## 
+    ##     explain
+    ## 
+    ## The following objects are masked from 'package:base':
+    ## 
+    ##     as.difftime, as.factor, as.ordered, intersect, is.element, setdiff,
+    ##     setequal, union
+    ## 
+    ## 
+    ## Attaching package: 'BiocGenerics'
+    ## 
+    ## The following object is masked from 'package:dplyr':
+    ## 
+    ##     combine
+    ## 
+    ## The following objects are masked from 'package:stats':
+    ## 
+    ##     IQR, mad, sd, var, xtabs
+    ## 
+    ## The following objects are masked from 'package:base':
+    ## 
+    ##     anyDuplicated, aperm, append, as.data.frame, basename, cbind,
+    ##     colnames, dirname, do.call, duplicated, eval, evalq, Filter, Find,
+    ##     get, grep, grepl, is.unsorted, lapply, Map, mapply, match, mget,
+    ##     order, paste, pmax, pmax.int, pmin, pmin.int, Position, rank,
+    ##     rbind, Reduce, rownames, sapply, saveRDS, table, tapply, unique,
+    ##     unsplit, which.max, which.min
+    ## 
+    ## 
+    ## Attaching package: 'S4Vectors'
+    ## 
+    ## The following objects are masked from 'package:lubridate':
+    ## 
+    ##     second, second<-
+    ## 
+    ## The following objects are masked from 'package:dplyr':
+    ## 
+    ##     first, rename
+    ## 
+    ## The following object is masked from 'package:tidyr':
+    ## 
+    ##     expand
+    ## 
+    ## The following object is masked from 'package:utils':
+    ## 
+    ##     findMatches
+    ## 
+    ## The following objects are masked from 'package:base':
+    ## 
+    ##     expand.grid, I, unname
+    ## 
+    ## Loading required package: IRanges
+    ## 
+    ## Attaching package: 'IRanges'
+    ## 
+    ## The following object is masked from 'package:lubridate':
+    ## 
+    ##     %within%
+    ## 
+    ## The following objects are masked from 'package:dplyr':
+    ## 
+    ##     collapse, desc, slice
+    ## 
+    ## The following object is masked from 'package:purrr':
+    ## 
+    ##     reduce
+    ## 
+    ## Loading required package: GenomicRanges
+    ## Loading required package: Seqinfo
+    ## Loading required package: SummarizedExperiment
+    ## Loading required package: MatrixGenerics
+    ## Loading required package: matrixStats
+    ## 
+    ## Attaching package: 'matrixStats'
+    ## 
+    ## The following object is masked from 'package:dplyr':
+    ## 
+    ##     count
+    ## 
+    ## 
+    ## Attaching package: 'MatrixGenerics'
+    ## 
+    ## The following objects are masked from 'package:matrixStats':
+    ## 
+    ##     colAlls, colAnyNAs, colAnys, colAvgsPerRowSet, colCollapse,
+    ##     colCounts, colCummaxs, colCummins, colCumprods, colCumsums,
+    ##     colDiffs, colIQRDiffs, colIQRs, colLogSumExps, colMadDiffs,
+    ##     colMads, colMaxs, colMeans2, colMedians, colMins, colOrderStats,
+    ##     colProds, colQuantiles, colRanges, colRanks, colSdDiffs, colSds,
+    ##     colSums2, colTabulates, colVarDiffs, colVars, colWeightedMads,
+    ##     colWeightedMeans, colWeightedMedians, colWeightedSds,
+    ##     colWeightedVars, rowAlls, rowAnyNAs, rowAnys, rowAvgsPerColSet,
+    ##     rowCollapse, rowCounts, rowCummaxs, rowCummins, rowCumprods,
+    ##     rowCumsums, rowDiffs, rowIQRDiffs, rowIQRs, rowLogSumExps,
+    ##     rowMadDiffs, rowMads, rowMaxs, rowMeans2, rowMedians, rowMins,
+    ##     rowOrderStats, rowProds, rowQuantiles, rowRanges, rowRanks,
+    ##     rowSdDiffs, rowSds, rowSums2, rowTabulates, rowVarDiffs, rowVars,
+    ##     rowWeightedMads, rowWeightedMeans, rowWeightedMedians,
+    ##     rowWeightedSds, rowWeightedVars
+    ## 
+    ## Loading required package: Biobase
+    ## Welcome to Bioconductor
+    ## 
+    ##     Vignettes contain introductory material; view with
+    ##     'browseVignettes()'. To cite Bioconductor, see
+    ##     'citation("Biobase")', and for packages 'citation("pkgname")'.
+    ## 
+    ## 
+    ## Attaching package: 'Biobase'
+    ## 
+    ## The following object is masked from 'package:MatrixGenerics':
+    ## 
+    ##     rowMedians
+    ## 
+    ## The following objects are masked from 'package:matrixStats':
+    ## 
+    ##     anyMissing, rowMedians
+
+``` r
 library(pheatmap)
 library(RColorBrewer)
 library(genefilter)
+```
+
+    ## Registered S3 methods overwritten by 'GenomeInfoDb':
+    ##   method                from   
+    ##   as.data.frame.Seqinfo Seqinfo
+    ##   merge.Seqinfo         Seqinfo
+    ##   summary.Seqinfo       Seqinfo
+    ##   update.Seqinfo        Seqinfo
+    ## 
+    ## Attaching package: 'genefilter'
+    ## 
+    ## The following objects are masked from 'package:MatrixGenerics':
+    ## 
+    ##     rowSds, rowVars
+    ## 
+    ## The following objects are masked from 'package:matrixStats':
+    ## 
+    ##     rowSds, rowVars
+    ## 
+    ## The following object is masked from 'package:readr':
+    ## 
+    ##     spec
+
+``` r
 library(ggnewscale)
 library(BiocParallel)
 
@@ -411,6 +597,15 @@ write.csv(DE_05_SwissProt,
 gene_labels <- DESeq_SwissProt %>%
   select(query,short_name) %>%
   mutate_all(~ ifelse(is.na(.), "", .)) #replace NAs with "" for labelling purposes
+
+
+DESeq_SwissProt$med_name <- ifelse(nchar(DESeq_SwissProt$ProteinNames) > 80,
+                            paste0(substr(DESeq_SwissProt$ProteinNames, 1, 77), "..."),
+                            DESeq_SwissProt$ProteinNames)
+
+gene_labels_full <- DESeq_SwissProt %>%
+  select(query,med_name) %>%
+  mutate_all(~ ifelse(is.na(.), "", .)) #replace NAs with "" for labelling purposes
 ```
 
 ``` r
@@ -492,6 +687,190 @@ dev.off()
 ``` r
 png("../output_RNA/analysis/plots/top50_LFC_up_ordered_heatmap_swissprot.png", width = 2000, height = 2400, res = 300)
 print(heat2)
+dev.off()
+```
+
+    ## png 
+    ##   2
+
+## 4. Genes of interest
+
+### Solute Carrier (SLC) Family genes
+
+``` r
+solute_all <- DESeq_SwissProt %>% filter(grepl("Solute carrier", ProteinNames, ignore.case = TRUE))
+solute_all <- solute_all %>%
+  mutate(SLC_family = str_extract(ProteinNames, "Solute carrier family \\d+")) %>%
+  mutate(SLC_family = str_replace(SLC_family,"Solute carrier family ", "SLC")) 
+
+nrow(solute_all)
+```
+
+    ## [1] 292
+
+``` r
+solute_de <- DE_05_SwissProt %>% filter(grepl("Solute carrier", ProteinNames, ignore.case = TRUE))
+solute_de <- solute_de %>%
+  mutate(SLC_family = str_extract(ProteinNames, "Solute carrier family \\d+")) %>%
+  mutate(SLC_family = str_replace(SLC_family,"Solute carrier family ", "SLC")) 
+
+solute_de_upOG <- solute_de %>% filter(log2FoldChange > 0)
+nrow(solute_de_upOG)
+```
+
+    ## [1] 9
+
+``` r
+solute_de_downOG <- solute_de %>% filter(log2FoldChange < 0)
+nrow(solute_de_downOG)
+```
+
+    ## [1] 15
+
+``` r
+length(unique(solute_all$SLC_family))
+```
+
+    ## [1] 44
+
+``` r
+length(unique(solute_de_upOG$SLC_family))
+```
+
+    ## [1] 7
+
+``` r
+length(unique(solute_de_downOG$SLC_family))
+```
+
+    ## [1] 12
+
+``` r
+table(solute_de$SLC_family)
+```
+
+    ## 
+    ## SLC15 SLC16  SLC2 SLC22 SLC24 SLC25 SLC31 SLC32 SLC34 SLC35 SLC39  SLC4 SLC46 
+    ##     1     3     1     1     2     2     1     1     1     2     2     1     1 
+    ## SLC49  SLC6  SLC7  SLC9 
+    ##     1     1     1     2
+
+``` r
+#view most significantly differentially expressed genes in order by LFC with labels
+heat1 <- pheatmap(vst_mat[solute_de$query, ],
+         cluster_rows=TRUE, show_rownames=TRUE,
+         cluster_cols=TRUE, cutree_cols = 2,
+         annotation_col=(meta%>% select(tissue)),
+         labels_row = gene_labels_full[match(solute_de$query,(gene_labels_full$query)),2], fontsize_row =9)
+```
+
+![](./output_RNA/reports/DE_Analysis_files/figure-gfm/slc-heatmap-1.png)<!-- -->
+
+``` r
+png("../output_RNA/analysis/plots/SLC_heatmap_swissprot.png", width = 4000, height = 2400, res = 300)
+print(heat1)
+dev.off()
+```
+
+    ## png 
+    ##   2
+
+### Biomin_genes
+
+``` r
+biomin <- read.csv("../../HI_genome_annotations/annotation/biomineralization/Pcomp_Biomin_Spis_ortholog.csv") %>% select(-X)
+
+biomin_all <- biomin %>% inner_join(DESeq_SwissProt, join_by("Pcomp_gene"=="query"))
+
+biomin_de <- biomin %>%  inner_join(DE_05_SwissProt, join_by("Pcomp_gene"=="query"))
+
+biomin_de_upOG <- biomin_de %>% filter(log2FoldChange > 0)
+nrow(biomin_de_upOG)
+```
+
+    ## [1] 2
+
+``` r
+biomin_de_downOG <- biomin_de %>% filter(log2FoldChange < 0)
+nrow(biomin_de_downOG)
+```
+
+    ## [1] 15
+
+``` r
+heat1 <- pheatmap(vst_mat[biomin_de$Pcomp_gene, ],
+         cluster_rows=TRUE, show_rownames=TRUE,
+         cluster_cols=TRUE, cutree_cols = 2,
+         annotation_col=(meta%>% select(tissue)),
+         labels_row = biomin_de$definition, fontsize_row =9)
+```
+
+![](./output_RNA/reports/DE_Analysis_files/figure-gfm/biomin-heatmap-1.png)<!-- -->
+
+``` r
+png("../output_RNA/analysis/plots/Biomin_heatmap.png", width = 4000, height = 2400, res = 300)
+print(heat1)
+dev.off()
+```
+
+    ## png 
+    ##   2
+
+``` r
+heat1 <- pheatmap(vst_mat[biomin_de$Pcomp_gene, ],
+         cluster_rows=TRUE, show_rownames=TRUE,
+         cluster_cols=TRUE, cutree_cols = 2,
+         annotation_col=(meta%>% select(tissue)),
+         labels_row = gene_labels_full[match(biomin_de$Pcomp_gene,(gene_labels_full$query)),2], fontsize_row =9)
+```
+
+![](./output_RNA/reports/DE_Analysis_files/figure-gfm/biomin-heatmap-2-1.png)<!-- -->
+
+``` r
+png("../output_RNA/analysis/plots/Biomin_heatmap_swissprot.png", width = 4000, height = 2400, res = 300)
+print(heat1)
+dev.off()
+```
+
+    ## png 
+    ##   2
+
+### Membrane genes
+
+``` r
+membrane <- read.csv("../../HI_genome_annotations/annotation/calcium_membrane_transport/Pcomp_membrane_channels.csv") %>%
+  select(query,short_name,gene_set,Bhattacharya_ID) %>% dplyr::rename(pretty_name = short_name)
+
+membrane_all <- membrane %>% inner_join(DESeq_SwissProt, join_by("query"=="query"))
+
+membrane_de <- membrane %>%  inner_join(DE_05_SwissProt, join_by("query"=="query"))
+
+membrane_de_upOG <- membrane_de %>% filter(log2FoldChange > 0)
+nrow(membrane_de_upOG)
+```
+
+    ## [1] 7
+
+``` r
+membrane_de_downOG <- membrane_de %>% filter(log2FoldChange < 0)
+nrow(membrane_de_downOG)
+```
+
+    ## [1] 12
+
+``` r
+heat1 <- pheatmap(vst_mat[membrane_de$query, ],
+         cluster_rows=TRUE, show_rownames=TRUE,
+         cluster_cols=TRUE, cutree_cols = 2,
+         annotation_col=(meta%>% select(tissue)),
+         labels_row = membrane_de$pretty_name, fontsize_row =9)
+```
+
+![](./output_RNA/reports/DE_Analysis_files/figure-gfm/membrane-membranemap-1.png)<!-- -->
+
+``` r
+png("../output_RNA/analysis/plots/membrane_heatmap.png", width = 4000, height = 2400, res = 300)
+print(heat1)
 dev.off()
 ```
 
