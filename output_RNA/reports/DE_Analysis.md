@@ -1,1 +1,1 @@
-Please go to https://github.com/zdellaert/Porites_LCM_test/DE_Analysis.md
+Please go to https://github.com/zdellaert/Porites_LCM_test/blob/main/DE_Analysis.md
