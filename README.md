@@ -666,7 +666,7 @@ sbatch 04_STAR.sh POR Pcomp \
 
 sbatch 04_STAR.sh POR Dtrenchii \
      "/work/pi_hputnam_uri_edu/Dinos/Dtrenchii.fasta" \
-     "/work/pi_hputnam_uri_edu/Dinos/Dtrenchii.gtf" \
+     "/work/pi_hputnam_uri_edu/Dinos/Dtrenchii_cleaned.gtf" \
      T
 ```
 
@@ -743,6 +743,7 @@ sbatch 05_qualimap.sh "$species" "$genome" "$gtf_path"
 cd /project/pi_hputnam_uri_edu/zdellaert/Porites_LCM_test/scripts
 
 sbatch 05_qualimap.sh POR Pcomp "/work/pi_hputnam_uri_edu/HI_Genomes/Pcompressa/Porites_compressa_HIv1.gtf"
+sbatch 05_qualimap.sh POR Dtrenchii "/work/pi_hputnam_uri_edu/Dinos/Dtrenchii_cleaned.gtf"
 ```
 
 Then:
@@ -757,6 +758,14 @@ scratch_dir="/scratch4/workspace/zdellaert_uri_edu-shared_TimeSeries/Porites_LCM
 
 species="POR"
 genome="Pcomp"
+alignments_dir="${scratch_dir}/aligned/${species}_${genome}"
+qc_dir="/project/pi_hputnam_uri_edu/zdellaert/Porites_LCM_test/output_RNA/alignment_qc/${species}_${genome}"
+
+cd "${qc_dir}"
+
+multiqc . "${alignments_dir}"
+
+genome="Dtrenchii"
 alignments_dir="${scratch_dir}/aligned/${species}_${genome}"
 qc_dir="/project/pi_hputnam_uri_edu/zdellaert/Porites_LCM_test/output_RNA/alignment_qc/${species}_${genome}"
 

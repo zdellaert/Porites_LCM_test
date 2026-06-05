@@ -1,0 +1,4 @@
+Sample	bam_file	reads_aligned	total_alignments	non_unique_alignments	reads_aligned_genes	ambiguous_alignments	not_aligned	reads_aligned_exonic	reads_aligned_intronic	reads_aligned_intergenic	reads_aligned_overlapping_exon
+POR_13_S81	/scratch4/workspace/zdellaert_uri_edu-shared_TimeSeries/Porites_LCM_test/aligned/POR_Dtrenchii/POR_13_S81_Aligned.sortedByCoord.out.bam	142883.0	1083359.0	733128.0	2029.0	0.0	68827328.0	2029.0	6095.0	6359.0	287.0
+POR_34_S82	/scratch4/workspace/zdellaert_uri_edu-shared_TimeSeries/Porites_LCM_test/aligned/POR_Dtrenchii/POR_34_S82_Aligned.sortedByCoord.out.bam	104772.0	755372.0	557785.0	1544.0	0.0	74269699.0	1544.0	5685.0	5254.0	255.0
+POR_61_S83	/scratch4/workspace/zdellaert_uri_edu-shared_TimeSeries/Porites_LCM_test/aligned/POR_Dtrenchii/POR_61_S83_Aligned.sortedByCoord.out.bam	144332.0	1145287.0	667053.0	1498.0	0.0	78122616.0	1498.0	6674.0	5284.0	190.0

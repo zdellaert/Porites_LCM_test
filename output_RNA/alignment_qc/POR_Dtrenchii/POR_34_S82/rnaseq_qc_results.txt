@@ -1,0 +1,55 @@
+RNA-Seq QC report
+-----------------------------------
+
+>>>>>>> Input
+
+    bam file = /scratch4/workspace/zdellaert_uri_edu-shared_TimeSeries/Porites_LCM_test/aligned/POR_Dtrenchii/POR_34_S82_Aligned.sortedByCoord.out.bam
+    gff file = /work/pi_hputnam_uri_edu/Dinos/Dtrenchii_cleaned.gtf
+    counting algorithm = uniquely-mapped-reads
+    protocol = non-strand-specific
+
+
+>>>>>>> Reads alignment
+
+    reads aligned (left/right) = 105,141 / 105,210
+    read pairs aligned  = 104,772
+    total alignments = 755,372
+    secondary alignments = 545,021
+    non-unique alignments = 557,785
+    aligned to genes  = 1,544
+    ambiguous alignments = 0
+    no feature assigned = 10,939
+    not aligned = 74,269,699
+    SSP estimation (fwd/rev) = 0.5 / 0.5
+
+
+>>>>>>> Reads genomic origin
+
+    exonic =  1,544 (12.37%)
+    intronic = 5,685 (45.54%)
+    intergenic = 5,254 (42.09%)
+    overlapping exon = 255 (2.04%)
+
+
+>>>>>>> Transcript coverage profile
+
+    5' bias = 0
+    3' bias = 0.04
+    5'-3' bias = ∞
+
+
+>>>>>>> Junction analysis
+
+    reads at junctions = 1,091
+
+    AGGT : 12.01%
+    AGGA : 9.44%
+    AAGT : 6.6%
+    AGGC : 5.96%
+    AAGC : 4.49%
+    ACCT : 3.94%
+    CAGC : 3.85%
+    CAGT : 2.75%
+    AGAT : 2.2%
+    TCCT : 2.11%
+    CAAA : 1.83%

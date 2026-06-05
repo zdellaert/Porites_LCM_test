@@ -1,0 +1,39 @@
+	STAR --runMode genomeGenerate --runThreadN 20 --genomeDir /scratch4/workspace/zdellaert_uri_edu-shared_TimeSeries/Porites_LCM_test/STAR_indexes/Dtrenchii_cleanedgtf --genomeFastaFiles /work/pi_hputnam_uri_edu/Dinos/Dtrenchii.fasta --sjdbGTFfile /work/pi_hputnam_uri_edu/Dinos/Dtrenchii_cleaned.gtf --sjdbGTFtagExonParentTranscript Parent --genomeSAindexNbases 13
+	STAR version: 2.7.11b   compiled: 2024-09-18T11:48:15-04:00 uri-cpu006:/tmp/STAR/2.7.11b/GCC-12.3.0/STAR-2.7.11b/source
+Jun 04 10:41:13 ..... started STAR run
+Jun 04 10:41:13 ... starting to generate Genome files
+Jun 04 10:41:46 ..... processing annotations GTF
+Jun 04 10:42:20 ... starting to sort Suffix Array. This may take a long time...
+Jun 04 10:42:54 ... sorting Suffix Array chunks and saving them to disk...
+Jun 04 10:51:23 ... loading chunks from disk, packing SA...
+Jun 04 10:52:46 ... finished generating suffix array
+Jun 04 10:52:46 ... generating Suffix Array index
+Jun 04 10:54:26 ... completed Suffix Array index
+Jun 04 10:54:26 ... writing Genome to disk ...
+Jun 04 10:54:42 ... writing Suffix Array to disk ...
+Jun 04 10:55:08 ... writing SAindex to disk
+Jun 04 10:55:10 ..... finished successfully
+	STAR --runMode alignReads --genomeDir /scratch4/workspace/zdellaert_uri_edu-shared_TimeSeries/Porites_LCM_test/STAR_indexes/Dtrenchii_cleanedgtf --runThreadN 10 --readFilesIn /scratch4/workspace/zdellaert_uri_edu-shared_TimeSeries/Porites_LCM_test/trimmed/POR_13_S81_flexbar_1.fastq /scratch4/workspace/zdellaert_uri_edu-shared_TimeSeries/Porites_LCM_test/trimmed/POR_13_S81_flexbar_2.fastq --outSAMtype BAM SortedByCoordinate --outSAMunmapped Within --outSAMattributes Standard --outFileNamePrefix /scratch4/workspace/zdellaert_uri_edu-shared_TimeSeries/Porites_LCM_test/aligned/POR_Dtrenchii_cleanedgtf/POR_13_S81_ --quantMode GeneCounts
+	STAR version: 2.7.11b   compiled: 2024-09-18T11:48:15-04:00 uri-cpu006:/tmp/STAR/2.7.11b/GCC-12.3.0/STAR-2.7.11b/source
+Jun 04 10:55:12 ..... started STAR run
+Jun 04 10:55:12 ..... loading genome
+Jun 04 10:55:27 ..... started mapping
+Jun 04 11:29:31 ..... finished mapping
+Jun 04 11:29:33 ..... started sorting BAM
+Jun 04 11:32:35 ..... finished successfully
+	STAR --runMode alignReads --genomeDir /scratch4/workspace/zdellaert_uri_edu-shared_TimeSeries/Porites_LCM_test/STAR_indexes/Dtrenchii_cleanedgtf --runThreadN 10 --readFilesIn /scratch4/workspace/zdellaert_uri_edu-shared_TimeSeries/Porites_LCM_test/trimmed/POR_34_S82_flexbar_1.fastq /scratch4/workspace/zdellaert_uri_edu-shared_TimeSeries/Porites_LCM_test/trimmed/POR_34_S82_flexbar_2.fastq --outSAMtype BAM SortedByCoordinate --outSAMunmapped Within --outSAMattributes Standard --outFileNamePrefix /scratch4/workspace/zdellaert_uri_edu-shared_TimeSeries/Porites_LCM_test/aligned/POR_Dtrenchii_cleanedgtf/POR_34_S82_ --quantMode GeneCounts
+	STAR version: 2.7.11b   compiled: 2024-09-18T11:48:15-04:00 uri-cpu006:/tmp/STAR/2.7.11b/GCC-12.3.0/STAR-2.7.11b/source
+Jun 04 11:32:38 ..... started STAR run
+Jun 04 11:32:38 ..... loading genome
+Jun 04 11:33:02 ..... started mapping
+Jun 04 12:10:07 ..... finished mapping
+Jun 04 12:10:10 ..... started sorting BAM
+Jun 04 12:13:21 ..... finished successfully
+	STAR --runMode alignReads --genomeDir /scratch4/workspace/zdellaert_uri_edu-shared_TimeSeries/Porites_LCM_test/STAR_indexes/Dtrenchii_cleanedgtf --runThreadN 10 --readFilesIn /scratch4/workspace/zdellaert_uri_edu-shared_TimeSeries/Porites_LCM_test/trimmed/POR_61_S83_flexbar_1.fastq /scratch4/workspace/zdellaert_uri_edu-shared_TimeSeries/Porites_LCM_test/trimmed/POR_61_S83_flexbar_2.fastq --outSAMtype BAM SortedByCoordinate --outSAMunmapped Within --outSAMattributes Standard --outFileNamePrefix /scratch4/workspace/zdellaert_uri_edu-shared_TimeSeries/Porites_LCM_test/aligned/POR_Dtrenchii_cleanedgtf/POR_61_S83_ --quantMode GeneCounts
+	STAR version: 2.7.11b   compiled: 2024-09-18T11:48:15-04:00 uri-cpu006:/tmp/STAR/2.7.11b/GCC-12.3.0/STAR-2.7.11b/source
+Jun 04 12:13:24 ..... started STAR run
+Jun 04 12:13:24 ..... loading genome
+Jun 04 12:13:52 ..... started mapping
+Jun 04 12:53:14 ..... finished mapping
+Jun 04 12:53:16 ..... started sorting BAM
+Jun 04 12:56:45 ..... finished successfully

@@ -1,0 +1,4 @@
+Sample	QualiMap_mqc-generalstats-qualimap-reads_aligned	STAR_mqc-generalstats-star-uniquely_mapped_percent	STAR_mqc-generalstats-star-uniquely_mapped
+POR_13_S81	142883.0	0.04	12375.0
+POR_34_S82	104772.0	0.03	9532.0
+POR_61_S83	144332.0	0.03	11768.0

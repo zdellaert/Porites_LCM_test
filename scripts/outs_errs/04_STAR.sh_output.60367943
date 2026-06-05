@@ -1,0 +1,40 @@
+	STAR --runMode genomeGenerate --runThreadN 20 --genomeDir /scratch4/workspace/zdellaert_uri_edu-shared_TimeSeries/Porites_LCM_test/STAR_indexes/Pcomp --genomeFastaFiles /work/pi_hputnam_uri_edu/HI_Genomes/Pcompressa/Porites_compressa_HIv1.assembly.fasta --sjdbGTFfile /work/pi_hputnam_uri_edu/HI_Genomes/Pcompressa/Porites_compressa_HIv1.genes.gff3 --sjdbGTFtagExonParentTranscript Parent --genomeSAindexNbases 13
+	STAR version: 2.7.11b   compiled: 2024-09-18T11:48:15-04:00 uri-cpu006:/tmp/STAR/2.7.11b/GCC-12.3.0/STAR-2.7.11b/source
+Jun 03 14:58:54 ..... started STAR run
+Jun 03 14:58:54 ... starting to generate Genome files
+Jun 03 14:59:06 ..... processing annotations GTF
+Jun 03 14:59:09 ... starting to sort Suffix Array. This may take a long time...
+Jun 03 14:59:11 ... sorting Suffix Array chunks and saving them to disk...
+Jun 03 14:59:52 ... loading chunks from disk, packing SA...
+Jun 03 15:00:11 ... finished generating suffix array
+Jun 03 15:00:11 ... generating Suffix Array index
+Jun 03 15:01:06 ... completed Suffix Array index
+Jun 03 15:01:06 ..... inserting junctions into the genome indices
+Jun 03 15:01:58 ... writing Genome to disk ...
+Jun 03 15:01:59 ... writing Suffix Array to disk ...
+Jun 03 15:02:05 ... writing SAindex to disk
+Jun 03 15:02:05 ..... finished successfully
+	STAR --runMode alignReads --genomeDir /scratch4/workspace/zdellaert_uri_edu-shared_TimeSeries/Porites_LCM_test/STAR_indexes/Pcomp --runThreadN 10 --readFilesIn /scratch4/workspace/zdellaert_uri_edu-shared_TimeSeries/Porites_LCM_test/trimmed/POR_13_S81_flexbar_1.fastq /scratch4/workspace/zdellaert_uri_edu-shared_TimeSeries/Porites_LCM_test/trimmed/POR_13_S81_flexbar_2.fastq --outSAMtype BAM SortedByCoordinate --outSAMunmapped Within --outSAMattributes Standard --outFileNamePrefix /scratch4/workspace/zdellaert_uri_edu-shared_TimeSeries/Porites_LCM_test/aligned/POR_Pcomp/POR_13_S81_ --quantMode GeneCounts
+	STAR version: 2.7.11b   compiled: 2024-09-18T11:48:15-04:00 uri-cpu006:/tmp/STAR/2.7.11b/GCC-12.3.0/STAR-2.7.11b/source
+Jun 03 15:02:06 ..... started STAR run
+Jun 03 15:02:06 ..... loading genome
+Jun 03 15:02:09 ..... started mapping
+Jun 03 15:20:28 ..... finished mapping
+Jun 03 15:20:29 ..... started sorting BAM
+Jun 03 15:21:38 ..... finished successfully
+	STAR --runMode alignReads --genomeDir /scratch4/workspace/zdellaert_uri_edu-shared_TimeSeries/Porites_LCM_test/STAR_indexes/Pcomp --runThreadN 10 --readFilesIn /scratch4/workspace/zdellaert_uri_edu-shared_TimeSeries/Porites_LCM_test/trimmed/POR_34_S82_flexbar_1.fastq /scratch4/workspace/zdellaert_uri_edu-shared_TimeSeries/Porites_LCM_test/trimmed/POR_34_S82_flexbar_2.fastq --outSAMtype BAM SortedByCoordinate --outSAMunmapped Within --outSAMattributes Standard --outFileNamePrefix /scratch4/workspace/zdellaert_uri_edu-shared_TimeSeries/Porites_LCM_test/aligned/POR_Pcomp/POR_34_S82_ --quantMode GeneCounts
+	STAR version: 2.7.11b   compiled: 2024-09-18T11:48:15-04:00 uri-cpu006:/tmp/STAR/2.7.11b/GCC-12.3.0/STAR-2.7.11b/source
+Jun 03 15:21:41 ..... started STAR run
+Jun 03 15:21:41 ..... loading genome
+Jun 03 15:21:48 ..... started mapping
+Jun 03 15:38:26 ..... finished mapping
+Jun 03 15:38:27 ..... started sorting BAM
+Jun 03 15:39:21 ..... finished successfully
+	STAR --runMode alignReads --genomeDir /scratch4/workspace/zdellaert_uri_edu-shared_TimeSeries/Porites_LCM_test/STAR_indexes/Pcomp --runThreadN 10 --readFilesIn /scratch4/workspace/zdellaert_uri_edu-shared_TimeSeries/Porites_LCM_test/trimmed/POR_61_S83_flexbar_1.fastq /scratch4/workspace/zdellaert_uri_edu-shared_TimeSeries/Porites_LCM_test/trimmed/POR_61_S83_flexbar_2.fastq --outSAMtype BAM SortedByCoordinate --outSAMunmapped Within --outSAMattributes Standard --outFileNamePrefix /scratch4/workspace/zdellaert_uri_edu-shared_TimeSeries/Porites_LCM_test/aligned/POR_Pcomp/POR_61_S83_ --quantMode GeneCounts
+	STAR version: 2.7.11b   compiled: 2024-09-18T11:48:15-04:00 uri-cpu006:/tmp/STAR/2.7.11b/GCC-12.3.0/STAR-2.7.11b/source
+Jun 03 15:39:24 ..... started STAR run
+Jun 03 15:39:24 ..... loading genome
+Jun 03 15:39:28 ..... started mapping
+Jun 03 15:55:18 ..... finished mapping
+Jun 03 15:55:18 ..... started sorting BAM
+Jun 03 15:56:34 ..... finished successfully
